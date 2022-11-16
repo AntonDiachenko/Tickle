@@ -10,7 +10,7 @@
 - set up Jira, build sprints
 3. Need assistance / figure things out
 
-2022/11/16 Anton
+2022/11/16 Alex
 1. Done / not done since last scrum:
 - Project Proposal
 2. To do until next Scrum:
