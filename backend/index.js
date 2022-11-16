@@ -1,9 +1,9 @@
 const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
-const dotnet = require ('dotnet');
+const dotenv = require ('dotenv');
 
-dotnet.config();
+dotenv.config();
 
 
 app.listen(8800,() =>{
