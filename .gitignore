@@ -1,11 +1,4 @@
 
-/frontend/src/index.js
-/frontend/src/pages/Registration.js
-*.json
-/frontend/src/pages/Usermanage.js
-/frontend/src/pages/Userupdate.js
-/backend/config/config.json
 /backend/node_modules/
-/server/.env
-
+/backend/.env
 /frontend/node_modules
