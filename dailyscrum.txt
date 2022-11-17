@@ -16,3 +16,10 @@
 2. To do until next Scrum:
 - research mongoDB, react, Node, express
 3. Need assistance / figure things out
+
+2022/11/16 Liutsiia 
+1. Done / not done since last scrum:
+2. To do until next Scrum:
+  Create mongoDB,
+  Start react project
+3. Need assistance / figure things out
