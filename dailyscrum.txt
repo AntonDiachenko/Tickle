@@ -23,3 +23,10 @@
   Create mongoDB,
   Start react project
 3. Need assistance / figure things out
+
+2022/11/17 Liutsiia 
+1. Done / not done since last scrum:
+  Created mongoDB
+2. To do until next Scrum:
+  Start create frontent project
+3. Need assistance / figure things out
