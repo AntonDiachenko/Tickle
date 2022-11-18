@@ -1,6 +1,7 @@
 require("dotenv").config();
 const mongoose = require("mongoose");
 const { getSecret } = require("./keyvault");
+require("C:\Users\shift\Documents\GitHub\TickleShift\frontend\package.json");
 
 async function putKeyVaultSecretInEnvVar() {
 
