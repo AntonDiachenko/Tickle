@@ -1,8 +1,10 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
-const cors = require("cors");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import cors from "cors";
+
+import authRoute from "./routes/auth.js"
 
 dotenv.config();
 
@@ -17,9 +19,13 @@ app.use(cors()); //to send requests from different ip to the backend
 app.use(express.json()); // send json from frontend to backend
 
 //test
-app.get("/", (req, res) => {
-  return res.json({ message: "Connected!" });
-});
+// app.get("/", (req, res) => {
+//   return res.json({ message: "Connected!" });
+// });
+
+// Routes (part of middleware)
+app.use("/api/auth", authRoute);
+
 
 async function start() {
   try {
