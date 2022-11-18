@@ -30,3 +30,11 @@
 2. To do until next Scrum:
   Start create frontent project
 3. Need assistance / figure things out
+
+2022/11/17 Anton
+1. Done / not done since last scrum:
+- set up the GitHub repository for the project
+- set up Jira, defined user stories for Sprint1
+2. To do until next Scrum:
+- write backend code for user registration
+3. Need assistance / figure things out
