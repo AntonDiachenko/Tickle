@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
 
-import authRoute from "./routes/auth.js"
+import authRoute from "./routes/auth.js";
 
 dotenv.config();
 
@@ -18,14 +18,14 @@ const DB_NAME = process.env.DB_NAME;
 app.use(cors()); //to send requests from different ip to the backend
 app.use(express.json()); // send json from frontend to backend
 
-//test
+// test connection initial route
+// http://localhost:8800/
 // app.get("/", (req, res) => {
 //   return res.json({ message: "Connected!" });
 // });
 
 // Routes (part of middleware)
 app.use("/api/auth", authRoute);
-
 
 async function start() {
   try {
