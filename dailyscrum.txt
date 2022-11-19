@@ -93,3 +93,7 @@
 - begin writing friendship feature
 3. Need assistance / figure things out
 
+2022/11/18 Raymond
+1. Done / not done since last scrum:
+	- development to the heroku
+
