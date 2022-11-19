@@ -6,6 +6,6 @@ const dotenv = require ('dotenv');
 dotenv.config();
 
 
-app.listen(8800,() =>{
+app.listen(process.env.PORT || 5000,() =>{
     console.log("Backend server is running!")
 })
