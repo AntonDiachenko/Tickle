@@ -53,6 +53,14 @@
 	-create models
 3. Need assistance / figure things out
 	-nested comments
+
+2022/11/17 Alex
+1. Done / not done since last scrum:
+- Research hosting on heroku and mongdb atlas
+2. To do until next Scrum:
+- research react, Node, express 
+- research friendship function
+3. Need assistance / figure things out
   
 2022/11/18 Anton
 1. Done / not done since last scrum:
@@ -69,5 +77,19 @@
 	-add photos/albums to the DB schema
 	-add photos/albums in the models
 	-create routes/controllers for posts
+3. Need assistance / figure things out
+
+2022/11/18 Alex
+1. Done / not done since last scrum:
+- research react, Node, express
+2. To do until next Scrum:
+- research friendship function
+3. Need assistance / figure things out
+
+2022/11/19 Alex
+1. Done / not done since last scrum:
+- research friendship feature
+2. To do until next Scrum:
+- begin writing friendship feature
 3. Need assistance / figure things out
 
