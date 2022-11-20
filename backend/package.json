@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "devstart": "nodemon index.js"
@@ -21,7 +21,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.7.2",
     "nodemon": "^2.0.20",
-    "npm": "^9.1.1"
+    "npm": "^9.1.1",
+    "yup": "^0.32.11"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,5 @@
     "url": "https://github.com/shift1018/tickle_backend/issues"
   },
   "homepage": "https://github.com/shift1018/tickle_backend#readme",
-  "devDependencies": {},
   "description": ""
 }
