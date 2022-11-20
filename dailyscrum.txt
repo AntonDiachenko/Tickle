@@ -110,3 +110,11 @@
 	- rightbar
 	- Homepage
 3. Need assistance / figure things out
+
+2022/11/19 Anton
+1. Done / not done since last scrum:
+- completed backend code for user registration
+- introduced roles to the user code
+2. To do until next Scrum:
+- write validation of inputs on server side
+3. Need assistance / figure things out
