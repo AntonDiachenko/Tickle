@@ -118,3 +118,13 @@
 2. To do until next Scrum:
 - write validation of inputs on server side
 3. Need assistance / figure things out
+
+
+2022/11/20 Liutsiia
+1. Done / not done since last scrum:
+	- sidebar
+2. To do until next Scrum:
+	- rightbar
+	- share
+	- post
+3. Need assistance / figure things out
