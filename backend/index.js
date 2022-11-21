@@ -26,6 +26,7 @@ app.use(express.json()); // send json from frontend to backend
 // });
 
 // Routes (part of middleware)
+   // starting route for user registration/login
 app.use("/api/auth", authRoute);
 
 app.use("/users", usersRoute);
