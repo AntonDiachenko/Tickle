@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import authRoute from "./routes/auth.js";
+import usersRoute from "./routes/users.js";
 
 dotenv.config();
 
@@ -26,6 +27,8 @@ app.use(express.json()); // send json from frontend to backend
 
 // Routes (part of middleware)
 app.use("/api/auth", authRoute);
+
+app.use("/users", usersRoute);
 
 async function start() {
   try {
