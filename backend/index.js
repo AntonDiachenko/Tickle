@@ -8,6 +8,8 @@ import fileUpload from "express-fileupload";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import postRoute from "./routes/posts.js";
+import friendsRoute from "./routes/friend.js";
+
 
 dotenv.config();
 
@@ -34,6 +36,7 @@ app.use(express.static("uploads")); //folder where to upload images
 app.use("/api/auth", authRoute);
 
 app.use("/users", usersRoute);
+app.use("/api/friends", friendsRoute);
 
 app.use("/api/posts", postRoute);
 
