@@ -17,7 +17,7 @@ export const createPost = async (req, res) => {
       req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
 
       //console.log("req.files");
-      const imageurl= "https://tickle.blob.core.windows.net/post/"+ fileName;
+      const imageurl = "https://tickle.blob.core.windows.net/post/" + fileName;
       const newPostWithImage = new Post({
         title,
         content,
@@ -118,6 +118,35 @@ export const removePost = async (req, res) => {
     });
 
     res.json({ message: "The post was removed" });
+  } catch (error) {
+    res.json({ message: "Something went wrong" });
+  }
+};
+
+// Update post
+export const updatePost = async (req, res) => {
+  try {
+    const { title, content } = req.body;
+    const post = await Post.findById(req.params.id);
+
+    //console.log(title);
+
+    if (req.files) {
+      let fileName = Date.now().toString() + req.files.image.name;
+      const __dirname = dirname(fileURLToPath(import.meta.url));
+      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
+      post.imageURL = fileName || "";
+    }
+
+    post.title = title;
+    post.content = content;
+    //post.tags = tags;
+    //post.reactions = req.body.reactions;
+    //post.user = req.userId;
+
+    await post.save();
+
+    res.json(post);
   } catch (error) {
     res.json({ message: "Something went wrong" });
   }

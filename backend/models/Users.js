@@ -18,6 +18,9 @@ const UsersSchema = new mongoose.Schema(
     avatarURL: {
       type: String,
     },
+    profileURL: {
+      type: String,
+    },
     role: [
       {
         type: String,
@@ -48,6 +51,12 @@ const UsersSchema = new mongoose.Schema(
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Friendships",
+      },
+    ],
+    albums: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Albums",
       },
     ],
   },
