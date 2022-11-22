@@ -17,7 +17,7 @@ export const createPost = async (req, res) => {
       req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
 
       //console.log("req.files");
-
+      const imageurl= "https://tickle.blob.core.windows.net/post/"+ fileName;
       const newPostWithImage = new Post({
         title,
         content,
