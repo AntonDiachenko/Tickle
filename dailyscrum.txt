@@ -121,6 +121,14 @@ uploading images
 3. Need assistance / figure things out
 plcaing the right conditions
 
+2022/11/18 Raymond
+1. Done / not done since last scrum:
+- deploy the app to heroku
+2. To do until next Scrum:
+- set the env azure blobs
+- upload images to blobs
+3. Need assistance / figure things out
+
 2022/11/19 Alex
 1. Done / not done since last scrum:
 - research friendship feature
@@ -162,6 +170,13 @@ plcaing the right conditions
 	- post
 3. Need assistance / figure things out
 
+2022/11/20 Raymond
+1. Done / not done since last scrum:
+- set the azure storage blobs
+2. To do until next Scrum:
+
+3. Need assistance / figure things out
+
 2022/11/21 Liutsiia
 1. Done / not done since last scrum:
 - Share
@@ -194,3 +209,12 @@ plcaing the right conditions
 - complete backend logic for comments
 - reasearch on implementing reactions
 3. Need assistance / figure things out
+
+
+2022/11/22 Raymond
+1. Done / not done since last scrum:
+- research on uploading images
+2. To do until next Scrum:
+
+3. Need assistance / figure things out
+
