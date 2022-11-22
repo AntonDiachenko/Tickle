@@ -145,10 +145,25 @@
 - reasearch on implementing reactions
 3. Need assistance / figure things out
 
+2022/11/21 Alex
+1. Done / not done since last scrum:
+- researched user route
+2. To do until next Scrum:
+- complete user route
+3. Need assistance / figure things out
+
 2022/11/22 Anton
 1. Done / not done since last scrum:
 - began writing backend logic for comments
 2. To do until next Scrum:
 - complete backend logic for comments
 - reasearch on implementing reactions
+3. Need assistance / figure things out
+
+2022/11/22 Alex
+1. Done / not done since last scrum:
+- completed user route
+2. To do until next Scrum:
+- write search feature
+-research upload image to blob
 3. Need assistance / figure things out
