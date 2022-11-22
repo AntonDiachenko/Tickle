@@ -31,6 +31,14 @@
 	-connect mongodb to the backend
 3. Need assistance / figure things out
 
+2022/11/16 Myrzagul
+1. Done / not done since last scrum:
+looked for tutorials on social media
+2. To do until next Scrum:
+learn what features we need
+3. Need assistance / figure things out
+uploading images
+
 2022/11/17 Liutsiia 
 1. Done / not done since last scrum:
   Created mongoDB
@@ -61,6 +69,15 @@
 - research react, Node, express 
 - research friendship function
 3. Need assistance / figure things out
+
+2022/11/17 Myrzagul
+1. Done / not done since last scrum:
+- refresh in memory how to work with reactjs, nodejs, express
+- learn how to work with jira
+2. To do until next Scrum:
+- write backend code for creating a friendship
+3. Need assistance / figure things out
+
   
 2022/11/18 Anton
 1. Done / not done since last scrum:
@@ -95,6 +112,15 @@
 	- home page
 3. Need assistance / figure things out
 
+2022/11/18 Myrzagul
+1. Done / not done since last scrum:
+- began working on the backend code for friendships
+- testing it with some data
+2. To do until next Scrum:
+- implement the necessary conditions for adding friends
+3. Need assistance / figure things out
+plcaing the right conditions
+
 2022/11/19 Alex
 1. Done / not done since last scrum:
 - research friendship feature
@@ -117,6 +143,13 @@
 - introduced roles to the user code
 2. To do until next Scrum:
 - write validation of inputs on server side
+3. Need assistance / figure things out
+
+2022/11/19 Myrzagul
+1. Done / not done since last scrum:
+- completed the backend code for adding a friend
+2. To do until next Scrum:
+- fix the bugs that appeared when peer testing
 3. Need assistance / figure things out
 
 
@@ -145,12 +178,14 @@
 - reasearch on implementing reactions
 3. Need assistance / figure things out
 
-2022/11/21 Alex
+2022/11/21 Myrzagul
 1. Done / not done since last scrum:
-- researched user route
+- still fixing some bugs when adding the friendship approved date
 2. To do until next Scrum:
-- complete user route
+- fix the bugs that you have
+- finish the backend code for updating and deleteing a friendship
 3. Need assistance / figure things out
+
 
 2022/11/22 Anton
 1. Done / not done since last scrum:
@@ -158,12 +193,4 @@
 2. To do until next Scrum:
 - complete backend logic for comments
 - reasearch on implementing reactions
-3. Need assistance / figure things out
-
-2022/11/22 Alex
-1. Done / not done since last scrum:
-- completed user route
-2. To do until next Scrum:
-- write search feature
--research upload image to blob
 3. Need assistance / figure things out
