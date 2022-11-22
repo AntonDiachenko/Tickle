@@ -128,3 +128,11 @@
 	- share
 	- post
 3. Need assistance / figure things out
+
+2022/11/21 Liutsiia
+1. Done / not done since last scrum:
+- Share
+- Post
+2. To do until next Scrum:
+- rightbar
+3. Need assistance / figure things out
