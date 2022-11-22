@@ -3,9 +3,10 @@ const app = express();
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
+import friendsRoute from "./routes/friend.js";
+
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.use(express.json()); // send json from frontend to backend
 app.use("/api/auth", authRoute);
 
 app.use("/users", usersRoute);
+app.use("/api/friends", friendsRoute);
 
 async function start() {
   try {
