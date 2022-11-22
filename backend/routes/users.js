@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { byId } from "../controllers/users.js";
-import { updateUser } from "../controllers/users.js";
-import { deleteUser } from "../controllers/users.js";
+import { byId, updateUser, deleteUser } from "../controllers/users.js";
+// import { updateUser } from "../controllers/users.js";
+// import { deleteUser } from "../controllers/users.js";
 // import { checkAuth } from '../utils/checkAuth.js';
 
 const router = new Router();
