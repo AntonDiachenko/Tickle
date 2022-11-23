@@ -225,3 +225,10 @@ plcaing the right conditions
 - profile page
 - login page
 3. Need assistance / figure things out
+
+2022/11/23 Liutsiia
+1. Done / not done since last scrum:
+- done with design
+2. To do until next Scrum:
+- start with frontend logic
+3. Need assistance / figure things out

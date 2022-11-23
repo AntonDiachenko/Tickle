@@ -21,6 +21,24 @@ const UsersSchema = new mongoose.Schema(
     profileURL: {
       type: String,
     },
+    city: {
+      type:String,
+      max:25,
+
+    },
+    from: {
+      type: String,
+      max:25,
+    },
+    birtday: {
+      type: Date,
+
+    },
+    desc: {
+      type: String,
+      max:100,
+    },
+
     role: [
       {
         type: String,
