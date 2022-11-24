@@ -15,11 +15,11 @@ export const createPost = async (req, res) => {
     //  console.log(user);
 
     if (req.files) {
-      const fileName = req.files.fileName.name;
-      const __dirname = dirname(fileURLToPath(import.meta.url));
-      const x= import.meta.url;
-      const filep= path.join(__dirname, "..", "uploads", fileName);
-      const filep1 = req.files.fileName.mv(filep);
+      // const fileName = req.files.fileName.name;
+      // const __dirname = dirname(fileURLToPath(import.meta.url));
+      // const x= import.meta.url;
+      // const filep= path.join(__dirname, "..", "uploads", fileName);
+      // const filep1 = req.files.fileName.mv(filep);
 
       // console.log(req.files);
 
@@ -27,16 +27,16 @@ export const createPost = async (req, res) => {
 
 
 
-//       const blobServiceClient = BlobServiceClient.fromConnectionString(
-//       "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
-//       );
-//       const containerClient = blobServiceClient.getContainerClient("post");
-//       const fileName = req.files.fileName.name;
-//       const tempFilePath = req.files.fileName.tempFilePath;
-//       // const filePath= "C:\\Users\\shift\\Documents\\GitHub\\Tickle\\Tickle\\frontend\\iamge\\download.jpg";
-//       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-//       const containerURL = "https://tickle.blob.core.windows.net/post/";
-//       const response = await blockBlobClient.uploadFile(tempFilePath);
+      const blobServiceClient = BlobServiceClient.fromConnectionString(
+      "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
+      );
+      const containerClient = blobServiceClient.getContainerClient("post");
+      const fileName = req.files.fileName.name;
+      // const tempFilePath = req.files.fileName.tempFilePath;
+      const filePath= "C:\\Users\\shift\\Documents\\GitHub\\Tickle\\Tickle\\frontend\\iamge\\download.jpg";
+      const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+      const containerURL = "https://tickle.blob.core.windows.net/post/";
+      const response = await blockBlobClient.uploadFile(tempFilePath);
 //       // https://tickle.blob.core.windows.net/post/download.jpg
 //       // https://tickle.blob.core.windows.net/post/az1.jpg
 
