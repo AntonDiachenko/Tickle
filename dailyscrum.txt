@@ -232,3 +232,20 @@ plcaing the right conditions
 2. To do until next Scrum:
 - start with frontend logic
 3. Need assistance / figure things out
+
+2022/11/23 Anton
+1. Done / not done since last scrum:
+- working on writing backend logic for comments
+- connected frontend to backend for login and register
+2. To do until next Scrum:
+- complete backend logic for comments
+- reasearch on implementing reactions
+3. Need assistance / figure things out
+
+2022/11/24 Anton
+1. Done / not done since last scrum:
+- working on writing backend logic for comments
+2. To do until next Scrum:
+- complete backend logic for comments
+- reasearch on implementing reactions
+3. Need assistance / figure things out
