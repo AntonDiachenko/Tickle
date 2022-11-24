@@ -17,7 +17,7 @@ router.post("/login", login);
 // Get User
 //http://localhost:8800/api/auth/user
   // checkAauth is the middleware from utils folder
-router.post("/user", checkAuth, getUser);
+router.get("/user", checkAuth, getUser);
 
 
 export default router;
