@@ -1,0 +1,11 @@
+$ heroku login
+
+$ heroku git:clone -a ticklebackend01 
+$ cd ticklebackend01
+
+$ heroku git:clone -a ticklefrontend01 
+$ cd ticklefrontend01
+
+$ git add .
+$ git commit -am "make it better"
+$ git push heroku master
