@@ -201,6 +201,13 @@ plcaing the right conditions
 - finish the backend code for updating and deleteing a friendship
 3. Need assistance / figure things out
 
+2022/11/21 Alex
+1. Done / not done since last scrum:
+- research image upload Azure
+2. To do until next Scrum:
+- implement image upload Azure
+3. Need assistance / figure things out
+
 
 2022/11/22 Anton
 1. Done / not done since last scrum:
@@ -226,6 +233,14 @@ plcaing the right conditions
 - login page
 3. Need assistance / figure things out
 
+2022/11/22 Alex
+1. Done / not done since last scrum:
+- research image upload S3
+2. To do until next Scrum:
+- implement image upload S3
+3. Need assistance / figure things out
+- Azure solution not working
+
 2022/11/23 Liutsiia
 1. Done / not done since last scrum:
 - done with design
@@ -242,10 +257,32 @@ plcaing the right conditions
 - reasearch on implementing reactions
 3. Need assistance / figure things out
 
+2022/11/23 Alex
+1. Done / not done since last scrum:
+- implemented s3 image solution (we eneded up going with azure)
+2. To do until next Scrum:
+- implement search feature
+3. Need assistance / figure things out
+
+
 2022/11/24 Anton
 1. Done / not done since last scrum:
 - working on writing backend logic for comments
 2. To do until next Scrum:
 - complete backend logic for comments
 - reasearch on implementing reactions
+3. Need assistance / figure things out
+
+2022/11/24 Alex
+1. Done / not done since last scrum:
+2. To do until next Scrum:
+- spent afternoon peer reviewing websites and receiving comments
+3. Need assistance / figure things out
+
+
+2022/11/25 Alex
+1. Done / not done since last scrum:
+- researched search feature and api implementation
+2. To do until next Scrum:
+- continue finishing search feature and continue researching api implementation
 3. Need assistance / figure things out
