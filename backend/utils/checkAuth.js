@@ -4,7 +4,9 @@ import jwt from "jsonwebtoken";
 export const checkAuth = (req, res, next) => {
     // Here we get the token from header in the line "authorization". Originally it looks like this string "Bearer, kjg4kjh45643kjghkg2546k"
     // to get only token from the string we use .replace (or split function can be used)
-    const accessToken = (req.headers.authorization || "").replace(/Bearer\s?/, "")
+    //const accessToken = (req.headers.authorization || "").replace(/Bearer\s?/, "")
+
+    const accessToken = req.header("accessToken");
 
     if(accessToken) {
         try {
@@ -22,12 +24,12 @@ export const checkAuth = (req, res, next) => {
 
         }catch (error){
             return res.json({
-                message: "Access denied",
+                message: "Access denied. CheckAuth",
             })
         }
     } else {
         return res.json({
-            message: "Access denied",
+            message: "Access denied. CheckAuth",
         })
     }
 

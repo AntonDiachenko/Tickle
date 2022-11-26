@@ -71,9 +71,12 @@ export const login = async (req, res) => {
             process.env.JWT_SECRET,
             { expiresIn: "30d" },
         )
-
+            // we are sending data to our frontend in a res. to be able to set this accessToken on Login.jsx to our local storage 
+            // on the frontend we will get the token from local storage and pass it to the headers of each request we want to validate
+            // in this way we will know which user makes the request  
         res.json({
-            token: accessToken, 
+            //token: accessToken, 
+            accessToken,
             user, 
             message: "You're logged in"
         })
@@ -96,26 +99,27 @@ export const getUser = async (req, res) => {
                 message: "User does not exist"
             })
         }
-        // create a token again, always based on id, that's why it'll be the same
-        const accessToken = jwt.sign(
-            {
-                id: user._id,
-                username: user.username, 
-                role: user.role,
-                email: user.email
-            }, 
-            process.env.JWT_SECRET,
-            { expiresIn: "30d" },
-        )
+        //create a token again, always based on id, that's why it'll be the same
+        // const accessToken = jwt.sign(
+        //     {
+        //         id: user._id,
+        //         username: user.username, 
+        //         role: user.role,
+        //         email: user.email
+        //     }, 
+        //     process.env.JWT_SECRET,
+        //     { expiresIn: "30d" },
+        // )
 
         res.json({
-            token: accessToken,
+            //token: accessToken,
+            //accessToken,
             user  
         })
 
     }
     catch(error){
-        res.json({ message: "Access denied" })
+        res.json({ message: "Access denied. GetUser" })
     }
 }
 
