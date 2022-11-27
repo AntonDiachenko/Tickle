@@ -34,7 +34,7 @@ router.patch("/:id", checkAuth, updatePost);
 router.get("/user/:userId", checkAuth, getMyPosts);
 
 // Get User's Timeline Posts
-//localhost:8800/api/posts/myPosts/
+//localhost:8800/api/posts/timeline/:userId
 router.get("/timeline/:userId", getTimelinePosts);
 
 // Get User's Profile Posts

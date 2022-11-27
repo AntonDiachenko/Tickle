@@ -1,6 +1,6 @@
 import Post from "../models/Posts.js";
 import User from "../models/Users.js";
-// import Friendship from "../models/Friendships.js";
+import Friendship from "../models/Friendships.js";
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import { BlobServiceClient } from "@azure/storage-blob";
@@ -102,7 +102,7 @@ export const getById = async (req, res) => {
 
 // Get all posts of one user
 export const getMyPosts = async (req, res) => {
-  console.log("jhgjhgjuser");
+  // console.log("jhgjhgjuser");
   try {
     const user = await User.findById(req.params.userId);
 
@@ -133,15 +133,15 @@ export const getTimelinePosts = async (req, res) => {
     //   currentUser.friendships.map((friendship) => {
     //     console.log(friendship);
 
-    const friendList = await Promise.all(
-      currentUser.friendships.map((friendship) => {
-        // console.log(friendship);
-        return Friendships.findById(friendship._id);
-      })
-    );
-    console.log(friendList);
-    const friendPosts = await Post.find({ user: friendList[0].friend });
-    console.log(friendPosts);
+    // const friendList = await Promise.all(
+    //   currentUser.friendships.map((friendship) => {
+    //     // console.log(friendship);
+    //     return Friendships.findById(friendship._id);
+    //   })
+    // );
+    // console.log(friendList);
+    // const friendPosts = await Post.find({ user: friendList[0].friend });
+    // console.log(friendPosts);
 
     // const friendFinal = await Promise.all();
 
@@ -162,7 +162,57 @@ export const getTimelinePosts = async (req, res) => {
     //   return postArray;
     // })
 
-    res.status(200).json(userPosts.concat(...friendPosts));
+    /////////////////////////////////////////////////////////
+    //  const user = await User.findById(req.params.userId);
+    //console.log("currentUser111", currentUser);
+
+    // const friendlist = await user.friendships.findOne(user.id == req.userId);
+
+    //list of all friendships of one user from req
+    const list = await Promise.all(
+      currentUser.friendships.map((currentUser) => {
+        return Friendship.findById(currentUser._id);
+      })
+    );
+
+    let friendPosts = [];
+    let friendasuser;
+
+    for (let i = 0; i < list.length; i++) {
+      if (list[i].approvedDate !== null) {
+        // console.log("currentUser._id", currentUser.id);
+
+        if (currentUser.id == list[i].user) {
+          friendasuser = await User.findById(list[i].friend);
+        } else {
+          friendasuser = await User.findById(list[i].user);
+        }
+
+        const list2 = await Promise.all(
+          friendasuser.posts.map((post) => {
+            return Post.findById(post._id);
+          })
+        );
+
+        friendPosts.push(...list2);
+      }
+    }
+    // merge user Posts and friens Posts
+    friendPosts.push(...userPosts);
+
+    //remove nulls from array
+    var friendsUserPostsFinal = friendPosts.filter(function (el) {
+      return el != null;
+    });
+
+    //sorting posts by createDate (desc order)
+    friendsUserPostsFinal.sort(
+      (a, b) =>
+        new Date(b.createDate).getTime() - new Date(a.createDate).getTime()
+    );
+    //////////////////////////////////////////
+
+    res.status(200).json(friendsUserPostsFinal);
   } catch (error) {
     res
       .status(500)
