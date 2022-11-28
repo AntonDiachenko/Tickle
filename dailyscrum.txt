@@ -280,6 +280,13 @@ plcaing the right conditions
 3. Need assistance / figure things out
 - frontend code for approving a friendship
 
+2022/11/23 Raymond
+1. Done / not done since last scrum:
+- research on uploading images： 
+	multer and buffer
+2. To do until next Scrum:
+3. Need assistance / figure things out
+
 2022/11/24 Anton
 1. Done / not done since last scrum:
 - working on writing backend logic for comments
@@ -309,6 +316,15 @@ plcaing the right conditions
 - trying to get the necessary info from the user
 3. Need assistance / figure things out
 - frontend code for approving a friendship
+
+2022/11/24 Raymond
+1. Done / not done since last scrum:
+- upload images into  azure blobs
+2. To do until next Scrum:
+- select multipule images and upload them 
+3. Need assistance / figure things out
+- mongodb 
+
 
 
 2022/11/25 Alex
