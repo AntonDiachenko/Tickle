@@ -322,3 +322,11 @@ plcaing the right conditions
 2. To do until next Scrum:
 - research on implementation of reactions
 3. Need assistance / figure things out
+
+2022/11/26 Alex
+1. Done / not done since last scrum:
+- updated profile page and feed frontend
+2. To do until next Scrum:
+- fix feed reading to timeline api issue
+- work on search feature
+3. Need assistance / figure things out
