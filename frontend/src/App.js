@@ -4,7 +4,6 @@ import Profile from "./pages/profile/Profile";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./utils/AuthContext.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -79,10 +78,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:username" element={<Profile />} />
           {/* <Route path="/" element={<Post />} /> */}
-          <Route exact path='/' element={<Home/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/profile/:username' element={<Profile/>} />
           <Route path='/user/myFriends' element={<Friends/>} />
         </Routes>
       </Router>
