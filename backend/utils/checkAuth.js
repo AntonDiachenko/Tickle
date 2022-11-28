@@ -7,18 +7,18 @@ export const checkAuth = (req, res, next) => {
     
     //const accessToken = (req.headers.authorization || "").replace(/Bearer\s?/, "")
 
-    const accessToken = req.header("accessToken");
+  // const accessToken = req.header("accessToken");
 
-    if(accessToken) {
-        try {
-            // decode the token which we get from header above
-            const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
+  if (accessToken) {
+    try {
+      // decode the token which we get from header above
+      const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
 
-            // adding additional fields into request to further manipulate them
-            req.userId = decoded.id;
-            req.userRole = decoded.role;
-            req.userEmail = decoded.email;
-            req.userName = decoded.username;
+      // adding additional fields into request to further manipulate them
+      req.userId = decoded.id;
+      req.userRole = decoded.role;
+      req.userEmail = decoded.email;
+      req.userName = decoded.username;
 
             // we use next to proceed in the routes.auth.js in request /user to the next function getUser
             next();

@@ -7,8 +7,8 @@ const PhotosSchema = new mongoose.Schema(
       required: true,
     },
     album: {
-      type: Schema.Types.ObjectId,
-      ref: "Albums",
+      type: String,
+      required: true,
     },
     post: {
       type: Schema.Types.ObjectId,
