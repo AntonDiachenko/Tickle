@@ -1,4 +1,5 @@
 import Post from "../models/Posts.js";
+import Photo from "../models/Photos.js";
 import User from "../models/Users.js";
 import Friendship from "../models/Friendships.js";
 import path, { dirname } from "path";
@@ -11,35 +12,57 @@ export const createPost = async (req, res) => {
   try {
     const { title, content, tags } = req.body;
     const user = await User.findById(req.userId);
-    console.log(req.userId);
+    // console.log(req.userId);
     //  console.log(user);
-
+    const urlList = [];
     if (req.files) {
+      const file= req.files.fileName;
+      
       const blobServiceClient = BlobServiceClient.fromConnectionString(
         "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
-      );
-      const containerClient = blobServiceClient.getContainerClient("post");
-      const fileName = req.files.fileName.name;
+        );
+        const containerClient = blobServiceClient.getContainerClient("post");
+      file.forEach(element => {
+
+      
+        
+      const fileName = element.name;
       const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-      const options = {
-        blobHTTPHeaders: { blobContentType: req.files.fileName.type },
-      };
-      await blockBlobClient.uploadData(req.files.fileName.data, options);
+      const options = { blobHTTPHeaders: { blobContentType: element.type } };
+      blockBlobClient.uploadData(element.data, options);
       // const response = await blockBlobClient.uploadFile(filePath);
       // https://tickle.blob.core.windows.net/post/download.jpg
       // https://tickle.blob.core.windows.net/post/az1.jpg
 
       const photoUrl = containerClient.getBlockBlobClient(fileName);
 
+
+    
+
+       // urlist maybe change to photos,????
+      urlList.push(photoUrl.url);
+    });
       const newPostWithImage = new Post({
         title,
         content,
-        imageURL: photoUrl.url,
+        imageURL: urlList,
         tags,
         reactions: req.body.reactions,
         user: req.userId,
       });
       await newPostWithImage.save();
+
+     // attention on post id
+     urlList.forEach(element => {
+        const newImage = new Photo({
+        photoURL:element,
+        album,
+        post: newPostWithImage._id
+      });
+      newImage.save();
+    });
+
+      
 
       //push post into user table
       await User.findByIdAndUpdate(req.userId, {
