@@ -1,12 +1,13 @@
-import Home from "./pages/home/Home"
+import Home from "./pages/home/Home";
 import Profile from "./pages/profile/Profile";
 //import { Routes, Route } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthContext } from "./utils/AuthContext.js";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Post from "./components/post/Post";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -43,14 +44,15 @@ function App() {
     <AuthContext.Provider value={{ authState, setAuthState }}>
       <Router>
         <Routes>
-          <Route exact path='/' element={<Home/>} />
-          <Route path='/login' element={<Login/>} />
-          <Route path='/register' element={<Register/>} />
-          <Route path='/profile/:username' element={<Profile/>} />
+          <Route exact path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/profile/:username" element={<Profile />} />
+          {/* <Route path="/" element={<Post />} /> */}
         </Routes>
-      </Router>      
+      </Router>
     </AuthContext.Provider>
-  )  
+  );
 }
 
 export default App;
