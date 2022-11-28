@@ -241,6 +241,14 @@ plcaing the right conditions
 3. Need assistance / figure things out
 - Azure solution not working
 
+2022/11/22 Myrzagul
+1. Done / not done since last scrum:
+- trying to get the user info from the token to display on the frontend
+2. To do until next Scrum:
+- fix the bugs that i have
+- finish the backend code for updating a friendship
+3. Need assistance / figure things out
+
 2022/11/23 Liutsiia
 1. Done / not done since last scrum:
 - done with design
@@ -264,6 +272,13 @@ plcaing the right conditions
 - implement search feature
 3. Need assistance / figure things out
 
+2022/11/23 Myrzagul
+1. Done / not done since last scrum:
+- found the bug with the token and siplaying the user info
+2. To do until next Scrum:
+- displaying the users friendships
+3. Need assistance / figure things out
+- frontend code for approving a friendship
 
 2022/11/24 Anton
 1. Done / not done since last scrum:
@@ -287,6 +302,15 @@ plcaing the right conditions
 - Correct register form
 3. Need assistance / figure things out
 
+2022/11/24 Myrzagul
+1. Done / not done since last scrum:
+- diplaying the user info
+2. To do until next Scrum:
+- trying to get the necessary info from the user
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
+
 2022/11/25 Alex
 1. Done / not done since last scrum:
 - researched search feature and api implementation
@@ -303,12 +327,21 @@ plcaing the right conditions
 - Correct img url
 3. Need assistance / figure things out
 
+2022/11/25 Myrzagul
+1. Done / not done since last scrum:
+- diplaying the user info, adding a button for approval
+2. To do until next Scrum:
+- testing the friend approval and fixing the backend bug
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
 2022/11/26 Liutsiia
 1. Done / not done since last scrum:
 - corrected image Url
 2. To do until next Scrum:
 - continue fetching data
 3. Need assistance / figure things out
+
 2022/11/25 Anton
 1. Done / not done since last scrum:
 - completed backend logic for comments
@@ -323,10 +356,11 @@ plcaing the right conditions
 - research on implementation of reactions
 3. Need assistance / figure things out
 
-2022/11/26 Alex
+2022/11/26 Myrzagul
 1. Done / not done since last scrum:
-- updated profile page and feed frontend
+- testied the friend approval and fixed the backend bug for friend approval
 2. To do until next Scrum:
-- fix feed reading to timeline api issue
-- work on search feature
+- finish the frontend for approving the friends
+-write the backend for getting approved and not approved friends
 3. Need assistance / figure things out
+- frontend code for approving a friendship
