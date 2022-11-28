@@ -279,10 +279,33 @@ plcaing the right conditions
 - spent afternoon peer reviewing websites and receiving comments
 3. Need assistance / figure things out
 
+2022/11/24 Liutsiia
+1. Done / not done since last scrum:
+- routes for frontend
+2. To do until next Scrum:
+- Fetching data
+- Correct register form
+3. Need assistance / figure things out
 
 2022/11/25 Alex
 1. Done / not done since last scrum:
 - researched search feature and api implementation
 2. To do until next Scrum:
 - continue finishing search feature and continue researching api implementation
+3. Need assistance / figure things out
+
+
+2022/11/25 Liutsiia
+1. Done / not done since last scrum:
+- Correct register form
+2. To do until next Scrum:
+- Fetching data Home page
+- Correct img url
+3. Need assistance / figure things out
+
+2022/11/26 Liutsiia
+1. Done / not done since last scrum:
+- corrected image Url
+2. To do until next Scrum:
+- continue fetching data
 3. Need assistance / figure things out
