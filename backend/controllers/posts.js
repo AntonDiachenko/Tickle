@@ -50,16 +50,23 @@ export const createPost = async (req, res) => {
         reactions: req.body.reactions,
         user: req.userId,
       });
-      await newPostWithImage.save();
+      newPostWithImage.save();
 
      // attention on post id
      urlList.forEach(element => {
         const newImage = new Photo({
         photoURL:element,
-        album,
-        post: newPostWithImage._id
+        album: "Albums",
+        post: newPostWithImage._id,
+
+        // user: req.userId,
       });
-      newImage.save();
+       newImage.save();
+
+       //push photo into user table
+      User.findByIdAndUpdate(req.userId, {
+        $push: { photos: newImage },
+      });
     });
 
       
@@ -68,6 +75,8 @@ export const createPost = async (req, res) => {
       await User.findByIdAndUpdate(req.userId, {
         $push: { posts: newPostWithImage },
       });
+
+      
 
       return res.json(newPostWithImage);
     }
