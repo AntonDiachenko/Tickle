@@ -1,9 +1,12 @@
 import Home from "./pages/home/Home";
 import Feed from "./components/feed/Feed";
 import Profile from "./pages/profile/Profile";
+import Feed from "./components/feed/Feed";
 //import { Routes, Route } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
+import Comments from "./components/comments/Comments";
+
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import { AuthContext } from "./utils/AuthContext.js";
 import { useState, useEffect, useContext } from "react";
@@ -34,15 +37,18 @@ function App() {
         if (response.data.error) {
           setAuthState({ ...authState, status: false });
         } else {
+          //console.log("this is response:", response)
           setAuthState({
             email: response.data.user.email,
             userId: response.data.user._id,
             status: true,
             role: response.data.user.role,
+            
           });
         }
       });
   }, []);
+//console.log("this is after setAuthState", authState);
 
   //const userId = authState.userId;
 
@@ -77,14 +83,16 @@ function App() {
           </div>
 
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path='/' element={<Home/>} />
+          <Route path='/getComments/:id' element={<Comments/>} />
+          <Route path='/' element={<Feed/>} />
+          <Route path='/login' element={<Login/>} />
+          <Route path='/register' element={<Register/>} />
+          <Route path='/profile/:username' element={<Profile/>} />
           {/* <Route exact path="/">
             {user ? <Home /> : <Register />}
             </Route> */}
           {/* <Route path="/" element={<Feed />} /> */}
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile/:username" element={<Profile />} />
           {/* <Route path="/" element={<Post />} /> */}
           <Route path='/user/myFriends' element={<Friends/>} />
         </Routes>
