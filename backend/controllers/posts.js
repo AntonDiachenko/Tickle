@@ -129,45 +129,6 @@ export const getTimelinePosts = async (req, res) => {
     const currentUser = await User.findById(req.params.userId);
     const userPosts = await Post.find({ user: currentUser._id });
 
-    // const friendPosts = await Promise.all(
-    //   currentUser.friendships.map((friendship) => {
-    //     console.log(friendship);
-
-    // const friendList = await Promise.all(
-    //   currentUser.friendships.map((friendship) => {
-    //     // console.log(friendship);
-    //     return Friendships.findById(friendship._id);
-    //   })
-    // );
-    // console.log(friendList);
-    // const friendPosts = await Post.find({ user: friendList[0].friend });
-    // console.log(friendPosts);
-
-    // const friendFinal = await Promise.all();
-
-    // return friendship;
-
-    // const friendId = Friendships.findById({ friendship: friendship._id });
-    // console.log(friendId);
-
-    // console.log({ friend: friendship.friendId });
-    // friendship.friend.map(())
-
-    // const postArray = Post.find({ user: friendship.friend._id });
-    //  Post.findById({ user: friend._id });
-
-    // console.log(postArray);
-
-    // return Post.find(postArray);
-    //   return postArray;
-    // })
-
-    /////////////////////////////////////////////////////////
-    //  const user = await User.findById(req.params.userId);
-    //console.log("currentUser111", currentUser);
-
-    // const friendlist = await user.friendships.findOne(user.id == req.userId);
-
     //list of all friendships of one user from req
     const list = await Promise.all(
       currentUser.friendships.map((currentUser) => {
