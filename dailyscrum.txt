@@ -160,6 +160,16 @@ plcaing the right conditions
 - fix the bugs that appeared when peer testing
 3. Need assistance / figure things out
 
+2022/11/19 Oxana
+1. Done / not done since last scrum:
+	-added photos/albums to the DB schema
+     -create routes/controllers for posts
+2. To do until next Scrum:
+	-add photos/albums in the models
+	-create backend logic for view all user's posts
+	-create backend logic for delete a post by a user
+3. Need assistance / figure things out
+
 
 2022/11/20 Liutsiia
 1. Done / not done since last scrum:
@@ -208,6 +218,14 @@ plcaing the right conditions
 - implement image upload Azure
 3. Need assistance / figure things out
 
+2022/11/21 Oxana
+1. Done / not done since last scrum:
+	-created backend logic for view all user's posts
+	-created backend logic for delete a post by a user
+2. To do until next Scrum:
+	-add photos/albums in the models
+	-create backend logic for update a post by a user
+3. Need assistance / figure things out
 
 2022/11/22 Anton
 1. Done / not done since last scrum:
@@ -241,6 +259,22 @@ plcaing the right conditions
 3. Need assistance / figure things out
 - Azure solution not working
 
+2022/11/22 Myrzagul
+1. Done / not done since last scrum:
+- trying to get the user info from the token to display on the frontend
+2. To do until next Scrum:
+- fix the bugs that i have
+- finish the backend code for updating a friendship
+3. Need assistance / figure things out
+
+2022/11/22 Oxana
+1. Done / not done since last scrum:
+	-added photos/albums in the models
+	-created backend logic for update a post by a user
+2. To do until next Scrum:
+	-add backend validation for post
+3. Need assistance / figure things out
+
 2022/11/23 Liutsiia
 1. Done / not done since last scrum:
 - done with design
@@ -264,6 +298,27 @@ plcaing the right conditions
 - implement search feature
 3. Need assistance / figure things out
 
+2022/11/23 Myrzagul
+1. Done / not done since last scrum:
+- found the bug with the token and siplaying the user info
+2. To do until next Scrum:
+- displaying the users friendships
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
+2022/11/23 Raymond
+1. Done / not done since last scrum:
+- research on uploading images： 
+	multer and buffer
+2. To do until next Scrum:
+3. Need assistance / figure things out
+
+2022/11/23 Oxana
+1. Done / not done since last scrum:
+2. To do until next Scrum:
+	-research about getting friendships for a user
+	-add backend validation for post	
+3. Need assistance / figure things out
 
 2022/11/24 Anton
 1. Done / not done since last scrum:
@@ -279,10 +334,96 @@ plcaing the right conditions
 - spent afternoon peer reviewing websites and receiving comments
 3. Need assistance / figure things out
 
+2022/11/24 Liutsiia
+1. Done / not done since last scrum:
+- routes for frontend
+2. To do until next Scrum:
+- Fetching data
+- Correct register form
+3. Need assistance / figure things out
+
+2022/11/24 Myrzagul
+1. Done / not done since last scrum:
+- diplaying the user info
+2. To do until next Scrum:
+- trying to get the necessary info from the user
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
+2022/11/24 Raymond
+1. Done / not done since last scrum:
+- upload images into  azure blobs
+2. To do until next Scrum:
+- select multipule images and upload them 
+3. Need assistance / figure things out
+- mongodb 
+
+2022/11/24 Oxana
+1. Done / not done since last scrum:
+	-research about getting friendships for a user
+2. To do until next Scrum:
+	-add on backend fiends' posts for current user
+	-add backend validation for post
+3. Need assistance / figure things out
 
 2022/11/25 Alex
 1. Done / not done since last scrum:
 - researched search feature and api implementation
 2. To do until next Scrum:
 - continue finishing search feature and continue researching api implementation
+3. Need assistance / figure things out
+
+
+2022/11/25 Liutsiia
+1. Done / not done since last scrum:
+- Correct register form
+2. To do until next Scrum:
+- Fetching data Home page
+- Correct img url
+3. Need assistance / figure things out
+
+2022/11/25 Myrzagul
+1. Done / not done since last scrum:
+- diplaying the user info, adding a button for approval
+2. To do until next Scrum:
+- testing the friend approval and fixing the backend bug
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
+2022/11/26 Liutsiia
+1. Done / not done since last scrum:
+- corrected image Url
+2. To do until next Scrum:
+- continue fetching data
+3. Need assistance / figure things out
+
+2022/11/25 Anton
+1. Done / not done since last scrum:
+- completed backend logic for comments
+2. To do until next Scrum:
+- connect comments frontend with backend logic
+3. Need assistance / figure things out
+
+2022/11/26 Anton
+1. Done / not done since last scrum:
+- connect comments frontend with backend logic
+2. To do until next Scrum:
+- research on implementation of reactions
+3. Need assistance / figure things out
+
+2022/11/26 Myrzagul
+1. Done / not done since last scrum:
+- testied the friend approval and fixed the backend bug for friend approval
+2. To do until next Scrum:
+- finish the frontend for approving the friends
+-write the backend for getting approved and not approved friends
+3. Need assistance / figure things out
+- frontend code for approving a friendship
+
+2022/11/26 Oxana
+1. Done / not done since last scrum:
+	-research about getting friendships for a user
+2. To do until next Scrum:
+	-add on backend fiends' posts for current user
+	-add backend validation for post
 3. Need assistance / figure things out

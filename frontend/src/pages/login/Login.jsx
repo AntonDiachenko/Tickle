@@ -26,6 +26,7 @@ export default function Login() {
           status: true,
           role: response.data.user.role,
         });
+
         navigate("/");
       }
     });
