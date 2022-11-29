@@ -65,8 +65,8 @@ function App() {
                 </>
               ) : (
                 <>
-                  <Link to="/"> Home Page</Link>
-                  <Link to="/user/myFriends"> My Friends</Link>
+                  {/* <Link to="/"> Home Page</Link>
+                  <Link to="/user/myFriends"> My Friends</Link> */}
                 </>
               )}
             </div>
