@@ -1,9 +1,35 @@
 import "./rightbar.css";
 import { Users } from "../../data.js";
 import Online from "../online/Online";
+import axios from "../../utils/axios.js";
+import Friend from "../../components/friends/Friend";
+
+import {useEffect, useState} from "react";
+
 
 export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+
+  const [userObject, setUserObject] = useState("");
+  const[listOfAppFriends, setListOfAppFriends] = useState([]);
+
+  useEffect(() => {
+    axios
+      //.get(`http://localhost:8800/api/auth/user`,
+      .get("api/auth/user", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      }).then((response) => {
+        setUserObject(response.data.user);
+       // console.log("!!!!!!!!!!", response.data);
+      });
+      axios.get("api/friends/user/myFriends",{
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      }).then((response)=>{
+       // console.log("Friendships++++++++++++", response.data);
+          setListOfAppFriends(response.data);
+      });
+
+  }, []);
 
   const HomeRightbar = () => {
     return (
@@ -44,6 +70,11 @@ export default function Rightbar({ user }) {
           <h4 className="rightbarTitle">User friends</h4>
           <div className="rightbarFollowings">
             <div className="rightbarFollowing">
+              <ul className="sidebarFriendList">
+                {listOfAppFriends.map((u) => (
+                  <Friend key={u.id} user={u} />
+                ))}
+              </ul>
               <img
                 src={`${PF}/person/avatar2.jpg`}
                 alt=""

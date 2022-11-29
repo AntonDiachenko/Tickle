@@ -4,6 +4,9 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 export default function Share() {
+
+    
+
     return (
         <div className="share">
             <div className="shareWrapper">
