@@ -14,6 +14,10 @@ const PhotosSchema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Posts",
     },
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "Users",
+    },
   },
   { timestamps: true }
 );
