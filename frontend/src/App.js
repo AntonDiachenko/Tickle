@@ -1,16 +1,20 @@
 import Home from "./pages/home/Home";
+import Feed from "./components/feed/Feed";
 import Profile from "./pages/profile/Profile";
 //import { Routes, Route } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import { BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';
 import { AuthContext } from "./utils/AuthContext.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Friends from "./pages/friends/Friends";
 import Post from "./components/post/Post";
 
 function App() {
+
+  // const { user } = useContext(AuthContext);
+  
   const [authState, setAuthState] = useState({
     email: "",
     userId: "",
@@ -73,7 +77,11 @@ function App() {
           </div>
 
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          {/* <Route exact path="/">
+            {user ? <Home /> : <Register />}
+            </Route> */}
+          {/* <Route path="/" element={<Feed />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:username" element={<Profile />} />

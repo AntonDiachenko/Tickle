@@ -1,8 +1,8 @@
 import axios from "../../utils/axios.js";
 // //import axios from "axios";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useContext} from "react";
 // import {useEffect, useState, useContext} from "react";
-// import {AuthContext} from "../../utils/AuthContext";
+import {AuthContext} from "../../utils/AuthContext";
  import { useNavigate } from 'react-router-dom';
  //import { useParams, useHistory } from 'react-router-dom';
   
@@ -14,9 +14,10 @@ import {useEffect, useState} from "react";
    const [userObject, setUserObject] = useState("");
    const[listOfAppFriends, setListOfAppFriends] = useState([]);
    const[listOfNotAppFriends, setListOfNotAppFriends] = useState([]);
-  //const { authState } = useContext(AuthContext);
+  // const { authState } = useContext(AuthContext);
 
-    //const userId = authState.userId;
+  //   const userId = authState.userId;
+  //   console.log("Usseeeeeeeeeer",userId);
   
  let navigate = useNavigate();
 // let{id} = useParams();
