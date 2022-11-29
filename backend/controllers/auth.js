@@ -91,6 +91,7 @@ export const login = async (req, res) => {
 // Get user 
 // (used to stay logged in in when the page is refreshed)
 export const getUser = async (req, res) => {
+    // res.json(req.userInToken)
     try{
         const user = await Users.findById(req.userId);
 
@@ -99,7 +100,7 @@ export const getUser = async (req, res) => {
                 message: "User does not exist"
             })
         }
-        //create a token again, always based on id, that's why it'll be the same
+        // create a token again, always based on id, that's why it'll be the same
         // const accessToken = jwt.sign(
         //     {
         //         id: user._id,

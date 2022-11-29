@@ -11,6 +11,7 @@ export const checkAuth = (req, res, next) => {
     if(accessToken) {
         try {
             // decode the token which we get from header above
+            //const decodedToken = jwt.verify(accessToken, process.env.JWT_SECRET);
             const decoded = jwt.verify(accessToken, process.env.JWT_SECRET);
 
             // adding additional fields into request to further manipulate them
@@ -18,6 +19,7 @@ export const checkAuth = (req, res, next) => {
             req.userRole = decoded.role;
             req.userEmail = decoded.email;
             req.userName = decoded.username;
+            // req.userInToken = decodedToken;
 
             // we use next to proceed in the routes.auth.js in request /user to the next function getUser
             next();

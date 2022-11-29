@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import axios from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
+import {useState, createContext, useContext} from "react";
+import { AuthContext } from "../../utils/AuthContext.js";
 
 export default function Register() {
   const initialValues = {
@@ -12,6 +14,13 @@ export default function Register() {
     password: "",
     confirmpassword: "",
   };
+
+  const { authState } = useContext(AuthContext);
+  
+  //console.log("Register page:", authState);
+  const currentUserId = authState.userId;
+  console.log("THIS USER ID:", currentUserId)
+
 
   const navigate = useNavigate();
 
