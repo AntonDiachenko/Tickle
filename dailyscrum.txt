@@ -427,3 +427,40 @@ plcaing the right conditions
 	-add on backend fiends' posts for current user
 	-add backend validation for post
 3. Need assistance / figure things out
+
+2022/11/26 Alex
+1. Done / not done since last scrum:
+- researched search feature and api implementation
+2. To do until next Scrum:
+- continue finishing search feature and continue researching api implementation
+3. Need assistance / figure things out
+
+
+2022/11/28 Raymond
+1. Done / not done since last scrum:
+- finish creation for image
+- push images into user and post
+2. To do until next Scrum:
+-  get, delete and update images 
+3. Need assistance / figure things out
+
+2022/11/28 Alex
+1. Done / not done since last scrum:
+- finished api implementation
+2. To do until next Scrum:
+- debugging and continue finishing search feature
+3. Need assistance / figure things out
+
+2022/11/29 Alex
+1. Done / not done since last scrum:
+- finished api implementation
+2. To do until next Scrum:
+- debugging and continue finishing search feature and demo day
+3. Need assistance / figure things out
+
+2022/11/30 Alex
+1. Done / not done since last scrum:
+- working on search feature
+2. To do until next Scrum:
+- work on search feature
+3. Need assistance / figure things out

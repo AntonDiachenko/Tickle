@@ -13,7 +13,7 @@ import {AuthContext} from "../../utils/AuthContext";
 
    const [userObject, setUserObject] = useState("");
    const[listOfAppFriends, setListOfAppFriends] = useState([]);
-   const[listOfNotAppFriends, setListOfNotAppFriends] = useState([]);
+  // const[listOfNotAppFriends, setListOfNotAppFriends] = useState([]);
   // const { authState } = useContext(AuthContext);
 
   //   const userId = authState.userId;
@@ -51,36 +51,29 @@ useEffect(() => {
           setListOfAppFriends(response.data);
       });
 
-      axios.get("api/friends/user/notApprFriends",{
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      }).then((response)=>{
-       // console.log("Friendships++++++++++++", response.data);
-          setListOfNotAppFriends(response.data);
-      });
+      // axios.get("api/friends/user/notApprFriends",{
+      //   headers: { accessToken: localStorage.getItem("accessToken") },
+      // }).then((response)=>{
+      //  // console.log("Friendships++++++++++++", response.data);
+      //     setListOfNotAppFriends(response.data);
+      // });
 
   }, []);
 
   
-// let friendApproved = false;
-// if(userObject.friendships.approvedDate==null){
-//   friendApproved=true;
-// }
-//const today = new Date();
-// console.log(today);
+  // const approveFriend=(id)=>{
 
-  const approveFriend=(id)=>{
-
-    axios.patch("api/friends/user/approveDate", 
-    {
-      friend: id,
-    },
-    {
-      headers: { accessToken: localStorage.getItem("accessToken") },
-    }).then(() => {
-      navigate("/user/myFriends");
-      }
-    );
-  }
+  //   axios.patch("api/friends/user/approveDate", 
+  //   {
+  //     friend: id,
+  //   },
+  //   {
+  //     headers: { accessToken: localStorage.getItem("accessToken") },
+  //   }).then(() => {
+  //     navigate("/user/myFriends");
+  //     }
+  //   );
+  // }
 
   const deleteFriend=(id)=>{
 
@@ -172,57 +165,7 @@ useEffect(() => {
 
 
 
-<table className="table is-striped is-fullwidth">
-    <thead>
-        <tr>
-        <th>Id</th> 
-        <th>User</th> 
-          {/* <th>Friend</th>     */}
-       <th>Approval Date</th>
-        {/*<th>Request Date</th>  */}
-        
-         </tr>
-    </thead>
-    <tbody> 
-         {listOfNotAppFriends.map((value, key) => { 
-          return ( 
-                 <tr key={key} > 
-                  <td>{ value._id}</td> 
-                 <td>{ value.username}</td> 
-                 {/* <td>{ value.friendships.approvedDate }</td> */}
-                 {/* <td>{ value.friendships } </td>  */}
-                {/* <td>{ value.user}</td> 
-                 <td>{ value.friend }</td> 
-                
-                <td>{ value.requestDate }</td>  */}
 
-<td><button onClick={() => {
-                      approveFriend(value._id);
-                    }}> Approve
-                  </button></td>
-                
-                {/* {friendApproved ?(
-                <td><button onClick={() => {
-                      approveFriend(value._id);
-                    }}> Approve
-                  </button></td>): (
-                   <td></td>
-                  )} */}
-                <td><button onClick={() => {
-                      deleteFriend(value._id);
-                    }}>Delete</button></td> 
-
-                {/* <td><button onClick={()=>{navigate(`/auction/${value.id}`);}}> Edit
-                  </button></td>
-                <td>Delete</td>  */}
-                
-                
-             </tr> 
-           ); 
- }) } 
-         
-     </tbody>
-</table>
 
 
 
@@ -232,26 +175,4 @@ useEffect(() => {
 
 }
 
-//   const friends = [];
-
-// for(let i=0; i<listOfFriends.length; i++){
-//   listOfFriends[i].friendships.forEach(item=>console.log(item));
-//  //friends[i]=listOfFriends[i].friendships;
-// }
-//console.log(friends);
-
-//friends.forEach(item=>console.log(item));
-
-  // console.log("User ", userObject.friendships);
-  // console.log("List ", listOfFriends.friendships);
-
-//console.log("authState userId!!!!!!!!!!!!!!!!!!!!!!", userId);
-
-// useEffect(()=>{
-//     axios.get(`api/friends/myFriends/${userId}`).then((response)=>{
-//       //console.log(response);
-//    console.log("Friendships++++++++++++", response.data);
-//         setListOfFriends(response.data);
-//     });
-// }, []);
 
