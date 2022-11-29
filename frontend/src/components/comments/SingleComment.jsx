@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { Avatar, Button, Input } from "antd";
 import Comment from "@ant-design/compatible/lib/comment"
 import axios from "../../utils/axios.js";
@@ -13,6 +13,7 @@ function SingleComment(props) {
     const [CommentValue, setCommentValue] = useState("");
     const [OpenReply, setOpenReply] = useState(false);
     const { authState } = useContext(AuthContext);
+    const [user, setUser] = useState({});
 
     const handleChange = (e) => {
         setCommentValue(e.currentTarget.value)
@@ -51,16 +52,28 @@ function SingleComment(props) {
     const actions = [
         <span onClick={openReply} key="comment-basic-reply-to">Reply to </span>
     ]
+    
+    useEffect(() => {  
+        const fetchUser = async () => {
+          const res = await axios.get(`users?userId=${props.comment.user}`);
+          // console.log(res)
+          setUser(res.data);
+          //console.log("RES-DATA", res.data);
+        };
+        fetchUser();
+      }, [props.comment.user]);
 
-
+    //console.log("THIS is PROPS-comment", props.comment);
+     
     return (
         <div>
             <Comment
+                
                 actions={actions}
-                author={props.comment.user.username}
+                author={user.username}
                 avatar={
                     <Avatar
-                        src={props.comment.user.avatarURL}
+                        src={user.avatarURL}
                         alt="image"
                     />
                 }

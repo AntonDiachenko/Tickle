@@ -7,7 +7,7 @@ export const checkAuth = (req, res, next) => {
     
     //const accessToken = (req.headers.authorization || "").replace(/Bearer\s?/, "")
 
-  const accessToken = req.header("accessToken");
+   const accessToken = req.header("accessToken");
 
     if(accessToken) {
         try {

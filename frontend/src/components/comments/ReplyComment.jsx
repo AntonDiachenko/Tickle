@@ -14,12 +14,12 @@ function ReplyComment(props) {
                 commentNumber++
             }
         })
-        setChildCommentNumber(commentNumber)
+         setChildCommentNumber(commentNumber)
     }, [props.CommentLists, props.parentCommentId])
 
   
     let renderReplyComment = (parentCommentId) =>
-        props.CommentLists.map((comment) => (
+        props.CommentLists.map((comment, index) => (
             <React.Fragment>
                 {comment.responseTo === parentCommentId &&
                     <div style={{ width: '80%', marginLeft: '40px' }}>

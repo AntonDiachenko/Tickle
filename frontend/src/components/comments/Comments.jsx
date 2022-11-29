@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button, Input } from "antd"; 
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
@@ -9,6 +9,17 @@ import ReplyComment from './ReplyComment.jsx';
 const { TextArea } = Input; 
 
 function Comments(props) {
+
+    const [TotalCommentNumber, setTotalCommentNumber] = useState(0)
+    const [OpenComments, setOpenComments] = useState(false)
+
+    useEffect(() => {
+        let commentNumber = 0;
+        props.CommentLists.map(() => {
+            commentNumber++
+        })
+        setTotalCommentNumber(commentNumber)
+    }, [props.CommentLists])
 
     const { authState } = useContext(AuthContext);
     //const currentUserId = authState.userId;
@@ -41,27 +52,51 @@ function Comments(props) {
             })
     }
 
+// {props.CommentLists &&
+            let renderAllComments = () =>
+             props.CommentLists.map((comment, index) => (
+                (!comment.responseTo &&
+                    <React.Fragment>
+                         {/* passing comment as a props to SingleComment. Update saved data into parent component using props.refreshFunction   */}
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                        <ReplyComment CommentLists={props.CommentLists}  postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction}/> 
+                    </React.Fragment>
+                )
+            ))
+        
+        // }  
+
+        const handleOpenComments = () => {
+            setOpenComments(!OpenComments)
+        }
 
     return (
         <div>
             <br />
-            <p> Comments</p>
+            <p onClick={handleOpenComments}> Comments ({TotalCommentNumber})</p>
             <hr />
+
+            
+            {OpenComments &&
+                renderAllComments()
+            }
 
             {/* Comment Lists  */}
 
              {/* {console.log("props Comments", props.CommentLists)} */}
 
-            {props.CommentLists && props.CommentLists.map((comment) => (
+            {/* if(OpenComments) */}
+
+            {/* {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
                     <React.Fragment>
-                        {/* passing comment as a props to SingleComment. Update saved data into parent component using props.refreshFunction  */}
+                         passing comment as a props to SingleComment. Update saved data into parent component using props.refreshFunction  
                         <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
                         <ReplyComment CommentLists={props.CommentLists}  postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction}/> 
                     </React.Fragment>
                 )
-            ))} 
-
+            ))}  */}
+            
 
 
             {/* Root Comment Form */}
