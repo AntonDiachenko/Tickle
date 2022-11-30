@@ -67,62 +67,17 @@ export default function Rightbar({ user }) {
             <span className="rightbarInfoKey">Birthday:</span>
             <span className="rightbarInfoValue">{user.birthday}</span>
           </div>
+          <hr className="sidebarHr"/>
           <h4 className="rightbarTitle">User friends</h4>
           <div className="rightbarFollowings">
             <div className="rightbarFollowing">
-              <ul className="sidebarFriendList">
+              <ul className="rightbarFollowings">
                 {listOfAppFriends.map((u) => (
                   <Friend key={u.id} user={u} />
                 ))}
               </ul>
-              <img
-                src={`${PF}/person/avatar2.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-            <div className="rightbarFollowing">
-              <img
-                src={`${PF}person/avatar4.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-            <div className="rightbarFollowing">
-              <img
-                src={`${PF}person/avatar7.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-            <div className="rightbarFollowing">
-              <img
-                src={`${PF}person/avatar8.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-            <div className="rightbarFollowing">
-              <img
-                src={`${PF}person/avatar9.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-            <div className="rightbarFollowing">
-              <img
-                src={`${PF}person/avatar10.jpg`}
-                alt=""
-                className="rightbarFollowingImg"
-              />
-              <span className="rightbarFollowingName">John Smith</span>
-            </div>
-          </div>
+              </div>
+              </div>
         </div>
       </>
     );

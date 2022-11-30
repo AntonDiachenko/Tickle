@@ -1,4 +1,4 @@
-import "./friend.css";
+import "./friendrequests.css";
 import axios from "../../utils/axios.js";
 import { useNavigate } from 'react-router-dom';
 import {Link} from "react-router-dom"
@@ -38,19 +38,32 @@ const deleteFriend=(id)=>{
  
   return (
   
-    
-        <li >
-         <div className="rightbarFollowing">
+    <div className="friendRequestsWrapper">
+        <li className="sidebarFriend">
+          <div className="friendRequestsImg">
           <Link to={'/profile/' + user.username} style={{textDecoration:"none"}}>
-        <img src={user.avatarURL || PF + "person/NoAvatar.png"} alt="" className="rightbarFollowingImg"/>
+        <img src={user.avatarURL || PF + "person/NoAvatar.png"} alt="" className="sidebarFriendImg"/>
         </Link>
-     
+        </div>
+        <div className="friendRequestsWrapperInfo">
+          <div className="friendRequestsWrapperName">
           <Link to={'/profile/' + user.username} style={{textDecoration:"none"}}>
-            <span className="rightbarFollowingName">{user.username}</span>
+            <span className="sidebarFriendName">{user.username}</span>
             </Link>
-            </div>
-     
+          </div>
+          <div >
+
+            <button className="friendRequestsWrapperButtonApprove" onClick={() => {
+                      approveFriend(user._id);
+                    }}> Approve
+                  </button>
+
+            <button  className="friendRequestsWrapperButtonDecline" onClick={() => {
+                      deleteFriend(user._id);
+                    }}>Decline</button>
+          </div>
+          </div>
         </li>
-    
+    </div>
   );
 }
