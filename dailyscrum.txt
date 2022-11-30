@@ -479,3 +479,10 @@ plcaing the right conditions
 2. To do until next Scrum:
 - work on search feature
 3. Need assistance / figure things out
+
+2022/11/30 Liutsiia
+1. Done / not done since last scrum:
+- frontend friends
+2. To do until next Scrum:
+-  frontend comments
+3. Need assistance / figure things out

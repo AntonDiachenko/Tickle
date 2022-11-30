@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import { Button, Input } from "antd"; 
+import { Avatar, Button, Input } from "antd"; 
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
 import axios from "../../utils/axios.js";
 import SingleComment from './SingleComment.jsx';
 import ReplyComment from './ReplyComment.jsx';
+import "./comments.css"
 
 const { TextArea } = Input; 
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 function Comments(props) {
-
+    const [user, setUser] = useState({});
     const [TotalCommentNumber, setTotalCommentNumber] = useState(0)
     const [OpenComments, setOpenComments] = useState(false)
 
@@ -73,7 +75,7 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <p onClick={handleOpenComments}> Comments ({TotalCommentNumber})</p>
+            <p className="postCommentText" onClick={handleOpenComments}> Comments ({TotalCommentNumber})</p>
             <hr />
 
             
@@ -101,14 +103,19 @@ function Comments(props) {
 
             {/* Root Comment Form */}
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                    <Avatar  style={{ width: '10%', marginTop:"10px" , height:"30px", width:"32px", marginRight:"5px" }}
+                        src={user.avatarURL || PF + "person/NoAvatar.png"}
+                        alt="image"
+                    />
                 <TextArea
-                    style={{ width: '100%', borderRadius: '5px' }}
+                    style={{ width: '80%', borderRadius: '10px' , height: "30px", backgroundColor:"#eee", marginTop:"10px" }}
                     onChange={handleChange}
                     value={Comment}
                     placeholder="write your comment"
                 />
                 <br />
-                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}>Submit</Button>
+                <Button style={{ width: '20%',borderRadius: '10px' , marginLeft:"5px", height: '36px', marginTop:"8px", backgroundColor:"#1877f2", color:"white"}}
+                 onClick={onSubmit}>Submit</Button>
             </form>
 
         </div>
