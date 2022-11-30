@@ -79,7 +79,7 @@ export default function Sidebar() {
                     
                     <ul className="sidebarFriendList">
 
-                       {listOfNotAppFriends.map((u)=>(
+                       {Array.from(listOfNotAppFriends).map((u)=>(
 
                        <Friend key={u.id} user={u}/>)
 

@@ -9,6 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { setAuthState } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -18,19 +19,21 @@ export default function Login() {
       if (response.data.error) {
         alert(response.data.error);
       } else {
-        console.log(response); // ------------------COMMENT OUT-------------------
+        //console.log("Response on login", response); // ------------------COMMENT OUT-------------------
         localStorage.setItem("accessToken", response.data.accessToken);
         setAuthState({
           email: response.data.user.email,
           userId: response.data.user._id,
           status: true,
           role: response.data.user.role,
+          friendships: response.data.user.friendships,
         });
-
+        
         navigate("/");
       }
     });
   };
+  console.log("AuthState after Login and Set AuthStatus:", authState)
 
   return (
     <div className="login">

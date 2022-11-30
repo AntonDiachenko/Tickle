@@ -6,7 +6,6 @@ import Post from "../post/Post.jsx";
 import { AuthContext } from "../../utils/AuthContext";
 import axios from "../../utils/axios";
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../utils/AuthContext";
 import { useParams } from "react-router-dom";
 
 export default function Feed({ username }) {
@@ -15,7 +14,7 @@ export default function Feed({ username }) {
   const { authState } = useContext(AuthContext);
   // const { user } = useContext(AuthContext);
   const userId = authState.userId;
-  console.log("userId", userId);
+  //console.log("userId", userId);
 
   // const [userObject, setUserObject] = useState("");
   // const { authState } = useContext(AuthContext);

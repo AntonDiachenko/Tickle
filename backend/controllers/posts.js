@@ -138,7 +138,7 @@ export const getMyPosts = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
 
-    console.log("user");
+    //console.log("user");
 
     const list = await Promise.all(
       user.posts.map((post) => {

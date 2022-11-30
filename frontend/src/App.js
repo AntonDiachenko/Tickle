@@ -17,7 +17,6 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Friends from "./pages/friends/Friends";
 import Post from "./components/post/Post";
-import { useContext } from "react";
 // import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -28,8 +27,10 @@ function App() {
     userId: "",
     status: false,
     role: "",
+    friendships: [],
   });
 
+  
   useEffect(() => {
     axios
       .get("http://localhost:8800/api/auth/user", {
@@ -40,7 +41,7 @@ function App() {
       .then((response) => {
         // setUser(response.data);
         if (response.data.error) {
-          setAuthState({ ...authState, status: false });
+          setAuthState({ ...authState, status: false });        
         } else {
           //console.log("this is response:", response)
           setAuthState({
@@ -48,11 +49,13 @@ function App() {
             userId: response.data.user._id,
             status: true,
             role: response.data.user.role,
+            friendships: response.data.user.friendships,
           });
+          //console.log("AuthState at App.js after Set AuthState:", authState)
         }
       });
   }, []);
-  //console.log("this is after setAuthState", authState);
+  console.log("this is after setAuthState", authState);
 
   //const userId = authState.userId;
 
@@ -91,9 +94,12 @@ function App() {
         </div>
 
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={ authState.status ? <Home  /> : <Login />} />
+
+          {/* <Route exact path="/" element={<Home />} /> */}
           <Route path="/getComments/:id" element={<Comments />} />
           <Route path="/" element={<Feed />} />
+          <Route path="/login" element={authState.status ? <Home/> : <Login />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:username" element={<Profile />} />
