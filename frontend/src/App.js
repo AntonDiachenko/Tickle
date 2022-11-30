@@ -17,7 +17,6 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Friends from "./pages/friends/Friends";
 import Post from "./components/post/Post";
-import { useContext } from "react";
 // import { AuthContext } from "./context/AuthContext";
 
 function App() {
