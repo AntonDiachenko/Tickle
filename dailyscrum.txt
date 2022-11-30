@@ -451,6 +451,14 @@ plcaing the right conditions
 - debugging and continue finishing search feature
 3. Need assistance / figure things out
 
+2022/11/28 Liutsiia
+1. Done / not done since last scrum:
+- continue fetching 
+- help other member teams
+2. To do until next Scrum:
+-  friends
+3. Need assistance / figure things out
+
 2022/11/29 Alex
 1. Done / not done since last scrum:
 - finished api implementation
@@ -458,9 +466,23 @@ plcaing the right conditions
 - debugging and continue finishing search feature and demo day
 3. Need assistance / figure things out
 
+2022/11/29 Liutsiia
+1. Done / not done since last scrum:
+- helped with backend friends
+2. To do until next Scrum:
+-  frontend friends
+3. Need assistance / figure things out
+
 2022/11/30 Alex
 1. Done / not done since last scrum:
 - working on search feature
 2. To do until next Scrum:
 - work on search feature
+3. Need assistance / figure things out
+
+2022/11/30 Liutsiia
+1. Done / not done since last scrum:
+- frontend friends
+2. To do until next Scrum:
+-  frontend comments
 3. Need assistance / figure things out

@@ -5,7 +5,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import GroupsIcon from '@mui/icons-material/Groups';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
 //import AppsIcon from '@mui/icons-material/Apps';
-import Friend from "../friends/Friend";
+import Friendrequests from "../friendrequests/Friendrequests";
 import {Users} from "../../data.js";
 import { Link } from "react-router-dom";
 import axios from "../../utils/axios.js";
@@ -81,7 +81,7 @@ export default function Sidebar() {
 
                        {Array.from(listOfNotAppFriends).map((u)=>(
 
-                       <Friend key={u.id} user={u}/>)
+                       <Friendrequests key={u.id} user={u}/>)
 
                        )}
 

@@ -39,11 +39,9 @@ function App() {
         },
       })
       .then((response) => {
-        // setUser(response.data);
         if (response.data.error) {
           setAuthState({ ...authState, status: false });        
         } else {
-          //console.log("this is response:", response)
           setAuthState({
             email: response.data.user.email,
             userId: response.data.user._id,
@@ -63,11 +61,6 @@ function App() {
     localStorage.removeItem("accessToken");
     setAuthState({ username: "", id: 0, status: false });
   };
-
-  // const logout = () => {
-  //   localStorage.removeItem("accessToken");
-  //   setAuthState({ username: "", id: 0, status: false });
-  // };
 
   return (
     // by wrapping routers in Authcontext here we make accessible the data which we keep inside AuthContext to every route(component)

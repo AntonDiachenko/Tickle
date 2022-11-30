@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import SingleComment from './SingleComment.jsx';
-
+import "./comments.css"
 function ReplyComment(props) {
   
     const [ChildCommentNumber, setChildCommentNumber] = useState(0)
@@ -39,7 +39,7 @@ function ReplyComment(props) {
         <div>
 
             {ChildCommentNumber > 0 &&
-                <p style={{ fontSize: '14px', margin: 0, color: 'gray' }}
+                <p className='commentColaps' 
                     onClick={handleChange} >
                     View {ChildCommentNumber} more comment(s)
              </p>

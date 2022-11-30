@@ -4,9 +4,11 @@ import Comment from "@ant-design/compatible/lib/comment"
 import axios from "../../utils/axios.js";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
+import "./comments.css"
+import { format } from "timeago.js";
 
 const { TextArea } = Input; 
-
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 function SingleComment(props) {
 
@@ -72,8 +74,8 @@ function SingleComment(props) {
                 actions={actions}
                 author={user.username}
                 avatar={
-                    <Avatar
-                        src={user.avatarURL}
+                    <img className="commentsImg" 
+                        src={user.avatarURL || PF + "person/NoAvatar.png"}
                         alt="image"
                     />
                 }
@@ -81,21 +83,38 @@ function SingleComment(props) {
                     <p>
                         {props.comment.content}
                     </p>
+                    
                 }
             ></Comment>
 
                 {/* this checks the condition if OpenReply is true or false, based on it the textarea for the reply will display  */}
             {OpenReply && 
-                <form style={{ display: 'flex' }} onSubmit={onSubmit}>
-                    <TextArea
-                        style={{ width: '100%', borderRadius: '5px' }}
-                        onChange={handleChange}
-                        value={CommentValue}
-                        placeholder="write a reply"
-                    />
-                    <br />
-                    <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit} >Submit</Button>
-                </form>
+             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+             <Avatar  style={{ width: '10%', marginTop:"10px" , height:"30px", width:"32px", marginRight:"5px" }}
+                 src={user.avatarURL || PF + "person/NoAvatar.png"}
+                 alt="image"
+             />
+         <TextArea
+             style={{ width: '80%', borderRadius: '10px' , height: "30px", backgroundColor:"#eee", marginTop:"10px" }}
+             onChange={handleChange}
+             value={CommentValue}
+             placeholder="write a reply"
+         />
+         <br />
+         <Button style={{ width: '20%',borderRadius: '10px' , marginLeft:"5px", height: '36px', marginTop:"8px", backgroundColor:"#1877f2", color:"white"}}
+          onClick={onSubmit}>Submit</Button>
+     </form>
+
+                // <form style={{ display: 'flex' }} onSubmit={onSubmit}>
+                //     <TextArea
+                //         style={{ width: '100%', borderRadius: '5px' }}
+                //         onChange={handleChange}
+                //         value={CommentValue}
+                //         placeholder="write a reply"
+                //     />
+                //     <br />
+                //     <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit} >Submit</Button>
+                // </form>
             } 
 
         </div>
