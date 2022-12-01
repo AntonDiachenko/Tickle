@@ -30,7 +30,6 @@ function App() {
     friendships: [],
   });
 
-  
   useEffect(() => {
     axios
       .get("http://localhost:8800/api/auth/user", {
@@ -40,7 +39,7 @@ function App() {
       })
       .then((response) => {
         if (response.data.error) {
-          setAuthState({ ...authState, status: false });        
+          setAuthState({ ...authState, status: false });
         } else {
           setAuthState({
             email: response.data.user.email,
@@ -48,6 +47,7 @@ function App() {
             status: true,
             role: response.data.user.role,
             friendships: response.data.user.friendships,
+            username: response.data.user.username,
           });
           //console.log("AuthState at App.js after Set AuthState:", authState)
         }
@@ -87,12 +87,15 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={ authState.status ? <Home  /> : <Login />} />
+          <Route path="/" element={authState.status ? <Home /> : <Login />} />
 
           {/* <Route exact path="/" element={<Home />} /> */}
           <Route path="/getComments/:id" element={<Comments />} />
           <Route path="/" element={<Feed />} />
-          <Route path="/login" element={authState.status ? <Home/> : <Login />}/>
+          <Route
+            path="/login"
+            element={authState.status ? <Home /> : <Login />}
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile/:username" element={<Profile />} />

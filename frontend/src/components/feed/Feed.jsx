@@ -51,7 +51,12 @@ export default function Feed({ username }) {
         ? await axios.get("api/posts/profile/" + username)
         : await axios.get("api/posts/timeline/" + userId);
       // console.log(res)
-      setPosts(res.data);
+      //sort feed in a descending order
+      setPosts(
+        res.data.sort((p1, p2) => {
+          return new Date(p2.createdAt) - new Date(p1.createdAt);
+        })
+      );
       // console.log(res.data);
     };
     fetchPosts();
