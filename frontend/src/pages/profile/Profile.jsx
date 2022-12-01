@@ -11,46 +11,42 @@ import { AuthContext } from "../../utils/AuthContext";
 export default function Profile() {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [user, setUser] = useState({});
-  const username = useParams().username;
+  const { username } = useParams();
   const { authState } = useContext(AuthContext);
   
-  console.log("user name on profile", username)
-  console.log("AuthState on profile:", authState)
-
-  // useEffect(() => {
-  //   const fetchUser = async () => {
-  //     const res = await axios.get(`users?username=${username}`);
-  //     console.log(res);
-  //     setUser(res.data);
-  //   };
-  //   fetchUser();
-  // }, [username]);
-
+  // console.log("user name on profile", username)
+  // console.log("AuthState on profile:", authState)
+ 
   useEffect(() => {
-      axios.get(`users?username=${username}`)
-      .then((response) => {
-        if(response) {
-        console.log(response);        
-        setUser(response.data);          
-        }else {
-          console.log('BAAAAAAD!')
-      }
-
-      })
-    }, []); 
+  const fetchUser = async () => {
+    const res = await axios.get(`users?username=${username}`);
+    //console.log(res) 
+    setUser(res.data);
+  };
+  //console.log("User in useEffect :", user);
+  //window.location.reload();
+fetchUser();
+}, [username]); 
 
 
- let areFriends = false;
+let areFriends = false;
+// console.log("AuthState before FOR:", authState);
+// console.log("User before FOR:", user);
+// console.log(Object.keys(user).length);
 
-  for (let i = 0; i < authState.friendships.length; i++) {
+if(Object.keys(user).length !== 0){
+    for (let i = 0; i < authState.friendships.length; i++) {
     for (let j = 0; j < user.friendships.length; j++) {
       if (authState.friendships[i] === user.friendships[j]) {
         // areFriends = true;
         // break;
         console.log("hello");
+      }else {
+        console.log("not friends");
       }
     }
   }
+} 
 
   return (
     <>

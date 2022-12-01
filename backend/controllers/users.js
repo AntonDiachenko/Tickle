@@ -15,7 +15,7 @@ export const byId = async (req, res) => {
     const { password, role, ...other } = user._doc;
     res.status(200).json(other);
   } catch (err) {
-    res.status(404).json({ message: "this user does not exis!" });
+    return res.status(404).json({message: "this user does not exist!" });
   }
 };
 
