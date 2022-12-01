@@ -459,6 +459,14 @@ plcaing the right conditions
 -  friends
 3. Need assistance / figure things out
 
+2022/11/28 Oxana
+1. Done / not done since last scrum:
+	-continue adding fiends' posts for current user
+2. To do until next Scrum:
+	-add backend validation for post
+3. Need assistance / figure things out
+
+
 2022/11/29 Alex
 1. Done / not done since last scrum:
 - finished api implementation
@@ -471,6 +479,14 @@ plcaing the right conditions
 - helped with backend friends
 2. To do until next Scrum:
 -  frontend friends
+3. Need assistance / figure things out
+
+2022/11/29 Oxana
+1. Done / not done since last scrum:
+	-added fiends' posts for current user(backend)
+2. To do until next Scrum:
+	-add share post on frontend
+	-add backend validation for post
 3. Need assistance / figure things out
 
 2022/11/30 Alex
@@ -493,4 +509,13 @@ plcaing the right conditions
 - began researching on implementation of reactions
 2. To do until next Scrum:
 - research on implementation of reactions
+3. Need assistance / figure things out
+
+2022/11/30 Oxana
+1. Done / not done since last scrum:
+	-added share post on frontend
+	-show posts in descending order on the profile page
+2. To do until next Scrum:
+	-don't show 'share my post' when open profile of other user
+	-add backend validation for post
 3. Need assistance / figure things out
