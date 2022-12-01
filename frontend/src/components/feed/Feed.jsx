@@ -78,7 +78,7 @@ export default function Feed({ username }) {
     <h2>UserId: {userObject._id}</h2> */}
       <div className="feed">
         <div className="feedWrapper">
-          {username === authState.username && <Share />}
+          <Share />
           {Array.from(posts).map((p, _id) => (
             <Post post={p} key={p._id} />
           ))}
