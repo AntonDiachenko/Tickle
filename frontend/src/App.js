@@ -8,15 +8,14 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
   Link,
 } from "react-router-dom";
 import Comments from "./components/comments/Comments";
 import { AuthContext } from "./utils/AuthContext.js";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import Friends from "./pages/friends/Friends";
-import Post from "./components/post/Post";
+//import Post from "./components/post/Post";
 // import { AuthContext } from "./context/AuthContext";
 
 function App() {
@@ -75,8 +74,7 @@ function App() {
               </>
             ) : (
               <>
-                <Link to="/"> Home Page</Link>
-                <Link to="/user/myFriends"> My Friends</Link>
+               
               </>
             )}
           </div>
