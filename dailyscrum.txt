@@ -537,3 +537,12 @@ plcaing the right conditions
 -  display photos by albums
 -  delete and update photos
 3. Need assistance / figure things out
+
+2022/12/02 Anton
+1. Done / not done since last scrum:
+- continued writing backend logic for reactions 
+- created reactions model
+2. To do until next Scrum:
+- complete writing backend logic for reactions
+- begin creating UI for reactions
+3. Need assistance / figure things out
