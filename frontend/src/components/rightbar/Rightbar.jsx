@@ -7,29 +7,10 @@ import Friend from "../../components/friends/Friend";
 import {useEffect, useState} from "react";
 
 
-export default function Rightbar({ user }) {
+export default function Rightbar({ user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+ 
 
-  const [userObject, setUserObject] = useState("");
-  const[listOfAppFriends, setListOfAppFriends] = useState([]);
-
-  useEffect(() => {
-    axios
-      //.get(`http://localhost:8800/api/auth/user`,
-      .get("api/auth/user", {
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      }).then((response) => {
-        setUserObject(response.data.user);
-       // console.log("!!!!!!!!!!", response.data);
-      });
-      axios.get("api/friends/user/myFriends",{
-        headers: { accessToken: localStorage.getItem("accessToken") },
-      }).then((response)=>{
-       // console.log("Friendships++++++++++++", response.data);
-          setListOfAppFriends(response.data);
-      });
-
-  }, []);
 
   const HomeRightbar = () => {
     return (
@@ -50,7 +31,26 @@ export default function Rightbar({ user }) {
       </>
     );
   };
+  
   const ProfileRightbar = () => {
+
+    const[listOfAppFriends, setListOfAppFriends] = useState([]);
+
+    const username = user.username;
+ 
+   //  console.log(username);
+ 
+    useEffect(() => {
+     const fetchFriends = async () => {
+       const res = await axios.get(`api/friends/hisFriends/${username}`);
+       //console.log(res) 
+       setListOfAppFriends(res.data);
+     };
+    
+   fetchFriends();
+   
+   }, [username]); 
+
     return (
       <>
         <h4 className="rightbarTitle">User information</h4>
@@ -72,7 +72,7 @@ export default function Rightbar({ user }) {
           <div className="rightbarFollowings">
             <div className="rightbarFollowing">
               <ul className="rightbarFollowings">
-                {listOfAppFriends.map((u) => (
+                {Array.from(listOfAppFriends).map((u) => (
                   <Friend key={u.id} user={u} />
                 ))}
               </ul>
