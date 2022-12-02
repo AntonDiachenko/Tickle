@@ -6,35 +6,37 @@ import {Link} from "react-router-dom"
 
 export default function Friend({user}) {
 const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-let navigate = useNavigate();
-const approveFriend=(id)=>{
 
-  axios.patch("api/friends/user/approveDate", 
-  {
-    friend: id,
-  },
-  {
-    headers: { accessToken: localStorage.getItem("accessToken") },
-  }).then(() => {
-    navigate("/");
-    }
-  );
-}
+//console.log("user from Friend", user)
+//let navigate = useNavigate();
+// const approveFriend=(id)=>{
 
-const deleteFriend=(id)=>{
+//   axios.patch("api/friends/user/approveDate", 
+//   {
+//     friend: id,
+//   },
+//   {
+//     headers: { accessToken: localStorage.getItem("accessToken") },
+//   }).then(() => {
+//     navigate("/");
+//     }
+//   );
+//}
 
-  axios.delete(`api/friends/user/deleteFriend/${id}`, 
-     {
-    headers: { accessToken: localStorage.getItem("accessToken") },
-  }
-  // {
-  //   friend: id,
-  // }
-  ).then(() => {
+// const deleteFriend=(id)=>{
+
+//   axios.delete(`api/friends/user/deleteFriend/${id}`, 
+//      {
+//     headers: { accessToken: localStorage.getItem("accessToken") },
+//   }
+//   // {
+//   //   friend: id,
+//   // }
+//   ).then(() => {
     
-    navigate("/");
-    });
-  }    
+//     navigate("/");
+//     });
+//   }    
  
   return (
   

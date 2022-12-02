@@ -2,7 +2,7 @@ import "./profile.css";
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import Topbar from "../../components/topbar/Topbar.jsx";
 import Feed from "../../components/feed/Feed.jsx";
-import Rightbar from "../../components/rightbar/Rightbar.jsx";
+import Rightbar from "../../components/rightbar/Rightbar";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import { useParams } from "react-router";
@@ -26,6 +26,7 @@ export default function Profile() {
   //console.log("User in useEffect :", user);
   //window.location.reload();
 fetchUser();
+
 }, [username]); 
 
 
@@ -37,16 +38,30 @@ console.log("User before FOR:", user);
 if(Object.keys(user).length !== 0){
     for (let i = 0; i < authState.friendships.length; i++) {
     for (let j = 0; j < user.friendships.length; j++) {
+     // console.log("current user", authState.friendships);
+     // console.log("profile user", user.friendships);
       if (authState.friendships[i] === user.friendships[j]) {
-        // areFriends = true;
-        // break;
-        console.log("hello");
-      }else {
-        console.log("not friends");
+        areFriends = true;
+        break;
+       // console.log("hello");
       }
     }
   }
 } 
+
+//button to add a friend
+const addFriend=(id)=>{
+  axios.post("api/friends/user/addFriend",
+  {
+    friend: id,
+  },
+  {
+    headers: { accessToken: localStorage.getItem("accessToken") },
+  }).then(() => {
+    window.location.reload();
+    // navigate("/");
+    }
+  )}
 
   return (
     <>
@@ -69,6 +84,12 @@ if(Object.keys(user).length !== 0){
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>
+              {!areFriends?(
+              <button onClick={() => {
+                      addFriend(user._id);
+                    }}>Add friend</button>):(
+                      <span></span>
+                    )}
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
           </div>

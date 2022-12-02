@@ -519,3 +519,21 @@ plcaing the right conditions
 	-don't show 'share my post' when open profile of other user
 	-add backend validation for post
 3. Need assistance / figure things out
+
+2022/12/01 Anton
+1. Done / not done since last scrum:
+- began writing backend logic for reactions 
+2. To do until next Scrum:
+- continue writing backend logic for reactions
+- begin creating UI for reactions
+3. Need assistance / figure things out
+
+2022/12/01 Raymond
+1. Done / not done since last scrum:
+- Get all photos api
+- Create photos page, display all the photos
+2. To do until next Scrum:
+-  get photos by userid
+-  display photos by albums
+-  delete and update photos
+3. Need assistance / figure things out
