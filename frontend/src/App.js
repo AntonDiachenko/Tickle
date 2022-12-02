@@ -16,6 +16,7 @@ import { AuthContext } from "./utils/AuthContext.js";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import Friends from "./pages/friends/Friends";
+import Photos from "./pages/photos/Photos";
 import Post from "./components/post/Post";
 // import { AuthContext } from "./context/AuthContext";
 
@@ -105,9 +106,10 @@ function App() {
           {/* <Route path="/" element={<Feed />} /> */}
           {/* <Route path="/" element={<Post />} /> */}
           <Route path="/user/myFriends" element={<Friends />} />
+          <Route path="/photos" element={<Photos />} />
         </Routes>
       </Router>
-      //{" "}
+      {" "}
     </AuthContext.Provider>
   );
 }

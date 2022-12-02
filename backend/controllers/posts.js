@@ -156,7 +156,7 @@ export const getMyPosts = async (req, res) => {
 
 // Get timeline posts for a user --> includes posts from that user and all their friends (friends posts NOT WORKING YET)
 export const getTimelinePosts = async (req, res) => {
-  console.log("timeline posts are active");
+  // console.log("timeline posts are active");
   try {
     const currentUser = await User.findById(req.params.userId);
     const userPosts = await Post.find({ user: currentUser._id });
