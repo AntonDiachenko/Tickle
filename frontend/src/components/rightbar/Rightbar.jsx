@@ -73,7 +73,7 @@ export default function Rightbar({ user }) {
             <div className="rightbarFollowing">
               <ul className="rightbarFollowings">
                 {listOfAppFriends.map((u) => (
-                  <Friend key={u.id} user={u} />
+                  <Friend key={u._id} user={u} />
                 ))}
               </ul>
               </div>
