@@ -58,8 +58,10 @@ export default function Sidebar() {
                         </Link>
                     </li>
                     <li className="sidebarListItem">
+                    <Link to="/photos" style={{textDecoration: "none"}}>
                         <GroupsIcon className="sidebarItemIcon"/>
-                        <span className="sidebarListItemText"> Groups </span>
+                        <span className="sidebarListItemText"> Photos </span>
+                        </Link>
                     </li>
                     <li className="sidebarListItem">
                         <BookmarksIcon className="sidebarItemIcon"/>

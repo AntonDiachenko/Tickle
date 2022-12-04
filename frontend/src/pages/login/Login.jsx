@@ -33,7 +33,7 @@ export default function Login() {
       }
     });
   };
-  console.log("AuthState after Login and Set AuthStatus:", authState)
+  //console.log("AuthState after Login and Set AuthStatus:", authState)
 
   return (
     <div className="login">
