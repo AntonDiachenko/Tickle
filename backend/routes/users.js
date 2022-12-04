@@ -2,7 +2,7 @@ import { Router } from "express";
 import { byId, updateUser, deleteUser } from "../controllers/users.js";
 // import { updateUser } from "../controllers/users.js";
 // import { deleteUser } from "../controllers/users.js";
-// import { checkAuth } from '../utils/checkAuth.js';
+import { checkAuth } from '../utils/checkAuth.js';
 
 const router = new Router();
 
@@ -10,7 +10,7 @@ const router = new Router();
 router.get("/", byId);
 
 // http://localhost:8800/users/update/123
-router.put("/update/:id", updateUser);
+router.patch("/update/:id", checkAuth, updateUser);
 
 // http://localhost:8800/users/delete/123
 router.delete("/delete/:id", deleteUser);

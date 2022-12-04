@@ -30,7 +30,7 @@ const UsersSchema = new mongoose.Schema(
       type: String,
       max:25,
     },
-    birtday: {
+    birthday: {
       type: Date,
 
     },
@@ -39,13 +39,13 @@ const UsersSchema = new mongoose.Schema(
       max:100,
     },
 
-    role: [
+    role: 
       {
         type: String,
         required: true,
         default: "User",
       },
-    ],
+    
     posts: [
       {
         type: mongoose.Schema.Types.ObjectId,

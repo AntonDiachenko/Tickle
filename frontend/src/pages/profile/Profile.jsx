@@ -6,6 +6,7 @@ import Rightbar from "../../components/rightbar/Rightbar";
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../utils/AuthContext";
 
 export default function Profile() {
@@ -28,6 +29,12 @@ export default function Profile() {
 fetchUser();
 
 }, [username]); 
+
+//TO CHECK IF ITS MY OWN PROFILE
+let itsMyProfile=false;
+if(authState.username === username){
+  itsMyProfile = true;
+}
 
 
 let areFriends = false;
@@ -84,11 +91,21 @@ const addFriend=(id)=>{
             </div>
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>
-              {!areFriends?(
+
+              {itsMyProfile ?(
+               <Link to={`/aboutMe/${user._id}`}>About me</Link>
+              ):(
+                <span></span>
+              )}
+           
+              {!areFriends ?(
               <button onClick={() => {
                       addFriend(user._id);
-                    }}>Add friend</button>):(
+                    }}>Add friend</button>                    
+                   
+                   ):(
                       <span></span>
+                      //<Link to={`/aboutMe/${user._id}`}>About me</Link>
                     )}
               <span className="profileInfoDesc">{user.desc}</span>
             </div>
