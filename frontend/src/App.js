@@ -53,7 +53,7 @@ function App() {
         }
       });
   }, []);
-  console.log("this is after setAuthState", authState);
+  //console.log("this is after setAuthState", authState);
 
   //const userId = authState.userId;
 
