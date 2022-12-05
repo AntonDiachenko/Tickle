@@ -18,6 +18,7 @@ export default function Post({ post }) {
   const [CommentLists, setCommentLists] = useState([]);
   // get post ID for the current post to send it in the request to the
   const postId = post._id;
+  const urlList = post.imageURL;
 
   // get new comment value from props from Comments.jsx and update the list of comments by ad
   const updateComment = (newComment) => {
@@ -82,9 +83,24 @@ export default function Post({ post }) {
             <MoreHorizIcon />
           </div>
         </div>
-        <div className="postCenter">
+        <div className="postCenter container ">
           <span className="postText">{post?.content}</span>
-          <img src={post?.imageURL} alt="" className="postImg" />
+    
+          <div className="row">
+          {urlList?.map((value, key) => {
+              return (
+                
+                  <div className="col-4">
+                    <img 
+                    height={400} width={400}
+                      src={value} 
+                      //  className="postImg" 
+                    />
+                  </div>
+              );
+          })}
+          </div>
+          {/* <img src={post?.imageURL} alt="" className="postImg" /> */}
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

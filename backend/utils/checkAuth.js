@@ -5,8 +5,9 @@ export const checkAuth = (req, res, next) => {
     // Here we get the token from header in the line "authorization". Originally it looks like this string "Bearer, kjg4kjh45643kjghkg2546k"
     // to get only token from the string we use .replace (or split function can be used)
     
+    // for postman
 //    const accessToken = (req.headers.authorization || "").replace(/Bearer\s?/, "")
-
+    // for website
    const accessToken = req.header("accessToken");
 
     if(accessToken) {
