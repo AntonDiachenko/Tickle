@@ -121,7 +121,7 @@ function Comments(props) {
           src={user.avatarURL || PF + "person/NoAvatar.png"}
           alt="image"
         />
-        <textarea
+        <TextArea
           style={{
             width: "80%",
             borderRadius: "10px",
@@ -134,7 +134,7 @@ function Comments(props) {
           placeholder="write your comment"
         />
         <br />
-        <button
+        <Button
           style={{
             width: "20%",
             borderRadius: "10px",
@@ -147,7 +147,7 @@ function Comments(props) {
           onClick={onSubmit}
         >
           Submit
-        </button>
+        </Button>
       </form>
     </div>
   );

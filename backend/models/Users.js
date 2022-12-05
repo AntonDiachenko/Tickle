@@ -23,12 +23,12 @@ const UsersSchema = new mongoose.Schema(
     },
     city: {
       type:String,
-      max:25,
+      max:50,
 
     },
     from: {
       type: String,
-      max:25,
+      max:50,
     },
     birthday: {
       type: Date,
@@ -36,7 +36,7 @@ const UsersSchema = new mongoose.Schema(
     },
     desc: {
       type: String,
-      max:100,
+      max:500,
     },
 
     role: 

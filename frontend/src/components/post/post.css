@@ -95,7 +95,7 @@
 
 .reacts_count{
     display: flex;
-    align-items: right;
+    align-items: center;
     gap: 5px;
 }
 
@@ -115,6 +115,7 @@
 
 .post_actions{
     position: relative;
+    max-width: 70px;
 }
 
 .post_action{

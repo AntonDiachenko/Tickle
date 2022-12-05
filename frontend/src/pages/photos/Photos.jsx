@@ -56,17 +56,30 @@ const updatePhotos=()=>{
     });
 }
   
-const addToIdList =()=>{
+// const addToIdList =()=>{
   // if(this.checked==true){
   //   idList.push(this.value)
   // }else{
   //   idList.filter(e=>e!== this.value)
   // }
-  const e = document.getElementById("box");
-    this.setIdList(...idList, e.target.value);
-}
+//   const e = document.getElementById("box");
+//     this.setIdList(...idList, e.target.value);
+// }
 
+// async function deleteBlob(containerClient, blobName){
 
+//   const options = {
+//     deleteSnapshots: 'include' // or 'only'
+//   }
+
+//   // Create blob client from container client
+//   const blockBlobClient = await containerClient.getBlockBlobClient(blobName);
+
+//   await blockBlobClient.delete(options);
+
+//   console.log(`deleted blob ${blobName}`);
+
+// }
 
 
   return (

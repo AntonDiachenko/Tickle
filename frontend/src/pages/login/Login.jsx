@@ -27,6 +27,7 @@ export default function Login() {
           status: true,
           role: response.data.user.role,
           friendships: response.data.user.friendships,
+          // username: response.data.username,
         });
         
         navigate("/");

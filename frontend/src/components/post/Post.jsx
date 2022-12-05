@@ -26,6 +26,24 @@ export default function Post({ post }) {
   // get post ID for the current post to send it in the request to the
   const postId = post._id;
   const urlList = post.imageURL;
+
+  if(urlList.length > 0 && urlList[0]!=""
+  ){
+    var items = urlList.map((value, key) => {
+            
+      return (
+          <img                 
+          src={value } alt=""
+          height={400} width={400}
+        />
+      );
+  }
+    );
+    }else{
+        var items = <br></br>
+    }
+
+
   const { authState } = useContext(AuthContext);
   const userId = authState.userId;
   const [totalReactions, setTotalReactions] = useState(0);
@@ -142,20 +160,12 @@ export default function Post({ post }) {
           <span className="postText">{post?.content}</span>
     
           <div className="row">
-            
-          {urlList?.map((value, key) => {
-              return (
-                
-                  <div className="col-4">
-                    <img 
-                    
-                      src={value } alt=""
-                      height={400} width={400}
-                      //  className="postImg" 
-                    />
-                  </div>
-              );
-          })}
+
+            {items}
+          
+
+
+
           </div>
           {/* <img src={post?.imageURL} alt="" className="postImg" /> */}
         </div>
