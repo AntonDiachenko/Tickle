@@ -8,7 +8,7 @@ import axios from "../../utils/axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-export default function Feed({ username }) {
+export default function Feed({ username, setVisible }) {
   // const {user}=useContext(AuthContext);
   const [posts, setPosts] = useState([]);
   const { authState } = useContext(AuthContext);
@@ -71,6 +71,9 @@ export default function Feed({ username }) {
   //   fetchPosts();
   // }, [userId]);
 
+  console.log("feeed username", username);
+  console.log("feeed authState.username", authState.username);
+
   return (
     <>
       {/* <h2>Username: {userObject.username}</h2>
@@ -78,7 +81,8 @@ export default function Feed({ username }) {
     <h2>UserId: {userObject._id}</h2> */}
       <div className="feed">
         <div className="feedWrapper">
-          <Share />
+          {/* {username === authState.username && <Share setVisible={setVisible} />} */}
+          <Share setVisible={setVisible} />
           {Array.from(posts).map((p, _id) => (
             <Post post={p} key={p._id} />
           ))}
