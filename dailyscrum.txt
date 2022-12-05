@@ -413,7 +413,7 @@ plcaing the right conditions
 
 2022/11/26 Myrzagul
 1. Done / not done since last scrum:
-- testied the friend approval and fixed the backend bug for friend approval
+- tested the friend approval and fixed the backend bug for friend approval
 2. To do until next Scrum:
 - finish the frontend for approving the friends
 -write the backend for getting approved and not approved friends
@@ -466,6 +466,14 @@ plcaing the right conditions
 	-add backend validation for post
 3. Need assistance / figure things out
 
+2022/11/28 Myrzagul
+1. Done / not done since last scrum:
+- finished the frontend for approving the friends
+- wrote the backend for getting approved and not approved friends
+2. To do until next Scrum:
+- write the frontend code for displaying the approved and not approved friends
+3. Need assistance / figure things out
+- frontend button for adding a friend
 
 2022/11/29 Alex
 1. Done / not done since last scrum:
@@ -488,6 +496,15 @@ plcaing the right conditions
 	-add share post on frontend
 	-add backend validation for post
 3. Need assistance / figure things out
+
+
+2022/11/29 Myrzagul
+1. Done / not done since last scrum:
+- wrote the frontend code for displaying the approved and not approved friends
+2. To do until next Scrum:
+- fix the bug with the loop on profile page
+3. Need assistance / figure things out
+- frontend button for adding a friend
 
 2022/11/30 Alex
 1. Done / not done since last scrum:
@@ -520,6 +537,14 @@ plcaing the right conditions
 	-add backend validation for post
 3. Need assistance / figure things out
 
+2022/11/30 Myrzagul
+1. Done / not done since last scrum:
+- still trying to fix the bug on the profile page
+2. To do until next Scrum:
+- fix the bug with the loop on profile page
+3. Need assistance / figure things out
+- frontend button for adding a friend
+
 2022/12/01 Anton
 1. Done / not done since last scrum:
 - began writing backend logic for reactions 
@@ -538,6 +563,14 @@ plcaing the right conditions
 -  delete and update photos
 3. Need assistance / figure things out
 
+2022/12/01 Myrzagul
+1. Done / not done since last scrum:
+- fixed the bug with the loop on profile page
+2. To do until next Scrum:
+- modify the backend logic for updating user info and deleting user 
+3. Need assistance / figure things out
+
+
 2022/12/02 Anton
 1. Done / not done since last scrum:
 - continued writing backend logic for reactions 
@@ -545,4 +578,19 @@ plcaing the right conditions
 2. To do until next Scrum:
 - complete writing backend logic for reactions
 - begin creating UI for reactions
+3. Need assistance / figure things out
+
+2022/12/02 Myrzagul
+1. Done / not done since last scrum:
+- modified and tested the backend logic for updating user info and deleting user
+- modified the register backend logic and frontend page 
+2. To do until next Scrum:
+- write the frontend for updating user info and deleting user 
+3. Need assistance / figure things out
+
+2022/12/03 Myrzagul
+1. Done / not done since last scrum:
+- wrote the frontend for updating user info and deleting user 
+2. To do until next Scrum:
+- assist with displaying the user info
 3. Need assistance / figure things out
