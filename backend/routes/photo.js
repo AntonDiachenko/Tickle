@@ -31,4 +31,10 @@ router.get("/getphotobyalbum/:album", checkAuth, getphotobyalbum);
 //http://localhost:8800/api/photos/getalbums
 router.get("/getalbums/", checkAuth, getalbums);
 
+// update photos album
+//http://localhost:8800/api/photos/updatephotos/
+router.patch("/updatephotos/", checkAuth, updatePhotos);
+
+
+
 export default router;

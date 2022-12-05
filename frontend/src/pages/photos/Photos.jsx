@@ -9,22 +9,24 @@ import { AuthContext } from "../../utils/AuthContext.js";
 import { useParams } from "react-router-dom";
 
 export default function Photos() {
-
+  let navigate = useNavigate();
   const [photoList, setPhotoList] = useState([]);
   const [albumList, setAlbumList] = useState([]);
- 
+  const [show, setShow] = useState(false);
+  const [album, setAlbum] = useState([]);
+  const [idList,setIdList] = useState([]);
   // const { authState } = useContext(AuthContext);
   // const { id } = useParams();
   // const  id  = authState.userId;
   
   useEffect(() => {
-    // axios
-    //   //.http://localhost:8800/api/photos/myphoto/`,
-    //     .get(`api/photos/myphoto/`, {
-    //     headers: { accessToken: localStorage.getItem("accessToken") },
-    //   }).then((response) => {
-    //     setPhotoList(response.data);
-    //   });
+    axios
+      //.http://localhost:8800/api/photos/myphoto/`,
+        .get(`api/photos/myphoto/`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      }).then((response) => {
+        setPhotoList(response.data);
+      });
       axios
       //http://localhost:8800/api/photos/getalbums
         .get(`api/photos/getalbums/`, {
@@ -34,7 +36,38 @@ export default function Photos() {
       });
   }, []);
 
+
+
+
   
+const updatePhotos=()=>{
+  axios.patch(`api/photos/updatephotos/`, {
+      album: album,
+      idList: idList
+  },
+  {
+      headers: { accessToken: localStorage.getItem("accessToken") },
+    }
+  ).then((response) => {
+    
+      // window.location.reload();
+
+    });
+}
+  
+const addToIdList =()=>{
+  // if(this.checked==true){
+  //   idList.push(this.value)
+  // }else{
+  //   idList.filter(e=>e!== this.value)
+  // }
+  const e = document.getElementById("box");
+    this.setIdList(...idList, e.target.value);
+}
+
+
+
+
   return (
     <>
     <Topbar/>
@@ -72,20 +105,37 @@ export default function Photos() {
                 {value}
               </div>
             ); })}
-        
+
+            <button type="button" onClick={()=>setShow(!show)}>Edit</button>
+            {show && <div>
+            <label >Move to list:</label>
+            <input  type="text" className ="form-control" 
+                                    onChange={(event) => {setAlbum(event.target.value);}
+                                }/>
+              <button type="submit" onClick={()=>{updatePhotos();navigate(0);} }>submit</button>                   
+                                
+                                </div>}
           {photoList.map((value, key) => {
               return (
                 <div className="row">
                   <div className="col-4">
-                  {/* <input id="box" type="checkbox" name="box" /> */}
+                  {show && <input id={value._id} type="checkbox" value={value._id} 
+                  //  onChange={this.addToIdList}
+                   onChange={() => {
+                    const event = document.getElementById(value._id);
+                    // this.setIdList(...idList, e.target.value);
+                    if(event.checked==true){
+                      idList.push(event.value)
+                    }else{
+                      idList.filter(e=>e!=event.value)
+                    }
+                  }}
+                  />}
                     <img 
                     height={400} width={400}
                       src={value.photoURL}
                     />
                   </div>
-                  {/* <div class="checkbox" > */}
-                      {/* <input id="box" type="checkbox" name="box"/> */}
-                    {/* </div> */}
                 </div>
               );
           

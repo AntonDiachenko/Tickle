@@ -142,13 +142,15 @@ export default function Post({ post }) {
           <span className="postText">{post?.content}</span>
     
           <div className="row">
+            
           {urlList?.map((value, key) => {
               return (
                 
                   <div className="col-4">
                     <img 
-                    height={400} width={400}
-                      src={value} 
+                    
+                      src={value } alt=""
+                      height={400} width={400}
                       //  className="postImg" 
                     />
                   </div>

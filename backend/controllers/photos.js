@@ -56,12 +56,18 @@ export const getalbums = async (req, res) => {
 export const updatePhotos = async (req, res) => {
   try {
     const  _album = req.body.album;
-    const photo = await Photo.findById(req.params.id);
+    const idList= req.body.idList;
+
+    idList.forEach(async element => {
+      const photo = await Photo.findById(element);
 
     photo.album = _album;
     await photo.save();
 
-    res.json(photo);
+    });
+    
+
+    // res.json(photo);
   } catch (error) {
     res.json({ message: "Something went wrong" });
   }
@@ -82,3 +88,24 @@ export const getphotobyalbum = async (req, res) => {
     res.status(500).json({ message: "Something went toooo wrong" });
   }
 };
+//。。。。。。。。。。。。。。deltet。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。
+export const deleteiamges = async (req, res) => {
+  try {
+    const options = {
+      deleteSnapshots: 'include' // or 'only'
+    }
+
+    const blockBlobClient = await containerClient.getBlockBlobClient(blobName);
+  
+    await blockBlobClient.delete(options);
+    res.status(200).json(photos);
+  } catch (error) {
+    res.status(500).json({ message: "Something went toooo wrong" });
+  }
+};
+
+
+// async function deleteBlob(containerClient, blobName){
+
+  
+// }
