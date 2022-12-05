@@ -160,14 +160,16 @@ export default function Post({ post }) {
             <span className="postUserName">{user.username}</span>
             <span className="postDate"> {format(post.createdAt)}</span>
           </div>
-          <button
-            className=""
-            onClick={() => {
-              deletePost(post._id);
-            }}
-          >
-            Delete post
-          </button>
+          {user.username === authState.username && (
+            <button
+              className=""
+              onClick={() => {
+                deletePost(post._id);
+              }}
+            >
+              Delete post
+            </button>
+          )}
 
           <div className="posTopRight">
             <MoreHorizIcon />
