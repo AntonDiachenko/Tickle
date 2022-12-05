@@ -594,3 +594,11 @@ plcaing the right conditions
 2. To do until next Scrum:
 - assist with displaying the user info
 3. Need assistance / figure things out
+
+2022/12/05 Anton
+1. Done / not done since last scrum:
+- completed reactions 
+2. To do until next Scrum:
+- fix validation on login (undefined access token is created)
+- fix validation for login
+3. Need assistance / figure things out
