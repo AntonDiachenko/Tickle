@@ -11,6 +11,7 @@ import postRoute from "./routes/posts.js";
 import friendsRoute from "./routes/friend.js";
 import commentsRoute from "./routes/comments.js";
 import photoRoute from "./routes/photo.js";
+import reactionRoute from "./routes/reactions.js"
 dotenv.config();
 
 // Constants
@@ -41,6 +42,7 @@ app.use("/api/friends", friendsRoute);
 app.use("/api/posts", postRoute);
 app.use("/api/comments", commentsRoute);
 app.use("/api/photos", photoRoute);
+app.use("/api/reactions", reactionRoute);
 
 
 async function start() {

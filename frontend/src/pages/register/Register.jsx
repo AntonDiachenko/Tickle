@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import axios from "../../utils/axios.js";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
-import {useState, createContext, useContext} from "react";
+import { useState, createContext, useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
 
 export default function Register() {
@@ -13,23 +13,27 @@ export default function Register() {
     email: "",
     password: "",
     confirmpassword: "",
+    role: "",
+    avatarURL: "",
+    city: "",
+    from: "",
+    birthday: "",
+    desc: "",
+
   };
 
   const { authState } = useContext(AuthContext);
-  
+
   //console.log("Register page:", authState);
   const currentUserId = authState.userId;
-  console.log("THIS USER ID:", currentUserId)
-
+  //console.log("THIS USER ID:", currentUserId);
 
   const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    axios
-      .post("api/auth/register", data)
-      .then((response) => {
-        navigate("/login");
-      });
+    axios.post("api/auth/register", data).then((response) => {
+      navigate("/login");
+    });
   };
 
   const validationSchema = Yup.object().shape({
@@ -39,6 +43,12 @@ export default function Register() {
     confirmpassword: Yup.string()
       .required()
       .oneOf([Yup.ref("password")], "Your passwords do not match."),
+    // role: Yup.string(),
+    // avatarURL: Yup.string(),
+    // city: Yup.string(),
+    // from: Yup.string(),
+    // birthday: Yup.string(),
+    // desc: Yup.string(),
   });
 
   return (
@@ -60,7 +70,11 @@ export default function Register() {
             >
               <Form>
                 <div>
-                  <ErrorMessage className="RegisterError" name="username" component="span" />
+                  <ErrorMessage
+                    className="RegisterError"
+                    name="username"
+                    component="span"
+                  />
                   <Field
                     className="loginInput"
                     name="username"
@@ -68,7 +82,11 @@ export default function Register() {
                   />
                 </div>
                 <div>
-                  <ErrorMessage className="RegisterError" name="email" component="span" />
+                  <ErrorMessage
+                    className="RegisterError"
+                    name="email"
+                    component="span"
+                  />
                   <Field
                     className="loginInput"
                     name="email"
@@ -76,7 +94,11 @@ export default function Register() {
                   />
                 </div>
                 <div>
-                  <ErrorMessage className="RegisterError" name="password" component="span" />
+                  <ErrorMessage
+                    className="RegisterError"
+                    name="password"
+                    component="span"
+                  />
                   <Field
                     className="loginInput"
                     name="password"
@@ -85,7 +107,11 @@ export default function Register() {
                   />
                 </div>
                 <div>
-                  <ErrorMessage className="RegisterError" name="confirmpassword" component="span" />
+                  <ErrorMessage
+                    className="RegisterError"
+                    name="confirmpassword"
+                    component="span"
+                  />
                   <Field
                     className="loginInput"
                     name="confirmpassword"
@@ -93,8 +119,32 @@ export default function Register() {
                     type="password"
                   />
                 </div>
-                <button type="submit"className="loginRegisterButton" >Sign Up</button>
-                <button type="submit" className="loginButton" >
+
+                <Field className="loginInput" name="role" placeholder="Role" hidden />
+
+                <Field
+                  className="loginInput"
+                  name="avatarURL"
+                  placeholder="avatarURL"
+                  hidden
+                />
+
+                <Field className="loginInput" name="city" placeholder="city" hidden />
+
+                <Field className="loginInput" name="from" placeholder="from" hidden />
+
+                <Field
+                  className="loginInput"
+                  name="birthday"
+                  placeholder="birthday"
+                  hidden />
+
+                <Field className="loginInput" name="desc" placeholder="desc" hidden />
+
+                <button type="submit" className="loginRegisterButton">
+                  Sign Up
+                </button>
+                <button type="submit" className="loginButton">
                   Log into Account
                 </button>
               </Form>
@@ -104,7 +154,6 @@ export default function Register() {
       </div>
     </div>
   );
-
 
   // return (
   //   <div className="login">

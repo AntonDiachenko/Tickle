@@ -8,7 +8,8 @@ import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext";
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { authState } = useContext(AuthContext);
+
   return (
     <div className="topbarContainer">
       <div className="topbarLeft">
@@ -44,9 +45,9 @@ export default function Topbar() {
             <span className="topbarIconBadge">1</span>
           </div>
         </div>
-        {/* <Link to={`/profile/${user.username}`}> */}
+        <Link to={`/profile/${authState.username}`}>
         <img src="/assets/person/avatar1.jpg" alt="" className="topbarImg" />
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   );
