@@ -27,22 +27,13 @@ export default function Post({ post }) {
   const postId = post._id;
   const urlList = post.imageURL;
 
-  if(urlList.length > 0 && urlList[0]!=""
-  ){
+  if (urlList.length > 0 && urlList[0] != "") {
     var items = urlList.map((value, key) => {
-            
-      return (
-          <img                 
-          src={value } alt=""
-          height={400} width={400}
-        />
-      );
+      return <img src={value} alt="" height={400} width={400} />;
+    });
+  } else {
+    var items = <br></br>;
   }
-    );
-    }else{
-        var items = <br></br>
-    }
-
 
   const { authState } = useContext(AuthContext);
   const userId = authState.userId;
@@ -106,23 +97,31 @@ export default function Post({ post }) {
 
       // change the number of certain reaction dynamically if it exists
       let index = reactions.findIndex((x) => x.react == check);
-      if(index !== -1){
-        setReactions([...reactions, (reactions[index].count = --reactions[index].count)])
+      if (index !== -1) {
+        setReactions([
+          ...reactions,
+          (reactions[index].count = --reactions[index].count),
+        ]);
         setTotalReactions((prev) => --prev);
       }
-
     } else {
       setCheck(type);
       // change the number of certain reaction dynamically if it doesn't exist (add new)
       let index = reactions.findIndex((x) => x.react == type);
-      if(index !== -1){
-        setReactions([...reactions, (reactions[index].count = ++reactions[index].count)])
+      if (index !== -1) {
+        setReactions([
+          ...reactions,
+          (reactions[index].count = ++reactions[index].count),
+        ]);
         setTotalReactions((prev) => ++prev);
       }
       // at the same time deduct from the number of existing reaction
       let indexExisting = reactions.findIndex((x) => x.react == check);
-      if(indexExisting !== -1){
-        setReactions([...reactions, (reactions[indexExisting].count = --reactions[indexExisting].count)])
+      if (indexExisting !== -1) {
+        setReactions([
+          ...reactions,
+          (reactions[indexExisting].count = --reactions[indexExisting].count),
+        ]);
         setTotalReactions((prev) => --prev);
       }
     }
@@ -135,6 +134,15 @@ export default function Post({ post }) {
     } catch (error) {
       return error.response.data.message;
     }
+  };
+  const deletePost = (postid) => {
+    axios
+      .delete(`api/posts/${postid}`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => {
+        window.location.reload();
+      });
   };
 
   return (
@@ -152,21 +160,25 @@ export default function Post({ post }) {
             <span className="postUserName">{user.username}</span>
             <span className="postDate"> {format(post.createdAt)}</span>
           </div>
+          {user.username === authState.username && (
+            <button
+              className=""
+              onClick={() => {
+                deletePost(post._id);
+              }}
+            >
+              Delete post
+            </button>
+          )}
+
           <div className="posTopRight">
             <MoreHorizIcon />
           </div>
         </div>
         <div className="postCenter container ">
           <span className="postText">{post?.content}</span>
-    
-          <div className="row">
 
-            {items}
-          
-
-
-
-          </div>
+          <div className="row">{items}</div>
           {/* <img src={post?.imageURL} alt="" className="postImg" /> */}
         </div>
 
