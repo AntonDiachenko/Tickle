@@ -2,21 +2,18 @@ import "./sidebar.css"
 import HomeIcon from '@mui/icons-material/Home';
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import GroupIcon from '@mui/icons-material/Group';
-import GroupsIcon from '@mui/icons-material/Groups';
-import BookmarksIcon from '@mui/icons-material/Bookmarks';
-//import AppsIcon from '@mui/icons-material/Apps';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Friendrequests from "../friendrequests/Friendrequests";
-import {Users} from "../../data.js";
 import { Link } from "react-router-dom";
 import axios from "../../utils/axios.js";
-// //import axios from "axios";
 import {useEffect, useState} from "react";
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
  import { useNavigate } from 'react-router-dom';
 
-export default function Sidebar() {
+export default function Sidebar({user}) {
 
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    // const [user, setUser] = useState({});
     const [userObject, setUserObject] = useState("");
     const[listOfNotAppFriends, setListOfNotAppFriends] = useState([]);
     let navigate = useNavigate();
@@ -64,8 +61,12 @@ export default function Sidebar() {
                         </Link>
                     </li>
                     <li className="sidebarListItem">
-                        <BookmarksIcon className="sidebarItemIcon"/>
-                        <span className="sidebarListItemText"> Bookmarks </span>
+                    <Link to={`/aboutMe/${userObject._id}`} style={{textDecoration: "none"}}>
+                        <ManageAccountsIcon className="sidebarItemIcon"/>
+                        <span className="sidebarListItemText"> Information </span>
+                        </Link>
+                        
+                    
                     </li>
                     {/* <li className="sidebarListItem">
                         <AppsIcon className="sidebarItemIcon"/>

@@ -6,7 +6,10 @@ import { AuthContext } from "../../utils/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import Topbar from "../../components/topbar/Topbar.jsx";
+import Sidebar from "../../components/sidebar/Sidebar.jsx";
+import "./myProfile.css"
+import TextArea from "rc-textarea";
 export default function MyProfile() {
   let navigate = useNavigate();
   const [user, setUser] = useState({});
@@ -96,33 +99,35 @@ export default function MyProfile() {
 
   return (
     <>
-      <div>
-        <div className="login">
-          <div className="loginWrapper">
-            <div className="loginLeft">
+    <Topbar/>
+    <div className="homeContainer">
+    <Sidebar/>
+    <div className="myProfileContainer">
+    <h3 className="friendTitle">Edit profile</h3>
+    <hr></hr>
+    <div className="profileItems">
+        
               {/* <h3 className="loginLogo">tickle</h3>
           <span className="loginDesc">
             Tickle your friends via the app so you don't have to get off your
             couch while watching Netflix.
           </span> */}
-            </div>
-            <div className="loginRight">
-              <div className="registerBox">
                 <Formik
                   // initialValues={initialValues}
                   // onSubmit={onSubmit}
                  // validationSchema={validationSchema}
                 >
-                  <Form>
+                  <Form className="myProfileForm">
+                    <span className="myProfileSpan">User name: </span>
                     <div>
-                        <label>Username:</label>
+                        
                       <ErrorMessage
                         className="RegisterError"
                         name="username"
                         component="span"
                       />
                       <Field
-                        className="loginInput"
+                        className="myProfileInput"
                         name="username"
                         placeholder="User name"
                         value={username}
@@ -131,9 +136,10 @@ export default function MyProfile() {
                         }}
                       />
                     </div>
-
+<span className="myProfileSpan" >City</span>
                     <div>
-                      <Field
+                      
+                      {/* <Field
                         className="loginInput"
                         name="avatarURL"
                         placeholder="avatarURL"
@@ -146,79 +152,80 @@ export default function MyProfile() {
                         className="RegisterError"
                         name="city"
                         component="span"
-                      />
+                      /> */}
 
                       <Field
-                        className="loginInput"
+                        className="myProfileInput"
                         name="city"
-                        placeholder="city"
+                        placeholder="City"
                         value={city}
                         onChange={(event) => {
                           setCity(event.target.value);
                         }}
                       />
                     </div>
+                    
+                    
+<span className="myProfileSpan">From</span>
 
                     <div>
-                    <label>From:</label>
                       <ErrorMessage
                         className="RegisterError"
                         name="from"
                         component="span"
                       />
                       <Field
-                        className="loginInput"
+                        className="myProfileInput"
                         name="from"
-                        placeholder="from"
+                        placeholder="From"
                         value={from}
                         onChange={(event) => {
                           setFrom(event.target.value);
                         }}
                       />
                     </div>
-
+<span className="myProfileSpan">Birthday</span>
                     <div>
-                    <label>Birthday:</label>
                       <ErrorMessage
                         className="RegisterError"
                         name="birthday"
                         component="span"
                       />
                       <Field
-                        className="loginInput"
+                        className="myProfileInput"
                         name="birthday"
-                        placeholder="birthday"
+                        placeholder="Birthday"
                         value={birthday}
                         onChange={(event) => {
                           setBirthday(event.target.value);
                         }}
                       />
                     </div>
+                    <span className="myProfileSpan">About myself</span>
                     <div>
-                    <label>Description:</label>
                       <ErrorMessage
                         className="RegisterError"
                         name="desc"
                         component="span"
                       />
-                      <Field
-                        className="loginInput"
+                      <TextArea
+                        className="myProfileTextarea"
                         name="desc"
-                        placeholder="desc"
+                        placeholder="Tell us about yourself..."
                         value={desc}
                         onChange={(event) => {
                           setDesc(event.target.value);
                         }}
                       />
                     </div>
-                    <button
+                    <button className="updateButton"
                       onClick={() => {
                         updateMyInfo(userId);
                       }}
                     >
                       Update
                     </button>
-                    <button
+                    <button className="deleteButton"
                       onClick={() => {
                         deleteMyAccount(userId);
                       }}
@@ -234,119 +241,10 @@ export default function MyProfile() {
                   </Form>
                 </Formik>
               </div>
-            </div>
-          </div>
-        </div>
+      
 
-        <table className="table is-striped is-fullwidth">
-          <thead>
-            <tr>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Role</th>
-              <th>AvatarURL</th>
-              <th>City</th>
-              <th>From</th>
-              <th>Birthday</th>
-              <th>About</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* {auctionObject.map((val) => {
-                    return ( */}
-            <tr>
-              <td>
-                {user.username}
-                <br></br>
-                <input
-                  value={username}
-                  type="text"
-                  className="form-control"
-                  onChange={(event) => {
-                    setUsername(event.target.value);
-                  }}
-                />{" "}
-              </td>
-              <td>
-                {user.email}
-                <br></br>
-                {/* <input type="text" className ="form-control" 
-                                    onChange={(event) => {setEmail(event.target.value);}
-                                }/> */}
-              </td>
-              <td>{user.role}</td>
-              <td>{user.avatarURL}</td>
-              <td>
-                {user.city}
-                <br></br>
-                <input
-                  value={city}
-                  type="text"
-                  className="form-control"
-                  onChange={(event) => {
-                    setCity(event.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                {user.from}
-                <br></br>
-                <input
-                  value={from}
-                  type="text"
-                  className="form-control"
-                  onChange={(event) => {
-                    setFrom(event.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                {user.birthday}
-                <br></br>
-                <input
-                  value={birthday}
-                  type="text"
-                  className="form-control"
-                  onChange={(event) => {
-                    setBirthday(event.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                {user.desc}
-                <br></br>
-                <input
-                  value={desc}
-                  type="text"
-                  className="form-control"
-                  onChange={(event) => {
-                    setDesc(event.target.value);
-                  }}
-                />
-              </td>
-              <td>
-                <button
-                  onClick={() => {
-                    updateMyInfo(userId);
-                  }}
-                >
-                  Update
-                </button>
-              </td>
-              <td>
-                <button
-                  onClick={() => {
-                    deleteMyAccount(userId);
-                  }}
-                >
-                  Delete
-                </button>
-              </td>
-            </tr>
-            {/* );
-                })} */}
-          </tbody>
-        </table>
+        {/*  */}
+      </div>
       </div>
     </>
   );

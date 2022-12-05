@@ -94,11 +94,11 @@ export default function Profile({ setVisible }) {
             <div className="profileInfo">
               <h4 className="profileInfoName">{user.username}</h4>
 
-              {itsMyProfile ? (
+              {/* {itsMyProfile ? (
                 <Link to={`/aboutMe/${user._id}`}>About me</Link>
               ) : (
                 <span></span>
-              )}
+              )} */}
 
               {!areFriends ? (
                 <button
