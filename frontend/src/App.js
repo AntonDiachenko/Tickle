@@ -18,10 +18,10 @@ import axios from "axios";
 import Friends from "./pages/friends/Friends";
 import Photos from "./pages/photos/Photos";
 import Post from "./components/post/Post";
-// import { AuthContext } from "./context/AuthContext";
+
 
 function App() {
-  // const { user } = useContext(AuthContext);
+ // const { user } = useContext(AuthContext);
 
   const [authState, setAuthState] = useState({
     email: "",
@@ -53,7 +53,7 @@ function App() {
           //console.log("AuthState at App.js after Set AuthState:", authState)
         }
       });
-  }, []);
+  }, [authState]);
   //console.log("this is after setAuthState", authState);
 
   //const userId = authState.userId;

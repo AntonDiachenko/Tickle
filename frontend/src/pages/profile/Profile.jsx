@@ -39,7 +39,7 @@ if(authState.username === username){
 
 let areFriends = false;
 // console.log("AuthState before FOR:", authState);
-console.log("User before FOR:", user);
+//console.log("User before FOR:", user);
 // console.log(Object.keys(user).length);
 
 if(Object.keys(user).length !== 0){

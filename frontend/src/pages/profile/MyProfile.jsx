@@ -11,9 +11,10 @@ export default function MyProfile() {
     let navigate = useNavigate();
     const [user, setUser] = useState({});
 
-    const { userId } = useParams();
+  //  const { userId } = useParams();
 
     const { authState } = useContext(AuthContext);
+    const userId= authState.userId;
 
 const [username, setUsername] = useState();
 const [email, setEmail] = useState();
@@ -67,20 +68,13 @@ const updateMyInfo=(userId)=>{
 
  
 
-// const submitHandler = () => {
-//     try {
-//       const updatedNews = new FormData()
-//        // updatedNews.append('id', params.id)
-//         updatedNews.append('title', title)
-//         updatedNews.append('newsText', newsText)
-//         updatedNews.append('image', newImage)
-//         updatedNews.append('tags', tags)
-//         dispatch(editMyNews(updatedNews))
-//         navigate('/news/user/my')
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+const deleteMyAccount=(userId)=>{
+    axios.delete(`users/delete/${userId}`,{
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      }).then((response) => {
+       navigate("/");
+      });
+}
 
 
 
@@ -147,6 +141,7 @@ const updateMyInfo=(userId)=>{
                                     onChange={(event) => {setDesc(event.target.value);}
                                 }/></td>
                     <td><button onClick={()=> { updateMyInfo(userId)}}>Update</button></td>
+                    <td><button onClick={()=> { deleteMyAccount(userId)}}>Delete</button></td>
                 </tr>
                     {/* );
                 })} */}

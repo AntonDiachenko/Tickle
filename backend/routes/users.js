@@ -13,7 +13,7 @@ router.get("/", byId);
 router.patch("/update/:id", checkAuth, updateUser);
 
 // http://localhost:8800/users/delete/123
-router.delete("/delete/:id", deleteUser);
+router.delete("/delete/:id", checkAuth, deleteUser);
 
 // http://localhost:8800/users/follow/123
 // router.put("/follow/:id", followUser);

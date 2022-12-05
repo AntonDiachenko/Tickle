@@ -73,11 +73,11 @@ export const updateUser = async (req, res) => {
 
 // Delete User
 export const deleteUser = async (req, res) => {
-  const userId = req.body.userId;
+  const userId = req.userId;
   const id = req.params.id;
-  const role = req.body.role;
+  // const role = req.body.role;
 
-  if (userId === id || role == "Admin") {
+  if (userId === id) {
     try {
       const user = await Users.findByIdAndDelete(id);
       res
