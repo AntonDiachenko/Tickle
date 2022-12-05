@@ -1,15 +1,11 @@
 import Home from "./pages/home/Home";
 import Feed from "./components/feed/Feed";
 import Profile from "./pages/profile/Profile";
+import MyProfile from "./pages/profile/MyProfile";
 //import { Routes, Route } from "react-router-dom";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Comments from "./components/comments/Comments";
 import { AuthContext } from "./utils/AuthContext.js";
 import { useState, useEffect } from "react";
@@ -17,7 +13,7 @@ import axios from "axios";
 import Friends from "./pages/friends/Friends";
 import Photos from "./pages/photos/Photos";
 import Post from "./components/post/Post";
-// import { AuthContext } from "./context/AuthContext";
+import CreatePostPopup from "./components/share/CreatePostPopup";
 
 function App() {
   // const { user } = useContext(AuthContext);
@@ -63,9 +59,13 @@ function App() {
     setAuthState({ username: "", id: 0, status: false });
   };
 
+  const user22 = authState.username;
+  const [visible, setVisible] = useState(false);
+
   return (
     // by wrapping routers in Authcontext here we make accessible the data which we keep inside AuthContext to every route(component)
     <AuthContext.Provider value={{ authState, setAuthState }}>
+      {visible && <CreatePostPopup user={user22} setVisible={setVisible} />}
       <Router>
         <div className="navbar">
           <div className="links">
@@ -75,9 +75,7 @@ function App() {
                 <Link to="/register"> Register</Link>
               </>
             ) : (
-              <>
-               
-              </>
+              <></>
             )}
           </div>
           <div className="loggedInContainer">
@@ -87,18 +85,27 @@ function App() {
         </div>
 
         <Routes>
-          <Route path="/" element={authState.status ? <Home /> : <Login />} />
+          <Route
+            path="/"
+            element={
+              authState.status ? <Home setVisible={setVisible} /> : <Login />
+            }
+          />
 
           {/* <Route exact path="/" element={<Home />} /> */}
           <Route path="/getComments/:id" element={<Comments />} />
-          <Route path="/" element={<Feed />} />
+          <Route path="/" element={<Feed setVisible={setVisible} />} />
           <Route
             path="/login"
             element={authState.status ? <Home /> : <Login />}
           />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile/:username" element={<Profile />} />
+          <Route
+            path="/profile/:username"
+            element={<Profile setVisible={setVisible} />}
+          />
+          <Route path="/aboutMe/:userId" element={<MyProfile />} />
           {/* <Route exact path="/">
             {user ? <Home /> : <Register />}
             </Route> */}
@@ -107,8 +114,7 @@ function App() {
           <Route path="/user/myFriends" element={<Friends />} />
           <Route path="/photos" element={<Photos />} />
         </Routes>
-      </Router>
-      {" "}
+      </Router>{" "}
     </AuthContext.Provider>
   );
 }

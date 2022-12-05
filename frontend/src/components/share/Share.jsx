@@ -6,8 +6,9 @@ import { useContext, useRef } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
 import React, { useEffect, useState } from "react";
 import axios from "../../utils/axios";
+import { Link } from "react-router-dom";
 
-export default function Share() {
+export default function Share({ setVisible }) {
   const { authState } = useContext(AuthContext);
   //console.log("usershare", authState.userId);
 
@@ -56,12 +57,25 @@ export default function Share() {
   return (
     <div className="share">
       <div className="shareWrapper">
-        <div className="shareTop">
-          <img
+        <div
+          className="shareTop open_post"
+          onClick={() => {
+            setVisible(true);
+          }}
+        >
+          <Link to={`/profile/${authState.username}`}>
+            <img
+              src={authState.avatarURL || PF + "person/avatar1.jpg"}
+              alt=""
+              className="shareProfileImage"
+            />
+          </Link>
+
+          {/* <img
             src={PF + "person/avatar1.jpg"}
             alt=""
             className="shareProfileImage"
-          />
+          /> */}
           {/* <img
                         src={
                         authState.avatarURL ? PF + authState.avatarURL : PF + "person/noAvatar.png"
@@ -70,11 +84,12 @@ export default function Share() {
                         className="shareProfileImage"
                     /> */}
 
-          <input
+          {/* <input
             placeholder={"What's on your mind " + authState.username + "?"}
             className="shareInput"
             ref={content}
-          />
+          /> */}
+          <div>What's on your mind {authState.username}?</div>
         </div>
         <hr className="shareHr" />
         <form className="shareBottom" onSubmit={submitHandler}>
@@ -99,9 +114,9 @@ export default function Share() {
               <span className="shareOptionText"> Location </span>
             </div>
           </div>
-          <button className="shareButton" type="submit">
+          {/* <button className="shareButton" type="submit">
             Share
-          </button>
+          </button> */}
         </form>
       </div>
     </div>

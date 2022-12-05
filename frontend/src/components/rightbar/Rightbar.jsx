@@ -7,9 +7,9 @@ import Friend from "../../components/friends/Friend";
 import {useEffect, useState} from "react";
 
 
-export default function Rightbar({ user}) {
+export default function Rightbar({user}) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
- 
+  
 
 
   const HomeRightbar = () => {
@@ -72,7 +72,7 @@ export default function Rightbar({ user}) {
           <div className="rightbarFollowings">
             <div className="rightbarFollowing">
               <ul className="rightbarFollowings">
-                {listOfAppFriends.map((u) => (
+                {Array.from(listOfAppFriends).map((u) => (
                   <Friend key={u._id} user={u} />
                 ))}
               </ul>

@@ -35,9 +35,15 @@ export const createPost = async (req, res) => {
         // https://tickle.blob.core.windows.net/post/az1.jpg
 
         const photoUrl = containerClient.getBlockBlobClient(fileName);
-        urlList.push(photoUrl.url);
+        // if (urlList.length<9) {
+          urlList.push(photoUrl.url);
+        // }
+        
       });
 
+
+
+ 
       //create a new post
       const newPostWithImage = new Post({
         title,
@@ -245,6 +251,24 @@ export const removePost = async (req, res) => {
     res.json({ message: "Something went wrong" });
   }
 };
+
+
+      // async function deleteBlob(containerClient, blobName){
+
+      //   // include: Delete the base blob and all of its snapshots.
+      //   // only: Delete only the blob's snapshots and not the blob itself.
+      //   const options = {
+      //     deleteSnapshots: 'include' // or 'only'
+      //   }
+      
+      //   // Create blob client from container client
+      //   const blockBlobClient = await containerClient.getBlockBlobClient(blobName);
+      
+      //   await blockBlobClient.delete(options);
+      
+      //   console.log(`deleted blob ${blobName}`);
+      
+      // }
 
 // Update post
 export const updatePost = async (req, res) => {

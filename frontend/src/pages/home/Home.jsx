@@ -7,44 +7,41 @@ import Rightbar from "../../components/rightbar/Rightbar.jsx";
 import "./home.css";
 //import { useNavigate } from "react-router-dom";
 
+export default function Home({ setVisible }) {
+  // const { authState } = useContext(AuthContext);
 
-export default function Home () {
-    // const { authState } = useContext(AuthContext);
+  // const navigate = useNavigate();
+  // const { authState } = useContext(AuthContext);
 
+  // const userId = authState.userId;
+  // console.log("User!!!!!", userId);
 
-    // const navigate = useNavigate();
-    // const { authState } = useContext(AuthContext);
+  // useEffect(() => {
+  //     if(authState.status == false){
+  //         console.log("Go to login. AuthStatus:", authState.status)
+  //          navigate("/login")
+  //        }
+  //      }, [authState]);
 
-    // const userId = authState.userId;
-    // console.log("User!!!!!", userId);
+  // useEffect(() => {
+  //     axios
+  //       .get("http://localhost:8800/api/auth/user", {
+  //         headers: {
+  //           accessToken: localStorage.getItem("accessToken"),
+  //         },
+  //       })
+  //       .then((response) => {
 
-    // useEffect(() => {
-    //     if(authState.status == false){
-    //         console.log("Go to login. AuthStatus:", authState.status)
-    //          navigate("/login")
-    //        }
-    //      }, [authState]);
+  //     }, []);
 
-    // useEffect(() => {
-    //     axios
-    //       .get("http://localhost:8800/api/auth/user", {
-    //         headers: {
-    //           accessToken: localStorage.getItem("accessToken"),
-    //         },
-    //       })
-    //       .then((response) => {
-
-    //     }, []);
-
-
-    return (
-             <>
-                <Topbar/>
-                <div className="homeContainer">
-                    <Sidebar/>
-                    <Feed/>
-                    <Rightbar/>
-                </div>
-            </>   
-    );        
+  return (
+    <>
+      <Topbar />
+      <div className="homeContainer">
+        <Sidebar />
+        <Feed setVisible={setVisible} />
+        <Rightbar />
+      </div>
+    </>
+  );
 }

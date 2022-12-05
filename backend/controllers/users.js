@@ -21,27 +21,48 @@ export const byId = async (req, res) => {
 
 // Update User
 export const updateUser = async (req, res) => {
-  const userId = req.body.userId;
+ // const userId = req.body.userId;
+  const userId = req.userId;
+  // console.log(userId);
   const id = req.params.id;
-  const role = req.body.role;
+  // console.log(id);
+  const username = req.body.username;
+  // console.log(username);
+  // const email = req.body.email;
+  // console.log(email);
+  // const role = req.body.role;
+  // console.log(role);
   const password = req.body.password;
+  // console.log(password);
+  const avatarURL = req.body.avatarURL;
+  const city = req.body.city;
+  // console.log(city);
+  const from = req.body.from;
+  // console.log(from);
+  const birthday = req.body.birthday;
+  // console.log(birthday);
+  const desc = req.body.desc;
+  // console.log(desc);
+  // console.log(req.body);
 
-  if (userId === id || role == "Admin") {
+  // if (userId === id || role == "Admin") {
+    if (userId === id || role === "User") {
     if (password) {
       try {
         const salt = await bcrypt.genSalt(10);
         password = await bcrypt.hash(password, salt);
       } catch (err) {
-        return res.status(500).json(err);
+        return res.status(500).json("Password error");
       }
     }
     try {
       const user = await Users.findByIdAndUpdate(id, {
         $set: req.body,
       });
+     // console.log(user);
       res.status(200).json({ message: "User has been updated!" });
     } catch (err) {
-      return res.status(500).json(err);
+      return res.status(500).json("User update error");
     }
   } else {
     return res
@@ -52,11 +73,11 @@ export const updateUser = async (req, res) => {
 
 // Delete User
 export const deleteUser = async (req, res) => {
-  const userId = req.body.userId;
+  const userId = req.userId;
   const id = req.params.id;
-  const role = req.body.role;
+  // const role = req.body.role;
 
-  if (userId === id || role == "Admin") {
+  if (userId === id) {
     try {
       const user = await Users.findByIdAndDelete(id);
       res

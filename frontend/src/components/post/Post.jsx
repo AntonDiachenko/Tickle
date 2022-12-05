@@ -25,6 +25,25 @@ export default function Post({ post }) {
   const [CommentLists, setCommentLists] = useState([]);
   // get post ID for the current post to send it in the request to the
   const postId = post._id;
+  const urlList = post.imageURL;
+
+  if(urlList.length > 0 && urlList[0]!=""
+  ){
+    var items = urlList.map((value, key) => {
+            
+      return (
+          <img                 
+          src={value } alt=""
+          height={400} width={400}
+        />
+      );
+  }
+    );
+    }else{
+        var items = <br></br>
+    }
+
+
   const { authState } = useContext(AuthContext);
   const userId = authState.userId;
   const [totalReactions, setTotalReactions] = useState(0);
@@ -137,9 +156,18 @@ export default function Post({ post }) {
             <MoreHorizIcon />
           </div>
         </div>
-        <div className="postCenter">
+        <div className="postCenter container ">
           <span className="postText">{post?.content}</span>
-          <img src={post?.imageURL} alt="" className="postImg" />
+    
+          <div className="row">
+
+            {items}
+          
+
+
+
+          </div>
+          {/* <img src={post?.imageURL} alt="" className="postImg" /> */}
         </div>
 
         <div className="postBottom">
