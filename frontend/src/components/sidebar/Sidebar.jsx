@@ -1,6 +1,6 @@
 import "./sidebar.css"
 import HomeIcon from '@mui/icons-material/Home';
-//import FeedIcon from '@mui/icons-material/Feed';
+import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary';
 import GroupIcon from '@mui/icons-material/Group';
 import GroupsIcon from '@mui/icons-material/Groups';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
@@ -59,7 +59,7 @@ export default function Sidebar() {
                     </li>
                     <li className="sidebarListItem">
                     <Link to="/photos" style={{textDecoration: "none"}}>
-                        <GroupsIcon className="sidebarItemIcon"/>
+                        <PhotoLibraryIcon className="sidebarItemIcon"/>
                         <span className="sidebarListItemText"> Photos </span>
                         </Link>
                     </li>

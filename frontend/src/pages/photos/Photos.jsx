@@ -7,6 +7,7 @@ import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
 import { useParams } from "react-router-dom";
+import "./photo.css"
 
 export default function Photos() {
   let navigate = useNavigate();
@@ -74,12 +75,24 @@ const addToIdList =()=>{
     <div className="homeContainer">
     <Sidebar/>
       {/* friendContainer should be changed to photoContainer */}
-      <div className="friendContainer row">
-        <div className=" row-cols-2  g-4">
-
+      <div className="photoContainer">
+        <div className="photoTop">
+          <div className="photoRight">
+          <h3 className="photoTitle">My Photos</h3>
+          </div>
+          <div className="photoLeft">
+          <button type="button" className="photoEditButton" onClick={()=>setShow(!show)}>Edit</button>
+          <button type="button" className="photoEditButton" onClick={()=>setShow(!show)}>Move to</button>
+          </div>
+        
+        
+        </div>
+      
+      <div className="photoItems">
         {albumList.map((value, key) => {
           return (
-              <div className="col-3"
+            <li>
+              <div className="photoItem"
               onClick={() => {
                 if (value=='Albums') {
                   axios
@@ -102,11 +115,15 @@ const addToIdList =()=>{
                 }
                 
                 }}>
-                {value}
+                  <button className="photoButton">{value}</button>
+                
               </div>
+              </li>
+              
             ); })}
-
-            <button type="button" onClick={()=>setShow(!show)}>Edit</button>
+            
+</div>
+<hr className="photoHr"></hr>
             {show && <div>
             <label >Move to list:</label>
             <input  type="text" className ="form-control" 
@@ -114,11 +131,17 @@ const addToIdList =()=>{
                                 }/>
               <button type="submit" onClick={()=>{updatePhotos();navigate(0);} }>submit</button>                   
                                 
-                                </div>}
+                                </div>
+                                
+                                }
+
+ 
+<div className="photoGrid">
           {photoList.map((value, key) => {
+            
               return (
-                <div className="row">
-                  <div className="col-4">
+               <div className="photoGridItem">
+                 
                   {show && <input id={value._id} type="checkbox" value={value._id} 
                   //  onChange={this.addToIdList}
                    onChange={() => {
@@ -131,20 +154,25 @@ const addToIdList =()=>{
                     }
                   }}
                   />}
+           
+                  
                     <img 
-                    height={400} width={400}
+                   className="photoImg"
                       src={value.photoURL}
                     />
-                  </div>
+                      {/* </div> */}
+                    {/* </li> */}
+                 
                 </div>
               );
           
             
           })}
+          {/* </div> */}
         </div>
-      </div>
+    {/* //  </div>  */}
     </div>
-    
+    </div>
     </>
 );
 }
