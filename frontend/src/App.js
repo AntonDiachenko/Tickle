@@ -28,6 +28,7 @@ function App() {
     status: false,
     role: "",
     friendships: [],
+    username: "",
   });
 
   useEffect(() => {
@@ -52,7 +53,7 @@ function App() {
           //console.log("AuthState at App.js after Set AuthState:", authState)
         }
       });
-  }, []);
+  }, [authState.username]);
   //console.log("this is after setAuthState", authState);
 
   //const userId = authState.userId;
