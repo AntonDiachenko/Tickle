@@ -11,10 +11,10 @@ export default function MyProfile() {
     let navigate = useNavigate();
     const [user, setUser] = useState({});
 
-  //  const { userId } = useParams();
+   const { userId } = useParams();
 
-    const { authState } = useContext(AuthContext);
-    const userId= authState.userId;
+    // const { authState } = useContext(AuthContext);
+    // const userId= authState.userId;
 
 const [username, setUsername] = useState();
 const [email, setEmail] = useState();
