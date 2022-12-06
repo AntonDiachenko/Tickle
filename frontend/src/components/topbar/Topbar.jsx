@@ -4,11 +4,25 @@ import PersonIcon from "@mui/icons-material/Person";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext";
+import axios from "../../utils/axios";
 
 export default function Topbar() {
+
+  const [username, setUsername] = useState();
+
   const { authState } = useContext(AuthContext);
+  const [user, setUser] = useState({});
+
+  const fetchUser = async (username) => {
+    const res = await axios.get(`users?username=${username}`);
+    // console.log(res)
+    setUser(res.data);
+  };
+  //fetchUser();
+// }, []);
+console.log("User from search",user);
 
   return (
     <div className="topbarContainer">
@@ -17,15 +31,40 @@ export default function Topbar() {
           <span className="logo">tickle</span>
         </Link>
       </div>
-      <div className="topbarCenter">
+
+      <div className="topbarCenter search_area">
+      <div className="search_wrap">
         <div className="searchbar">
           <SearchIcon className="searchIcon" />
-          <input
+          <input 
             placeholder="Search in tickle "
             className="searchInput"
-          ></input>
+            value={username}
+            onChange={(event) => {
+              setUsername(event.target.value);
+            }}>
+                        
+          </input>
+          <button  onClick={() => {
+                        fetchUser(username);
+                      }}>Search</button>
+        </div>
+        <div className="search_results scrollbar">
+        {user ?(  
+        <Link to={`/profile/${user.username}`} className="search_user_item hover">
+        {/* <img src={user.avatarURL} alt="" className="topbarImg" /> */}
+        <span>{user.username}</span>
+        </Link>):(
+          <span>No user found</span>
+        )}
+      </div>
+
+
+
+
         </div>
       </div>
+      
       <div className="topbarRight">
         <div className="topbarIcons">
           <div className="topbarIconItem">
