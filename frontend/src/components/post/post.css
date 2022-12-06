@@ -99,7 +99,9 @@
     display: block;
   }
 
- 
+  .dropdownIcon {
+   width: 300px;
+  }
   .dropdown-content a:hover {
       background-color: #f1f1f1;
       border-radius:5px;
@@ -110,7 +112,7 @@
      
     }
 
-    .dropdown:hover .dropdown-content {display: block;}
+    .dropdown:active .dropdown-content {display: block;}
  /* reactions part start */
 
 

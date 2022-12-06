@@ -617,3 +617,11 @@ plcaing the right conditions
 2. To do until next Scrum:
 - styling post with multiple photo
 3. Need assistance / figure things out
+
+2022/12/06 Liutsiia
+1. Done / not done since last scrum:
+- styling searchbar, delete post, Recommended friends 
+2. To do until next Scrum:
+- fix styling  on  registration pages
+- styling post with multiple photo
+3. Need assistance / figure things out

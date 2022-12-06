@@ -40,7 +40,7 @@ export default function Rightbar({user}) {
         <h4 className="rightbarTitle"> Recommended Friends</h4>
         <ul className="rightbarFriendList">
           {Array.from(listNotFriends).slice(0, 5).map((u) => (
-            <Friend key={u._id} user={u} />
+            <Online key={u._id} user={u} />
           ))}
 
         </ul>

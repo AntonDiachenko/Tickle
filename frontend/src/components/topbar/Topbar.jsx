@@ -14,6 +14,7 @@ export default function Topbar() {
 
   const { authState } = useContext(AuthContext);
   const [user, setUser] = useState({});
+const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const fetchUser = async (username) => {
     const res = await axios.get(`users?username=${username}`);
@@ -40,27 +41,42 @@ console.log("User from search",user);
             placeholder="Search in tickle "
             className="searchInput"
             value={username}
+            onKeyDown={() => {
+              fetchUser(username);
+            }}
+           
             onChange={(event) => {
               setUsername(event.target.value);
             }}>
-                        
-          </input>
-          <button  onClick={() => {
-                        fetchUser(username);
-                      }}>Search</button>
-        </div>
-        <div className="search_results scrollbar">
-        {user ?(  
+                       
+          </input> 
+          <div class="dropdown-content2">
+             
+            <span>Recent serches:
+            </span>
+            <br />
+            {user ?(  
         <Link to={`/profile/${user.username}`} className="search_user_item hover">
-        {/* <img src={user.avatarURL} alt="" className="topbarImg" /> */}
+          <div>
+        {/* <img src={user.avatarURL || PF + "person/NoAvatar.png"} alt="" className="search_user_item_img" /> */}
         <span>{user.username}</span>
+        </div>
         </Link>):(
           <span>No user found</span>
         )}
-      </div>
+            
+     
+        
+          </div> 
+   
+        </div>
+        
+       
+        {/* <div className="search_results scrollbar"> */}
+        
+      {/* </div> */}
 
-
-
+  
 
         </div>
       </div>
