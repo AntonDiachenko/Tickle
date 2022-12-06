@@ -595,10 +595,25 @@ plcaing the right conditions
 - assist with displaying the user info
 3. Need assistance / figure things out
 
+2022/12/04 Liutsiia
+1. Done / not done since last scrum:
+- styling comments
+- assist with issues
+2. To do until next Scrum:
+- styling ready part
+3. Need assistance / figure things out
+
 2022/12/05 Anton
 1. Done / not done since last scrum:
 - completed reactions 
 2. To do until next Scrum:
 - fix validation on login (undefined access token is created)
 - fix validation for login
+3. Need assistance / figure things out
+
+2022/12/05 Liutsiia
+1. Done / not done since last scrum:
+- styling Edit profile/albums
+2. To do until next Scrum:
+- styling post with multiple photo
 3. Need assistance / figure things out
