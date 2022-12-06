@@ -59,14 +59,14 @@ export const login = async (req, res) => {
     // Check if user already exists in the db
     if (!user) {
       return res.json({
-        message: "User with this email does not exist",
+        message: "Email or password is wrong",
       });
     } else {
       // Check if password is correct
       const isPassCorrect = await bcrypt.compare(password, user.password);
       if (!isPassCorrect) {
         return res.json({
-          message: "Password is wrong",
+          message: "Email or password is wrong",
         });
       } else {
         // Authorization (create accessToken to check if user is logged in based on jasonwebtoken package)
