@@ -23,28 +23,29 @@ export const register = async (req, res) => {
       return res.json({
         message: "This email is already used",
       });
+    } else {
+      // (10) means level of difficulty of hashing
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
+
+      const newUser = new Users({
+        username,
+        email,
+        password: hash,
+        role: "User",
+        avatarURL,
+        city,
+        from,
+        birthday,
+        desc,
+      });
+
+      await newUser.save();
+      res.json({
+        newUser,
+        message: "Registration successful",
+      });
     }
-    // (10) means level of difficulty of hashing
-    const salt = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(password, salt);
-
-    const newUser = new Users({
-      username,
-      email,
-      password: hash,
-      role: "User",
-      avatarURL,
-      city,
-      from,
-      birthday,
-      desc,
-    });
-
-    await newUser.save();
-    res.json({
-      newUser,
-      message: "Registration successful",
-    });
   } catch (error) {
     res.json({ message: "User registration error" });
   }

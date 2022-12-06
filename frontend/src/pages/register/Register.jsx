@@ -19,9 +19,9 @@ export default function Register() {
     from: "",
     birthday: "",
     desc: "",
-
   };
 
+  const [error, setError] = useState("");
   const { authState } = useContext(AuthContext);
 
   //console.log("Register page:", authState);
@@ -30,15 +30,25 @@ export default function Register() {
 
   const navigate = useNavigate();
 
+  // const onSubmit = (data) => {
+  //   axios.post("api/auth/register", data).then((response) => {
+  //     navigate("/login");
+  //   });
+  // };
+
   const onSubmit = (data) => {
     axios.post("api/auth/register", data).then((response) => {
-      navigate("/login");
+      if (response.data.newUser) {
+        navigate("/login");
+      } else {
+        setError(response.data.message);
+      }
     });
   };
 
   const goToLogin = () => {
     navigate("/login");
-  }
+  };
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().min(2).max(20).required(),
@@ -54,7 +64,7 @@ export default function Register() {
     // birthday: Yup.string(),
     // desc: Yup.string(),
   });
- 
+
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -67,8 +77,11 @@ export default function Register() {
         </div>
         <div className="loginRight">
           <div className="registerBox">
+            {error && <span>{error}</span>}
             <Formik
               initialValues={initialValues}
+              validateOnChange={false}
+              validateOnBlur={false}
               onSubmit={onSubmit}
               validationSchema={validationSchema}
             >
@@ -124,7 +137,12 @@ export default function Register() {
                   />
                 </div>
 
-                <Field className="loginInput" name="role" placeholder="Role" hidden />
+                <Field
+                  className="loginInput"
+                  name="role"
+                  placeholder="Role"
+                  hidden
+                />
 
                 <Field
                   className="loginInput"
@@ -133,22 +151,42 @@ export default function Register() {
                   hidden
                 />
 
-                <Field className="loginInput" name="city" placeholder="city" hidden />
+                <Field
+                  className="loginInput"
+                  name="city"
+                  placeholder="city"
+                  hidden
+                />
 
-                <Field className="loginInput" name="from" placeholder="from" hidden />
+                <Field
+                  className="loginInput"
+                  name="from"
+                  placeholder="from"
+                  hidden
+                />
 
                 <Field
                   className="loginInput"
                   name="birthday"
                   placeholder="birthday"
-                  hidden />
+                  hidden
+                />
 
-                <Field className="loginInput" name="desc" placeholder="desc" hidden />
+                <Field
+                  className="loginInput"
+                  name="desc"
+                  placeholder="desc"
+                  hidden
+                />
 
                 <button type="submit" className="loginRegisterButton">
                   Sign Up
                 </button>
-                <button type="submit" className="loginButton" onClick={goToLogin}>
+                <button
+                  type="submit"
+                  className="loginButton"
+                  onClick={goToLogin}
+                >
                   Log into Account
                 </button>
               </Form>
