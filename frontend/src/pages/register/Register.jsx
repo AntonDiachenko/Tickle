@@ -36,6 +36,10 @@ export default function Register() {
     });
   };
 
+  const goToLogin = () => {
+    navigate("/login");
+  }
+
   const validationSchema = Yup.object().shape({
     username: Yup.string().min(2).max(20).required(),
     email: Yup.string().email().required(),
@@ -50,7 +54,7 @@ export default function Register() {
     // birthday: Yup.string(),
     // desc: Yup.string(),
   });
-
+ 
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -144,7 +148,7 @@ export default function Register() {
                 <button type="submit" className="loginRegisterButton">
                   Sign Up
                 </button>
-                <button type="submit" className="loginButton">
+                <button type="submit" className="loginButton" onClick={goToLogin}>
                   Log into Account
                 </button>
               </Form>
