@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Topbar from "../../components/topbar/Topbar.jsx";
+import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import "./myProfile.css"
 import TextArea from "rc-textarea";
@@ -81,41 +82,27 @@ export default function MyProfile() {
         navigate("/");
       });
   };
-
-//   const validationSchema = Yup.object().shape({
-//     username: Yup.string().min(2).max(20).required(),
-//     // email: Yup.string().email().required(),
-//     // password: Yup.string().min(5).max(20).required(),
-//     // confirmpassword: Yup.string()
-//     //   .required()
-//     //   .oneOf([Yup.ref("password")], "Your passwords do not match."),
-//     // role: Yup.string(),
-//     //avatarURL: Yup.string(),
-//     city: Yup.string().min(2).max(50).required(),
-//     from: Yup.string().min(2, "it should be longer").required(),
-//     birthday: Yup.date().required(),
-//     desc: Yup.string().min(2).max(550).required(),
-//   });
-
   return (
     <>
     <Topbar/>
     <div className="homeContainer">
     <Sidebar/>
     <div className="myProfileContainer">
-    <h3 className="friendTitle">Edit profile</h3>
+    <div className="photoTop">
+          <div className="photoRight">
+            <h3 className="friendTitle">Edit profile</h3>
+          </div>
+            <div className="photoLeft">
+            <button type="button" className="myprofileLeftButton" onClick={() => {
+                        deleteMyAccount(userId);
+                      }}><DeleteForeverOutlinedIcon className="myProfileIcon"/>Delete profile </button>
+            </div>
+        </div>
     <hr></hr>
     <div className="profileItems">
-        
-              {/* <h3 className="loginLogo">tickle</h3>
-          <span className="loginDesc">
-            Tickle your friends via the app so you don't have to get off your
-            couch while watching Netflix.
-          </span> */}
+
                 <Formik
-                  // initialValues={initialValues}
-                  // onSubmit={onSubmit}
-                 // validationSchema={validationSchema}
+               
                 >
                   <Form className="myProfileForm">
                     <span className="myProfileSpan">User name: </span>
@@ -225,13 +212,7 @@ export default function MyProfile() {
                     >
                       Update
                     </button>
-                    <button className="deleteButton"
-                      onClick={() => {
-                        deleteMyAccount(userId);
-                      }}
-                    >
-                      Delete
-                    </button>
+                  
                     {/* <button type="submit" className="loginRegisterButton">
                   Sign Up
                 </button> */}

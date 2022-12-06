@@ -57,11 +57,17 @@
     font-size: 20px;
     font-weight: 500;
     cursor: pointer;
-    width: 38%;
-    margin-right: 70px;
+    width: 50%;
+    margin: 0 17%;
   }
 
-  .deleteButton{
-    background-color: red;
-
+  
+  .myprofileLeftButton{
+    border:0;
+    cursor: pointer;
+    margin-top: 40px;
   }
+
+  .myProfileIcon{
+margin-top: 10px;  }
+
