@@ -19,7 +19,7 @@ export default function Login() {
       // console.log(response);
       //  console.log(response.data.message);
       if (response.data.user) {
-        console.log("I was here");
+        // console.log("I was here");
         localStorage.setItem("accessToken", response.data.accessToken);
         setAuthState({
           email: response.data.user.email,
@@ -31,7 +31,7 @@ export default function Login() {
         });
         navigate("/");
       } else {
-        console.log(response.data.message);
+        // console.log(response.data.message);
         setError(response.data.message);
       }
     });
