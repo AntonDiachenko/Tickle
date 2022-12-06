@@ -6,40 +6,43 @@ import axios from "../../utils/axios";
 import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import AddToYourPost from "./AddToYourPost";
 
+
 export default function CreatePostPopup({ user, setVisible }) {
   const { authState } = useContext(AuthContext);
   //console.log("usershare", authState.userId);
-
+  // const storageConfigured = isStorageConfigured();
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [content, setContent] = useState("");
   const contentRef = useRef(null);
+ 
+  
+  // all blobs in container
+  const [blobList, setBlobList] = useState([]);
+
+  // current file to upload into container
+  const [fileSelected, setFileSelected] = useState([]);
+
+  const onFileChange = (event) => {
+    // capture file into state
+    setFileSelected(event.target.files);
+    
+  };
+  console.log("fileSelected",fileSelected);
+
+  
 
   const submitHandler = async (e) => {
-    e.preventDefault();
-    // const newPost = {
-    //   //   userId: authState.userId,
-    //   title: "aaa",
-    //   content: content.current.value,
-    // };
-
-    // if (file) {
-    //     const data = new FormData();
-    //     const fileName = Date.now() + file.name;
-    //     data.append("name", fileName);
-    //     data.append("file", file);
-    //     newPost.img = fileName;
-    //     console.log(newPost);
-    //     try {
-    //       await axios.post("/upload", data);
-    //     } catch (err) {}
-    //   }
+    // e.preventDefault();
     try {
-      await axios.post(
-        "api/posts/",
+      await axios.
+      post("api/posts/",
         {
           title: "default title",
           content: contentRef.current.value,
+          tags: "tag1",
+          files: fileSelected
+          
         },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
@@ -47,9 +50,12 @@ export default function CreatePostPopup({ user, setVisible }) {
         // newPost
       );
       //  console.log("api/posts");
+
       window.location.reload();
     } catch (err) {}
   };
+ 
+
 
   // console.log("content", content);
   return (
@@ -75,6 +81,7 @@ export default function CreatePostPopup({ user, setVisible }) {
             </div>
           </div>
         </div>
+        <form onSubmit={submitHandler} enctype="multipart/form-data">
         <div className="flex_center">
           <textarea
             ref={contentRef}
@@ -85,13 +92,18 @@ export default function CreatePostPopup({ user, setVisible }) {
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
+   
         <EmojiPickerBackgrounds
           content={content}
           contentRef={contentRef}
           setContent={setContent}
         />
         <AddToYourPost />
-        <form onSubmit={submitHandler}>
+        
+        <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"  multiple="multiple" onChange={onFileChange} />
+
+        <div id="display-image"></div>
+        
           <button className="post_submit" type="submit">
             Post
           </button>

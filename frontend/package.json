@@ -16,6 +16,7 @@
     "@testing-library/user-event": "^13.5.0",
     "antd": "^5.0.2",
     "axios": "^1.2.0",
+    "azure-storage-blob": "^0.0.1-security",
     "bluebird": "^3.7.2",
     "bootstrap": "^5.2.2",
     "dotenv": "^16.0.3",
