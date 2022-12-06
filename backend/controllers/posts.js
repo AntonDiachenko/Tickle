@@ -11,7 +11,8 @@ import Friendships from "../models/Friendships.js";
 export const createPost = async (req, res) => {
   try {
     const { title, content, tags } = req.body;
-    const user = await User.findById(req.userId);
+    console.log(req.body);
+    // const user = await User.findById(req.userId);
     // console.log(req.userId);
     //  console.log(user);
     const urlList = [];

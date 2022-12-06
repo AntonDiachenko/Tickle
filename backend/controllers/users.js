@@ -2,6 +2,7 @@ import Users from "../models/Users.js";
 import bcrypt from "bcryptjs";
 import { response } from "express";
 import jwt from "jsonwebtoken";
+import Friendships from "../models/Friendships.js";
 
 // Find user by ID
 export const byId = async (req, res) => {
@@ -90,6 +91,61 @@ export const deleteUser = async (req, res) => {
     return res
       .status(403)
       .json({ message: "you can only delete your own account!" });
+  }
+};
+
+//Get all users
+export const getAllUsers = async (req, res) => {
+  try {
+    // const posts = await Post.find().sort("-createdAt").populate("user").exec(); //detailed output with all user info
+    const users = await Users.find();
+    
+
+    const currentUser = await Users.findById(req.userId);
+    
+     const list = await Promise.all(
+      currentUser.friendships.map((friendships) => {
+         return Friendships.findById(friendships._id);
+       })
+     );
+ 
+     const friends = [];
+     for(let i=0; i<list.length; i++){
+      if(list[i].user != currentUser.id){
+        // friends[i]= await Users.findById(list[i].user)}
+        friends[i]=list[i].user.toString();
+      }else {
+        // friends[i]=await Users.findById(list[i].friend);
+        friends[i]=list[i].friend.toString();
+        }
+     }
+
+     const allUsersIds = [];
+
+     for(let i=0; i<users.length; i++){
+     allUsersIds[i]=users[i]._id.toString();
+
+     }
+
+ 
+
+      for (var i = allUsersIds.length - 1; i >= 0; i--) {
+        for (var j = 0; j <friends.length; j++) {
+          if (allUsersIds[i] === friends[j]||allUsersIds[i] === currentUser.id) {
+            allUsersIds.splice(i, 1);
+            }
+          }
+        }
+
+        const notFriends = [];
+        for(let i=0; i<allUsersIds.length; i++){
+          notFriends[i]= await Users.findById(allUsersIds[i])
+        }
+        
+
+    res.json(notFriends);
+  } catch (error) {
+    res.status(500).json({ message: "Something went sooooo wrong" });
   }
 };
 

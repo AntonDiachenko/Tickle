@@ -13,6 +13,21 @@ export default function Rightbar({user}) {
 
 
   const HomeRightbar = () => {
+
+    const[listNotFriends, setListNotFriends] = useState([]);
+
+    useEffect(() => {
+       axios.get("users/allUsers",
+        {
+          headers: { accessToken: localStorage.getItem("accessToken") },
+        }).then((response) => {
+          setListNotFriends(response.data);
+          
+        });  
+      });
+      
+    // console.log("Not Friendssssssssssssssssssss",listNotFriends);
+
     return (
       <>
         <div className="birthdayContainer">
@@ -22,11 +37,12 @@ export default function Rightbar({user}) {
           </span>
         </div>
         <img src={`${PF}ad.png`} alt="" className="rightbarAd" />
-        <h4 className="rightbarTitle"> Online Friends</h4>
+        <h4 className="rightbarTitle"> Recommended Friends</h4>
         <ul className="rightbarFriendList">
-          {Users.map((u) => (
-            <Online key={u.id} user={u} />
+          {Array.from(listNotFriends).slice(0, 5).map((u) => (
+            <Friend key={u._id} user={u} />
           ))}
+
         </ul>
       </>
     );
