@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { byId, updateUser, deleteUser } from "../controllers/users.js";
+import { byId, updateUser, deleteUser, getAllUsers } from "../controllers/users.js";
 // import { updateUser } from "../controllers/users.js";
 // import { deleteUser } from "../controllers/users.js";
 import { checkAuth } from '../utils/checkAuth.js';
@@ -14,6 +14,9 @@ router.patch("/update/:id", checkAuth, updateUser);
 
 // http://localhost:8800/users/delete/123
 router.delete("/delete/:id", checkAuth, deleteUser);
+
+// http://localhost:8800/users/allUsers
+router.get("/allUsers", checkAuth, getAllUsers);
 
 // http://localhost:8800/users/follow/123
 // router.put("/follow/:id", followUser);
