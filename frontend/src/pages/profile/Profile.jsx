@@ -80,6 +80,7 @@ export default function Profile({ setVisible }) {
         <div className="profileRight">
           <div className="profileRightTop">
             <div className="profileCover">
+              {/* ...................upload....................................... */}
               <img
                 src={user.profileURL || PF + "person/noBackground.png"}
                 alt=""

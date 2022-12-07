@@ -30,6 +30,25 @@ export default function MyProfile() {
   const [birthday, setBirthday] = useState();
   const [desc, setDesc] = useState();
 
+
+  // all blobs in container
+  const [blobList, setBlobList] = useState([]);
+
+  // current file to upload into container
+  const [fileSelected, setFileSelected] = useState([]);
+
+  const onFileChange = (event) => {
+    // capture file into state
+    setFileSelected(event.target.files);
+  };
+
+  const formData = new FormData()
+  
+  for( var i =0; i< fileSelected.length;i++){
+    formData.append("fileName", fileSelected[i])
+  }
+
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users?userId=${userId}`);
@@ -104,7 +123,28 @@ export default function MyProfile() {
                 <Formik
                
                 >
+
+                  
                   <Form className="myProfileForm">
+                      <div>
+                      {/* .....................upload avatar........................ */}
+
+                      <img
+                src={user.avatarURL }
+                alt=""
+                className=""
+              />
+                      <input type="file"  accept="image/jpeg, image/png, image/jpg"  onChange={onFileChange} />
+       
+                      <Field
+                        className="loginInput"
+                        name="avatarURL"
+                        placeholder="avatarURL"
+                        hidden
+                      />
+                    </div>
+
+
                     <span className="myProfileSpan">User name: </span>
                     <div>
                         
@@ -124,22 +164,9 @@ export default function MyProfile() {
                       />
                     </div>
 <span className="myProfileSpan" >City</span>
+                    
                     <div>
-                      
-                      {/* <Field
-                        className="loginInput"
-                        name="avatarURL"
-                        placeholder="avatarURL"
-                        hidden
-                      />
-                    </div>
-                    <div>
-                    <label>City:</label>
-                      <ErrorMessage
-                        className="RegisterError"
-                        name="city"
-                        component="span"
-                      /> */}
+                 
 
                       <Field
                         className="myProfileInput"
@@ -205,6 +232,7 @@ export default function MyProfile() {
                         }}
                       />
                     </div>
+                    
                     <button className="updateButton"
                       onClick={() => {
                         updateMyInfo(userId);
