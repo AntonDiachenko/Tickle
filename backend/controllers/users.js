@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import { response } from "express";
 import jwt from "jsonwebtoken";
 import Friendships from "../models/Friendships.js";
+import { BlobServiceClient } from "@azure/storage-blob";
+import { fileURLToPath } from "url";
 
 // Find user by ID
 export const byId = async (req, res) => {
@@ -36,7 +38,7 @@ export const updateUser = async (req, res) => {
   const password = req.body.password;
   // console.log(password);
   //.............................upload avatar..................................
-  const avatarURL = req.body.avatarURL;
+
   const city = req.body.city;
   // console.log(city);
   const from = req.body.from;
@@ -48,7 +50,6 @@ export const updateUser = async (req, res) => {
   // console.log(req.body);
 
 
-      const file= req.files.fileName;
       
       //set azure environment : ConnectionString and ContainerName
       const blobServiceClient = BlobServiceClient.fromConnectionString(
@@ -57,23 +58,27 @@ export const updateUser = async (req, res) => {
       const containerClient = blobServiceClient.getContainerClient("post");
 
       // put all the images into urlList
-      file.forEach((element) => {
-        const fileName = element.name;
+      
+        const fileName = req.files.fileName.name;
         const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-        const options = { blobHTTPHeaders: { blobContentType: element.type } };
-        blockBlobClient.uploadData(element.data, options);
+        const options = { blobHTTPHeaders: { blobContentType: req.files.fileName.type } };
+        blockBlobClient.uploadData(req.files.fileName.data, options);
         // const response = await blockBlobClient.uploadFile(filePath);
         // https://tickle.blob.core.windows.net/post/download.jpg
         // https://tickle.blob.core.windows.net/post/az1.jpg
 
-        const photoUrl = containerClient.getBlockBlobClient(fileName);
-        // if (urlList.length<9) {
-        urlList.push(photoUrl.url);
-        // }
-      });
-
-
-
+        const avatarURL = containerClient.getBlockBlobClient(fileName).url;
+      
+     
+       
+        // const user = await User.findByIdAndUpdate(
+        //   {
+        //     _id: id,
+        //   },
+        //   { email, registrationDate: date},
+        //   { upsert: false }
+        // );
+ 
 
   // if (userId === id || role == "Admin") {
     if (userId === id || role === "User") {
@@ -86,9 +91,16 @@ export const updateUser = async (req, res) => {
       }
     }
     try {
-      const user = await Users.findByIdAndUpdate(id, {
-        $set: req.body,
-      });
+      const user = await Users.findByIdAndUpdate(id, 
+        {avatarURL:avatarURL},
+        // username:username,
+        // city:city,
+        // from:from,
+        // birthday:birthday,
+        // desc:desc
+        {$set:req.body},
+        // $set: {userId,avatarURL,username,city,from,birthday,desc},
+      );
      // console.log(user);
       res.status(200).json({ message: "User has been updated!" });
     } catch (err) {

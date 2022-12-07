@@ -31,22 +31,6 @@ export default function MyProfile() {
   const [desc, setDesc] = useState();
 
 
-  // all blobs in container
-  const [blobList, setBlobList] = useState([]);
-
-  // current file to upload into container
-  const [fileSelected, setFileSelected] = useState([]);
-
-  const onFileChange = (event) => {
-    // capture file into state
-    setFileSelected(event.target.files);
-  };
-
-  const formData = new FormData()
-  
-  for( var i =0; i< fileSelected.length;i++){
-    formData.append("fileName", fileSelected[i])
-  }
 
 
   useEffect(() => {
@@ -66,21 +50,48 @@ export default function MyProfile() {
     fetchUser();
   }, [userId]);
 
+
+
+
+    // all blobs in container
+    const [blobList, setBlobList] = useState([]);
+
+    // current file to upload into container
+    const [fileSelected, setFileSelected] = useState([]);
+  
+    const onFileChange = (event) => {
+      // capture file into state
+      setFileSelected(event.target.files);
+    };
+  
+    const formData = new FormData()
+    
+    
+    formData.append("fileName", fileSelected[0])
+   
+    formData.append('username', username);
+    formData.append('city', city);
+    formData.append('from', from);
+    formData.append('birthday', birthday);
+    formData.append('desc', desc);
+    // formData.append('avatarURL', "");
+
   const updateMyInfo = (userId) => {
     axios
       .patch(
         `users/update/${userId}`,
-        {
-          // role: role.current,
-          // avatarURL: avatarURL.current,
-          username: username,
-          //email: email,
-          //  password: password.current,
-          city: city,
-          from: from,
-          birthday: birthday,
-          desc: desc,
-        },
+        formData,
+        // {
+        //   // role: role.current,
+        //   // avatarURL: avatarURL.current,
+        //   username: username,
+        //   //email: email,
+        //   //  password: password.current,
+        //   city: city,
+        //   from: from,
+        //   birthday: birthday,
+        //   desc: desc,
+        // },
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
@@ -131,6 +142,7 @@ export default function MyProfile() {
 
                       <img
                 src={user.avatarURL }
+                // src ="https://tickle.blob.core.windows.net/post/az1.jpg?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
                 alt=""
                 className=""
               />
