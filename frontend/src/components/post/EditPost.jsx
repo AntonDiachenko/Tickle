@@ -18,8 +18,7 @@ export default function EditPost() {
       setPost(res.data);
     };
     fetchPost();
-
-    console.log("Update content", post.content);
+    // console.log("Update content", post.content);
   }, [postId]);
 
   const updatePost = (postId) => {
@@ -35,11 +34,11 @@ export default function EditPost() {
         }
       )
       .then((response) => {
-        if (response.data.post) {
+        if (response.data.message) {
+          setError(response.data.message);
+        } else {
           setPost(response.data);
           window.location.reload();
-        } else {
-          setError(response.data.message);
         }
       });
   };
