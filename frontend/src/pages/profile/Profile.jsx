@@ -30,10 +30,10 @@ export default function Profile({ setVisible }) {
   }, [username]);
 
   //TO CHECK IF ITS MY OWN PROFILE
-  let itsMyProfile = false;
-  if (authState.username === username) {
-    itsMyProfile = true;
-  }
+  // let itsMyProfile = false;
+  // if (authState.username === username) {
+  //   itsMyProfile = true;
+  // }
 
   let areFriends = false;
   // console.log("AuthState before FOR:", authState);
@@ -117,6 +117,7 @@ export default function Profile({ setVisible }) {
             </div>
           </div>
           <div className="profileRightBottom">
+            
             <Feed username={username} setVisible={setVisible} />
             <Rightbar user={user} />
           </div>

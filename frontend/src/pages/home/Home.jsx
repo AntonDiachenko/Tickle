@@ -11,16 +11,14 @@ import { useParams } from "react-router";
 
 export default function Home({ setVisible }) {
   
-  const { authState } = useContext(AuthContext);
-
-  const username = authState.username;
+ 
 
   return (
     <>
       <Topbar />
       <div className="homeContainer">
         <Sidebar />
-        <Feed username={username} setVisible={setVisible} />
+        <Feed setVisible={setVisible} />
         <Rightbar />
       </div>
     </>
