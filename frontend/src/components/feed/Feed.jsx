@@ -81,8 +81,10 @@ export default function Feed({ username, setVisible }) {
     <h2>UserId: {userObject._id}</h2> */}
       <div className="feed">
         <div className="feedWrapper">
-          {/* {username === authState.username && <Share setVisible={setVisible} />} */}
-          <Share setVisible={setVisible} />
+          {username === authState.username ?(
+            <Share setVisible={setVisible}/>
+          ):( <span></span>)  }
+          {/* <Share setVisible={setVisible} /> */}
           {Array.from(posts).map((p, _id) => (
             <Post post={p} key={p._id} />
           ))}
