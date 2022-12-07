@@ -11,6 +11,11 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import "./myProfile.css"
 import TextArea from "rc-textarea";
+import { BlobServiceClient } from "@azure/storage-blob";
+
+
+
+
 export default function MyProfile() {
   let navigate = useNavigate();
   const [user, setUser] = useState({});
@@ -24,7 +29,7 @@ export default function MyProfile() {
   const [email, setEmail] = useState();
   const [role, setRole] = useState();
   const [password, setPassword] = useState("");
-  const [avatarURL, setAvatarURL] = useState();
+  const [avatarURL, setAvatarURL] = useState(null);
   const [city, setCity] = useState();
   const [from, setFrom] = useState();
   const [birthday, setBirthday] = useState();
@@ -42,6 +47,7 @@ export default function MyProfile() {
       setBirthday(res.data.birthday);
       setDesc(res.data.desc);
       setPassword(res.data.password);
+      setAvatarURL(res.data.avatarURL);
       //console.log(res)
       setUser(res.data);
     };
@@ -58,32 +64,58 @@ export default function MyProfile() {
 
     // current file to upload into container
     const [fileSelected, setFileSelected] = useState([]);
-  
+    const [filePreview, setFilePreview] = useState(null);
     const onFileChange = (event) => {
       // capture file into state
       setFileSelected(event.target.files);
+      setFilePreview(URL.createObjectURL(event.target.files[0]));
     };
   
     const formData = new FormData()
     
     
     formData.append("fileName", fileSelected[0])
-   
+
     formData.append('username', username);
     formData.append('city', city);
     formData.append('from', from);
     formData.append('birthday', birthday);
     formData.append('desc', desc);
+    formData.append('avatarURL', avatarURL);
+
+// const getavatarurl =(data)  => {
+    
+//   //set azure environment : ConnectionString and ContainerName
+//   const blobServiceClient = BlobServiceClient.fromConnectionString(
+//     "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
+//   );
+//   const containerClient = blobServiceClient.getContainerClient("post");
+
+//   const fileName = data.fileName;
+//   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+//   const options = { blobHTTPHeaders: { blobContentType: data.fileName.type } };
+//   blockBlobClient.uploadData(data.fileName.data, options);
+
+//   const avatarURL = containerClient.getBlockBlobClient(fileName).url;
+
+//   return avatarURL;
+// }
+
+
+   
+
     // formData.append('avatarURL', "");
 
   const updateMyInfo = (userId) => {
+
+    // avatarURL= getavatarurl(formData);
     axios
       .patch(
         `users/update/${userId}`,
         formData,
         // {
         //   // role: role.current,
-        //   // avatarURL: avatarURL.current,
+        //   // avatarURL: avatarURL,
         //   username: username,
         //   //email: email,
         //   //  password: password.current,
@@ -99,7 +131,7 @@ export default function MyProfile() {
       .then((response) => {
         setUser(response.data);
         window.location.reload();
-        // navigate("/");
+        navigate("/");
       });
   };
 
@@ -131,21 +163,22 @@ export default function MyProfile() {
     <hr></hr>
     <div className="profileItems">
 
-                <Formik
-               
-                >
-
-                  
+                <Formik>
                   <Form className="myProfileForm">
                       <div>
                       {/* .....................upload avatar........................ */}
-
+                      {filePreview!== null ?  
                       <img
-                src={user.avatarURL }
-                // src ="https://tickle.blob.core.windows.net/post/az1.jpg?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
-                alt=""
-                className=""
-              />
+                        src={filePreview }
+                        alt=""
+                        className=""
+                      />: avatarURL !== null ? 
+                      <img
+                        src={avatarURL }
+                        alt=""
+                        className=""
+                      /> : null }
+                      
                       <input type="file"  accept="image/jpeg, image/png, image/jpg"  onChange={onFileChange} />
        
                       <Field

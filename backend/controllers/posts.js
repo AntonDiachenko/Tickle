@@ -25,25 +25,37 @@ export const createPost = async (req, res) => {
       const containerClient = blobServiceClient.getContainerClient("post");
 
       // put all the images into urlList
-      file.forEach((element) => {
-        const fileName = element.name;
-        const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-        const options = { blobHTTPHeaders: { blobContentType: element.type } };
-        blockBlobClient.uploadData(element.data, options);
-        // const response = await blockBlobClient.uploadFile(filePath);
-        // https://tickle.blob.core.windows.net/post/download.jpg
-        // https://tickle.blob.core.windows.net/post/az1.jpg
 
+      if (!Array.isArray(file)) {
+        const fileName = file.name;
+        const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+        const options = { blobHTTPHeaders: { blobContentType: file.type } };
+        blockBlobClient.uploadData(file.data, options);
         const photoUrl = containerClient.getBlockBlobClient(fileName);
-        // if (urlList.length<9) {
+
         urlList.push(photoUrl.url);
-        // }
-      });
+      } else {
+        file.forEach((element) => {
+          const fileName = element.name;
+          const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+          const options = { blobHTTPHeaders: { blobContentType: element.type } };
+          blockBlobClient.uploadData(element.data, options);
+          // const response = await blockBlobClient.uploadFile(filePath);
+          // https://tickle.blob.core.windows.net/post/download.jpg
+          // https://tickle.blob.core.windows.net/post/az1.jpg
+  
+          const photoUrl = containerClient.getBlockBlobClient(fileName);
+          // if (urlList.length<9) {
+          urlList.push(photoUrl.url);
+          // }
+        });
+      }
+      
 
       //create a new post
       const newPostWithImage = new Post({
-        title: req.body.title,
-        content: req.body.content,
+        title : req.body.title,
+        content:content? content : "",
         imageURL: urlList,
         
         reactions: req.body.reactions,
@@ -82,10 +94,10 @@ export const createPost = async (req, res) => {
     // console.log("!req.files");
 
     const newPostWithoutImage = new Post({
-      title,
-      content,
+      title: req.body.title,
+        content:req.body.content,
       imageURL: "",
-      tags,
+      tags: "tags",
       reactions: req.body.reactions,
       user: req.userId,
     });
@@ -267,28 +279,24 @@ export const updatePost = async (req, res) => {
     const { title, content } = req.body;
     const post = await Post.findById(req.params.id);
 
-    if (content == "") {
-      res.json({ message: "Write something" });
-    } else {
-      //console.log(title);
+    //console.log(title);
 
-      if (req.files) {
-        let fileName = Date.now().toString() + req.files.image.name;
-        const __dirname = dirname(fileURLToPath(import.meta.url));
-        req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
-        post.imageURL = fileName || "";
-      }
-
-      post.title = title;
-      post.content = content;
-      //post.tags = tags;
-      //post.reactions = req.body.reactions;
-      //post.user = req.userId;
-
-      await post.save();
-
-      res.json(post);
+    if (req.files) {
+      let fileName = Date.now().toString() + req.files.image.name;
+      const __dirname = dirname(fileURLToPath(import.meta.url));
+      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
+      post.imageURL = fileName || "";
     }
+
+    post.title = title;
+    post.content = content;
+    //post.tags = tags;
+    //post.reactions = req.body.reactions;
+    //post.user = req.userId;
+
+    await post.save();
+
+    res.json(post);
   } catch (error) {
     res.json({ message: "Something went wrong" });
   }

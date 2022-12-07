@@ -28,23 +28,16 @@ export default function CreatePostPopup({ user, setVisible }) {
     };
 
     const formData = new FormData()
+
+
       
-    formData.append('title', "shift");
+    formData.append('title', "default title");
     
     formData.append('content', content);
-
-    // fileSelected.forEach(element => {
-      
-    // });
-    
+    // {content =null ? formData.append('content', content): null};
     for( var i =0; i< fileSelected.length;i++){
       formData.append("fileName", fileSelected[i])
     }
-
-
-
-    console.log("fileSelected",fileSelected);
-
 
  const submitHandler = async (e) => {
     e.preventDefault();
