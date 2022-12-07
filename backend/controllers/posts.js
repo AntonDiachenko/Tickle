@@ -10,15 +10,14 @@ import Friendships from "../models/Friendships.js";
 // Create post
 export const createPost = async (req, res) => {
   try {
-    const { title, content, tags } = req.body;
-    console.log(req.body);
+    const { title, content } = req.body;
     // const user = await User.findById(req.userId);
     // console.log(req.userId);
     //  console.log(user);
     const urlList = [];
-    if (req.files) {
-      const file = req.files.fileName;
-
+    if (req.files ) {
+      const file= req.files.fileName;
+      
       //set azure environment : ConnectionString and ContainerName
       const blobServiceClient = BlobServiceClient.fromConnectionString(
         "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
@@ -43,10 +42,10 @@ export const createPost = async (req, res) => {
 
       //create a new post
       const newPostWithImage = new Post({
-        title,
-        content,
+        title: req.body.title,
+        content: req.body.content,
         imageURL: urlList,
-        tags,
+        
         reactions: req.body.reactions,
         user: req.userId,
       });

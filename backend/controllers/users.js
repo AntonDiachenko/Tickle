@@ -35,6 +35,7 @@ export const updateUser = async (req, res) => {
   // console.log(role);
   const password = req.body.password;
   // console.log(password);
+  //.............................upload avatar..................................
   const avatarURL = req.body.avatarURL;
   const city = req.body.city;
   // console.log(city);
@@ -45,6 +46,34 @@ export const updateUser = async (req, res) => {
   const desc = req.body.desc;
   // console.log(desc);
   // console.log(req.body);
+
+
+      const file= req.files.fileName;
+      
+      //set azure environment : ConnectionString and ContainerName
+      const blobServiceClient = BlobServiceClient.fromConnectionString(
+        "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
+      );
+      const containerClient = blobServiceClient.getContainerClient("post");
+
+      // put all the images into urlList
+      file.forEach((element) => {
+        const fileName = element.name;
+        const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+        const options = { blobHTTPHeaders: { blobContentType: element.type } };
+        blockBlobClient.uploadData(element.data, options);
+        // const response = await blockBlobClient.uploadFile(filePath);
+        // https://tickle.blob.core.windows.net/post/download.jpg
+        // https://tickle.blob.core.windows.net/post/az1.jpg
+
+        const photoUrl = containerClient.getBlockBlobClient(fileName);
+        // if (urlList.length<9) {
+        urlList.push(photoUrl.url);
+        // }
+      });
+
+
+
 
   // if (userId === id || role == "Admin") {
     if (userId === id || role === "User") {
