@@ -570,6 +570,13 @@ plcaing the right conditions
 - modify the backend logic for updating user info and deleting user 
 3. Need assistance / figure things out
 
+2022/12/01 Oxana
+1. Done / not done since last scrum:	
+2. To do until next Scrum:
+-continue don't show 'share my post'
+-create post as popup window
+-add emoji into the post
+3. Need assistance / figure things out
 
 2022/12/02 Anton
 1. Done / not done since last scrum:
@@ -588,6 +595,15 @@ plcaing the right conditions
 - write the frontend for updating user info and deleting user 
 3. Need assistance / figure things out
 
+2022/12/02 Oxana
+1. Done / not done since last scrum:
+-don't show 'share my post' not done	
+-create post as popup window
+2. To do until next Scrum:
+-delete post
+-continue create post as popup window
+3. Need assistance / figure things out
+
 2022/12/03 Myrzagul
 1. Done / not done since last scrum:
 - wrote the frontend for updating user info and deleting user 
@@ -601,6 +617,15 @@ plcaing the right conditions
 - assist with issues
 2. To do until next Scrum:
 - styling ready part
+3. Need assistance / figure things out
+
+2022/12/04 Oxana
+1. Done / not done since last scrum:
+-delete post
+-create post as popup window
+2. To do until next Scrum:
+-fix delete post 
+-continue add emoji into the post
 3. Need assistance / figure things out
 
 2022/12/05 Anton
@@ -618,10 +643,26 @@ plcaing the right conditions
 - styling post with multiple photo
 3. Need assistance / figure things out
 
+2022/12/05 Oxana
+1. Done / not done since last scrum:
+   -fix delete post
+   -add emoji into the post
+2. To do until next Scrum:
+	-edit post on frontend
+3. Need assistance / figure things out
+
 2022/12/06 Liutsiia
 1. Done / not done since last scrum:
 - styling searchbar, delete post, Recommended friends 
 2. To do until next Scrum:
 - fix styling  on  registration pages
 - styling post with multiple photo
+3. Need assistance / figure things out
+
+2022/12/06 Oxana
+1. Done / not done since last scrum:
+-edit post on frontend
+2. To do until next Scrum:
+-edit post on frontend in popup
+-validation for posts
 3. Need assistance / figure things out
