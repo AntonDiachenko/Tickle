@@ -164,11 +164,6 @@ export default function Post({ post }) {
           </div>
 
           {user.username === authState.username && (
-            <Link to={`/post/${post._id}`}>Edit post</Link>
-            //    setEditVisible(true);
-          )}
-
-          {user.username === authState.username && (
             // <button
             //   className=""
             //   onClick={() => {
@@ -186,15 +181,15 @@ export default function Post({ post }) {
                 </button>
                 <div class="dropdown-content">
                   <a
-                    href="#"
+                    href=""
                     onClick={() => {
                       deletePost(post._id);
                     }}
                   >
-                    {" "}
                     Delete post
                   </a>
-                  <a href="#"> Edit post</a>
+
+                  <Link to={`/post/${post._id}`}>Edit post</Link>
                 </div>
               </div>
             </div>
