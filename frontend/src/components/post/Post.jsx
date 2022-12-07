@@ -8,14 +8,15 @@ import { Link } from "react-router-dom";
 import ReactsPopup from "../reactions/ReactsPopup";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 // --------------------CHANGE WHEN DEPLOYED------------!!!!!!!
 const PF1 = "/assets/";
 const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 export default function Post({ post }) {
   // TODO --> when we get LIKES working change below to ""=useState(post.likes.length);""
+
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
@@ -161,6 +162,12 @@ export default function Post({ post }) {
             <span className="postUserName">{user.username}</span>
             <span className="postDate"> {format(post.createdAt)}</span>
           </div>
+
+          {user.username === authState.username && (
+            <Link to={`/post/${post._id}`}>Edit post</Link>
+            //    setEditVisible(true);
+          )}
+
           {user.username === authState.username && (
             // <button
             //   className=""
@@ -170,20 +177,28 @@ export default function Post({ post }) {
             // >
             //   Delete post
             // </button>
-            <div className="posTopRight">
-          <div class="dropdown">
-          <button class="dropbtn"> <MoreHorizIcon /></button>
-          <div class="dropdown-content">
-              <a href="#" onClick={() => {
-                deletePost(post._id);
-              }}> Delete post</a>
-              <a href="#"> Edit post</a>
-          </div>
-          </div>
-          </div>
-          )}
 
-          
+            <div className="posTopRight">
+              <div class="dropdown">
+                <button class="dropbtn">
+                  {" "}
+                  <MoreHorizIcon />
+                </button>
+                <div class="dropdown-content">
+                  <a
+                    href="#"
+                    onClick={() => {
+                      deletePost(post._id);
+                    }}
+                  >
+                    {" "}
+                    Delete post
+                  </a>
+                  <a href="#"> Edit post</a>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
         <div className="postCenter container ">
           <span className="postText">{post?.content}</span>

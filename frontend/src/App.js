@@ -14,7 +14,7 @@ import Friends from "./pages/friends/Friends";
 import Photos from "./pages/photos/Photos";
 import Post from "./components/post/Post";
 import CreatePostPopup from "./components/share/CreatePostPopup";
-
+import EditPost from "./components/post/EditPost";
 
 function App() {
   // const { user } = useContext(AuthContext);
@@ -104,7 +104,9 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route
             path="/profile/:username"
-            element={authState.status ? <Profile setVisible={setVisible}/> : <Login />}
+            element={
+              authState.status ? <Profile setVisible={setVisible} /> : <Login />
+            }
           />
           <Route
             path="/aboutMe/:userId"
@@ -115,17 +117,19 @@ function App() {
             </Route> */}
           {/* <Route path="/" element={<Feed />} /> */}
           {/* <Route path="/" element={<Post />} /> */}
-          <Route 
-          path="/user/myFriends" 
-          element={authState.status ? <Friends /> : <Login />}
+          <Route
+            path="/user/myFriends"
+            element={authState.status ? <Friends /> : <Login />}
           />
-          <Route path="/photos"
-          element={authState.status ? <Photos /> : <Login />}
+          <Route
+            path="/photos"
+            element={authState.status ? <Photos /> : <Login />}
           />
           <Route
             path="/users/update/:id"
             element={authState.status ? <MyProfile /> : <Login />}
           />
+          <Route path="/post/:postId" element={<EditPost />} />
         </Routes>
       </Router>{" "}
     </AuthContext.Provider>
