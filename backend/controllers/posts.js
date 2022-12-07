@@ -268,24 +268,28 @@ export const updatePost = async (req, res) => {
     const { title, content } = req.body;
     const post = await Post.findById(req.params.id);
 
-    //console.log(title);
+    if (content == "") {
+      res.json({ message: "Write something" });
+    } else {
+      //console.log(title);
 
-    if (req.files) {
-      let fileName = Date.now().toString() + req.files.image.name;
-      const __dirname = dirname(fileURLToPath(import.meta.url));
-      req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
-      post.imageURL = fileName || "";
+      if (req.files) {
+        let fileName = Date.now().toString() + req.files.image.name;
+        const __dirname = dirname(fileURLToPath(import.meta.url));
+        req.files.image.mv(path.join(__dirname, "..", "uploads", fileName));
+        post.imageURL = fileName || "";
+      }
+
+      post.title = title;
+      post.content = content;
+      //post.tags = tags;
+      //post.reactions = req.body.reactions;
+      //post.user = req.userId;
+
+      await post.save();
+
+      res.json(post);
     }
-
-    post.title = title;
-    post.content = content;
-    //post.tags = tags;
-    //post.reactions = req.body.reactions;
-    //post.user = req.userId;
-
-    await post.save();
-
-    res.json(post);
   } catch (error) {
     res.json({ message: "Something went wrong" });
   }

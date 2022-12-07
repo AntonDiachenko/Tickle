@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import axios from "../../utils/axios";
 import { useParams } from "react-router";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 
 export default function EditPost() {
   const [post, setPost] = useState({});
   const [content, setContent] = useState();
   const { postId } = useParams();
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -33,8 +35,12 @@ export default function EditPost() {
         }
       )
       .then((response) => {
-        setPost(response.data);
-        window.location.reload();
+        if (response.data.post) {
+          setPost(response.data);
+          window.location.reload();
+        } else {
+          setError(response.data.message);
+        }
       });
   };
 
@@ -51,6 +57,8 @@ export default function EditPost() {
             <td>
               {post.content}
               <br></br>
+              {error && <span>{error}</span>}
+
               <input
                 value={content}
                 type="text"
