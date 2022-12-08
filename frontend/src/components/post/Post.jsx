@@ -16,7 +16,6 @@ const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
 export default function Post({ post }) {
   // TODO --> when we get LIKES working change below to ""=useState(post.likes.length);""
-
   const [like, setLike] = useState(post.like);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
@@ -162,7 +161,6 @@ export default function Post({ post }) {
             <span className="postUserName">{user.username}</span>
             <span className="postDate"> {format(post.createdAt)}</span>
           </div>
-
           {user.username === authState.username && (
             // <button
             //   className=""
@@ -172,7 +170,6 @@ export default function Post({ post }) {
             // >
             //   Delete post
             // </button>
-
             <div className="posTopRight">
               <div class="dropdown">
                 <button class="dropbtn">
@@ -181,15 +178,15 @@ export default function Post({ post }) {
                 </button>
                 <div class="dropdown-content">
                   <a
-                    href=""
+                    href="#"
                     onClick={() => {
                       deletePost(post._id);
                     }}
                   >
+                    {" "}
                     Delete post
                   </a>
-
-                  <Link to={`/post/${post._id}`}>Edit post</Link>
+                  <a href="#"> Edit post</a>
                 </div>
               </div>
             </div>
