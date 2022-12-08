@@ -26,12 +26,15 @@ export default function Post({ post }) {
   const [CommentLists, setCommentLists] = useState([]);
   // get post ID for the current post to send it in the request to the
   const postId = post._id;
+  // const divBool = false;
   const urlList = post.imageURL;
-
   if (urlList.length > 0 && urlList[0] != "") {
-    var items = urlList.map((value, key) => {
-      return <img src={value} alt="" height={400} width={400} />;
-    });
+    // divBool=true;
+    var items =  urlList.map((value, key) => {
+      return <div className="photoGridItem"><img className="photoImg" src={value} alt="" /></div>
+      {/* // return </div> */}
+    }
+    );
   } else {
     var items = <br></br>;
   }
@@ -185,10 +188,23 @@ export default function Post({ post }) {
 
           
         </div>
-        <div className="postCenter container ">
-          <span className="postText">{post?.content}</span>
+        <div className="postCenter">
+          <div className="postText">
+          <span >{post?.content}</span></div>
 
-          <div className="row">{items}</div>
+          
+        {/* {divBool ? (<div className="photoGrid">{items}</div>) : ({items})} */}
+        {items.length > 0 ?
+
+<div className="photoGrid">{items} <br /></div>
+
+: <div> {items}</div> 
+
+}
+       {/* {items} */}
+       
+       
+          {/* </div> */}
           {/* <img src={post?.imageURL} alt="" className="postImg" /> */}
         </div>
 
