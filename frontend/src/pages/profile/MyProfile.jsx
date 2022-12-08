@@ -12,6 +12,7 @@ import Sidebar from "../../components/sidebar/Sidebar.jsx";
 import "./myProfile.css"
 import TextArea from "rc-textarea";
 import { BlobServiceClient } from "@azure/storage-blob";
+import moment from "moment";
 
 
 
@@ -39,6 +40,9 @@ export default function MyProfile() {
 
 
 
+
+
+
   useEffect(() => {
     const fetchUser = async () => {
       const res = await axios.get(`users?userId=${userId}`);
@@ -55,7 +59,9 @@ export default function MyProfile() {
     };
     //console.log("User in useEffect :", user);
     //window.location.reload();
+
     fetchUser();
+    
   }, [userId]);
 
     const [fileSelected, setFileSelected] = useState([]);
@@ -73,8 +79,7 @@ export default function MyProfile() {
     };
   
     const formData = new FormData()
-    
-    
+        
     formData.append("fileName", fileSelected[0])
     formData.append("fileNameb", background[0])
     formData.append('username', username);
@@ -109,6 +114,7 @@ export default function MyProfile() {
         navigate("/");
       });
   };
+
   return (
     <>
     <Topbar/>
@@ -163,6 +169,7 @@ export default function MyProfile() {
                       <Field
                         className="myProfileInput"
                         name="username"
+                        disabled="true"
                         placeholder="User name"
                         value={username}
                         onChange={(event) => {
@@ -199,7 +206,7 @@ export default function MyProfile() {
                         }}
                       />
                     </div>
-                    <span className="myProfileSpan">Birthday</span>
+<span className="myProfileSpan">Birthday</span>
                     <div>
                       <ErrorMessage
                         className="RegisterError"
@@ -210,7 +217,8 @@ export default function MyProfile() {
                         className="myProfileInput"
                         name="birthday"
                         placeholder="Birthday"
-                        value={birthday}
+                        type="date"
+                        value={moment(birthday).utc().format('YYYY-MM-DD')}
                         onChange={(event) => {
                           setBirthday(event.target.value);
                         }}
