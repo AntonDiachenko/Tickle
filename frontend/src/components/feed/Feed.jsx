@@ -14,8 +14,7 @@ export default function Feed({ username, setVisible }) {
   const { authState } = useContext(AuthContext);
   // const { user } = useContext(AuthContext);
   const userId = authState.userId;
-  //console.log("userId", userId);
-
+  
   // const [userObject, setUserObject] = useState("");
   // const { authState } = useContext(AuthContext);
 
@@ -42,6 +41,23 @@ export default function Feed({ username, setVisible }) {
   //       });
 
   //   }, [userId]);
+
+//   console.log("userHome", usernameHome);
+
+//  console.log("username", username);
+
+  let showShare = false;
+  if (username == undefined) {
+   showShare = true;
+    // console.log("username kdfvnakjrsgbK;WEFNAKLWJEFNKAJSENFGASJK");
+  }else{
+    if(username==authState.username ){
+      showShare = true;
+  }else{
+    showShare = false;
+  }
+  }
+
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -71,8 +87,8 @@ export default function Feed({ username, setVisible }) {
   //   fetchPosts();
   // }, [userId]);
 
-  console.log("feeed username", username);
-  console.log("feeed authState.username", authState.username);
+  // console.log("feeed username", username);
+  // console.log("feeed authState.username", authState.username);
 
   return (
     <>
@@ -81,7 +97,7 @@ export default function Feed({ username, setVisible }) {
     <h2>UserId: {userObject._id}</h2> */}
       <div className="feed">
         <div className="feedWrapper">
-          {username === authState.username ?(
+          {showShare ? (
             <Share setVisible={setVisible}/>
           ):( <span></span>)  }
           {/* <Share setVisible={setVisible} /> */}

@@ -48,7 +48,9 @@ export const updateUser = async (req, res) => {
   const desc = req.body.desc;
   // console.log(desc);
   // console.log(req.body);
+  let avatarURL= req.body.avatarURL;
 
+      
   //set azure environment : ConnectionString and ContainerName
   const blobServiceClient = BlobServiceClient.fromConnectionString(
     "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
@@ -56,26 +58,19 @@ export const updateUser = async (req, res) => {
   const containerClient = blobServiceClient.getContainerClient("post");
 
   // put all the images into urlList
+  if (req.files!==null) {
+    const fileName = req.files.fileName.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+    const options = { blobHTTPHeaders: { blobContentType: req.files.fileName.type } };
+    blockBlobClient.uploadData(req.files.fileName.data, options);
+    // const response = await blockBlobClient.uploadFile(filePath);
+    // https://tickle.blob.core.windows.net/post/download.jpg
+    // https://tickle.blob.core.windows.net/post/az1.jpg
+  
+    avatarURL = containerClient.getBlockBlobClient(fileName).url;
+  }
+  
 
-  const fileName = req.files.fileName.name;
-  const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-  const options = {
-    blobHTTPHeaders: { blobContentType: req.files.fileName.type },
-  };
-  blockBlobClient.uploadData(req.files.fileName.data, options);
-  // const response = await blockBlobClient.uploadFile(filePath);
-  // https://tickle.blob.core.windows.net/post/download.jpg
-  // https://tickle.blob.core.windows.net/post/az1.jpg
-
-  const avatarURL = containerClient.getBlockBlobClient(fileName).url;
-
-  // const user = await User.findByIdAndUpdate(
-  //   {
-  //     _id: id,
-  //   },
-  //   { email, registrationDate: date},
-  //   { upsert: false }
-  // );
 
   // if (userId === id || role == "Admin") {
   if (userId === id || role === "User") {

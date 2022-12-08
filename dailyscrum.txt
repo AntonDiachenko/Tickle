@@ -628,6 +628,14 @@ plcaing the right conditions
 -continue add emoji into the post
 3. Need assistance / figure things out
 
+2022/12/04 Myrzagul
+1. Done / not done since last scrum:
+- finished the code for displaying the user, and start working on search user 
+2. To do until next Scrum:
+- write backend for search user and connect to frontend
+3. Need assistance / figure things out
+
+
 2022/12/05 Anton
 1. Done / not done since last scrum:
 - completed reactions 
@@ -651,6 +659,14 @@ plcaing the right conditions
 	-edit post on frontend
 3. Need assistance / figure things out
 
+
+2022/12/05 Myrzagul
+1. Done / not done since last scrum:
+- wrote backend for search user and connected to frontend
+2. To do until next Scrum:
+- work on the recommened friends
+3. Need assistance / figure things out
+
 2022/12/06 Liutsiia
 1. Done / not done since last scrum:
 - styling searchbar, delete post, Recommended friends 
@@ -666,3 +682,20 @@ plcaing the right conditions
 -edit post on frontend in popup
 -validation for posts
 3. Need assistance / figure things out
+
+2022/12/06 Myrzagul
+1. Done / not done since last scrum:
+- wrote backend/frontend for the recommended friends
+2. To do until next Scrum:
+- fix a bug for for the recommended friends
+3. Need assistance / figure things out
+
+2022/12/07 Myrzagul
+1. Done / not done since last scrum:
+- fixed a bug for for the recommended friends, displayed on the frontend
+- assisted with uploading a photo when updating user info
+- worked on allowing a user to make posts only on his feed/wall 
+2. To do until next Scrum:
+- prepare for the presentation
+3. Need assistance / figure things out
+

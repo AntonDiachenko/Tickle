@@ -30,7 +30,7 @@ export default function Post({ post }) {
 
   if (urlList.length > 0 && urlList[0] != "") {
     var items = urlList.map((value, key) => {
-      return <img src={value} alt="" height={400} width={400} />;
+      return <img key={key} src={value} alt="" height={400} width={400} />;
     });
   } else {
     var items = <br></br>;
@@ -171,12 +171,12 @@ export default function Post({ post }) {
             //   Delete post
             // </button>
             <div className="posTopRight">
-              <div class="dropdown">
-                <button class="dropbtn">
+              <div className="dropdown">
+                <button className="dropbtn">
                   {" "}
                   <MoreHorizIcon />
                 </button>
-                <div class="dropdown-content">
+                <div className="dropdown-content">
                   <a
                     href="#"
                     onClick={() => {
