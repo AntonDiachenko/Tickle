@@ -8,8 +8,8 @@ import { Link } from "react-router-dom";
 import ReactsPopup from "../reactions/ReactsPopup";
 import { useContext } from "react";
 import { AuthContext } from "../../utils/AuthContext.js";
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 // --------------------CHANGE WHEN DEPLOYED------------!!!!!!!
 const PF1 = "/assets/";
 const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -174,19 +174,26 @@ export default function Post({ post }) {
             //   Delete post
             // </button>
             <div className="posTopRight">
-          <div class="dropdown">
-          <button class="dropbtn"> <MoreHorizIcon /></button>
-          <div class="dropdown-content">
-              <a href="#" onClick={() => {
-                deletePost(post._id);
-              }}> Delete post</a>
-              <a href="#"> Edit post</a>
-          </div>
-          </div>
-          </div>
+              <div className="dropdown">
+                <button className="dropbtn">
+                  {" "}
+                  <MoreHorizIcon />
+                </button>
+                <div className="dropdown-content">
+                  <a
+                    href="#"
+                    onClick={() => {
+                      deletePost(post._id);
+                    }}
+                  >
+                    {" "}
+                    Delete post
+                  </a>
+                  <a href="#"> Edit post</a>
+                </div>
+              </div>
+            </div>
           )}
-
-          
         </div>
         <div className="postCenter">
           <div className="postText">

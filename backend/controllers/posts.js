@@ -10,56 +10,63 @@ import Friendships from "../models/Friendships.js";
 // Create post
 export const createPost = async (req, res) => {
   try {
-    const { title, content, tags } = req.body;
-    console.log(req.body);
+    const { title, content } = req.body;
     // const user = await User.findById(req.userId);
     // console.log(req.userId);
     //  console.log(user);
     const urlList = [];
-    if (req.files) {
+    if (req.files ) {
       const file= req.files.fileName;
       
       //set azure environment : ConnectionString and ContainerName
       const blobServiceClient = BlobServiceClient.fromConnectionString(
         "BlobEndpoint=https://tickle.blob.core.windows.net/;QueueEndpoint=https://tickle.queue.core.windows.net/;FileEndpoint=https://tickle.file.core.windows.net/;TableEndpoint=https://tickle.table.core.windows.net/;SharedAccessSignature=sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
-        );
+      );
       const containerClient = blobServiceClient.getContainerClient("post");
 
       // put all the images into urlList
-      file.forEach(element => {
-        const fileName = element.name;
+
+      if (!Array.isArray(file)) {
+        const fileName = file.name;
         const blockBlobClient = containerClient.getBlockBlobClient(fileName);
-        const options = { blobHTTPHeaders: { blobContentType: element.type } };
-        blockBlobClient.uploadData(element.data, options);
-        // const response = await blockBlobClient.uploadFile(filePath);
-        // https://tickle.blob.core.windows.net/post/download.jpg
-        // https://tickle.blob.core.windows.net/post/az1.jpg
-
+        const options = { blobHTTPHeaders: { blobContentType: file.type } };
+        blockBlobClient.uploadData(file.data, options);
         const photoUrl = containerClient.getBlockBlobClient(fileName);
-        // if (urlList.length<9) {
+
+        urlList.push(photoUrl.url);
+      } else {
+        file.forEach((element) => {
+          const fileName = element.name;
+          const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+          const options = { blobHTTPHeaders: { blobContentType: element.type } };
+          blockBlobClient.uploadData(element.data, options);
+          // const response = await blockBlobClient.uploadFile(filePath);
+          // https://tickle.blob.core.windows.net/post/download.jpg
+          // https://tickle.blob.core.windows.net/post/az1.jpg
+  
+          const photoUrl = containerClient.getBlockBlobClient(fileName);
+          // if (urlList.length<9) {
           urlList.push(photoUrl.url);
-        // }
-        
-      });
+          // }
+        });
+      }
+      
 
-
-
- 
       //create a new post
       const newPostWithImage = new Post({
-        title,
-        content,
+        title : req.body.title,
+        content:content? content : "",
         imageURL: urlList,
-        tags,
+        
         reactions: req.body.reactions,
         user: req.userId,
       });
       await newPostWithImage.save();
 
       // in the new post we create multiple images, their urls in the urlList, for each url we create a new image, the album default name is "albums", after creation we push images to user and post
-      urlList.forEach(async element => {
-          const newImage = new Photo({
-          photoURL:element,
+      urlList.forEach(async (element) => {
+        const newImage = new Photo({
+          photoURL: element,
           album: "Albums",
           post: newPostWithImage._id,
           user: req.userId,
@@ -68,22 +75,18 @@ export const createPost = async (req, res) => {
 
         //push photo into user table
         await User.findByIdAndUpdate(req.userId, {
-        $push: { photos: newImage },
+          $push: { photos: newImage },
         });
         //push photo into Post table
         await Post.findByIdAndUpdate(newPostWithImage._id, {
-          $push: {photos: newImage },
+          $push: { photos: newImage },
         });
       });
-
-      
 
       //push post into user table
       await User.findByIdAndUpdate(req.userId, {
         $push: { posts: newPostWithImage },
       });
-
-      
 
       return res.json(newPostWithImage);
     }
@@ -91,10 +94,10 @@ export const createPost = async (req, res) => {
     // console.log("!req.files");
 
     const newPostWithoutImage = new Post({
-      title,
-      content,
+      title: req.body.title,
+        content:req.body.content,
       imageURL: "",
-      tags,
+      tags: "tags",
       reactions: req.body.reactions,
       user: req.userId,
     });
@@ -131,8 +134,8 @@ export const getAll = async (req, res) => {
 //Get post by id
 export const getById = async (req, res) => {
   try {
-    const post = await Post.findOne(req.params._id);
-    // const post = await Post.findById(req._id);
+    //const post = await Post.findOne(req.params._id);
+    const post = await Post.findById(req.params.id);
     res.json(post);
   } catch (error) {
     res.json({ message: "Something went realllly wrong" });
@@ -253,23 +256,22 @@ export const removePost = async (req, res) => {
   }
 };
 
+// async function deleteBlob(containerClient, blobName){
 
-      // async function deleteBlob(containerClient, blobName){
+//   // include: Delete the base blob and all of its snapshots.
+//   // only: Delete only the blob's snapshots and not the blob itself.
+//   const options = {
+//     deleteSnapshots: 'include' // or 'only'
+//   }
 
-      //   // include: Delete the base blob and all of its snapshots.
-      //   // only: Delete only the blob's snapshots and not the blob itself.
-      //   const options = {
-      //     deleteSnapshots: 'include' // or 'only'
-      //   }
-      
-      //   // Create blob client from container client
-      //   const blockBlobClient = await containerClient.getBlockBlobClient(blobName);
-      
-      //   await blockBlobClient.delete(options);
-      
-      //   console.log(`deleted blob ${blobName}`);
-      
-      // }
+//   // Create blob client from container client
+//   const blockBlobClient = await containerClient.getBlockBlobClient(blobName);
+
+//   await blockBlobClient.delete(options);
+
+//   console.log(`deleted blob ${blobName}`);
+
+// }
 
 // Update post
 export const updatePost = async (req, res) => {

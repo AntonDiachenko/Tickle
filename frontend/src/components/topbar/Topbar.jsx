@@ -23,7 +23,7 @@ const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   };
   //fetchUser();
 // }, []);
-console.log("User from search",user);
+// console.log("User from search",user);
 
   return (
     <div className="topbarContainer">
@@ -50,7 +50,7 @@ console.log("User from search",user);
             }}>
                        
           </input> 
-          <div class="dropdown-content2">
+          <div className="dropdown-content2">
              
             <span>Recent serches:
             </span>

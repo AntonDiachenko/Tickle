@@ -6,58 +6,53 @@ import axios from "../../utils/axios";
 import EmojiPickerBackgrounds from "./EmojiPickerBackgrounds";
 import AddToYourPost from "./AddToYourPost";
 
-
 export default function CreatePostPopup({ user, setVisible }) {
   const { authState } = useContext(AuthContext);
   //console.log("usershare", authState.userId);
-  // const storageConfigured = isStorageConfigured();
+
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   const [content, setContent] = useState("");
   const contentRef = useRef(null);
- 
-  
-  // all blobs in container
-  const [blobList, setBlobList] = useState([]);
 
-  // current file to upload into container
-  const [fileSelected, setFileSelected] = useState([]);
 
-  const onFileChange = (event) => {
-    // capture file into state
-    setFileSelected(event.target.files);
+    // all blobs in container
+    const [blobList, setBlobList] = useState([]);
+
+    // current file to upload into container
+    const [fileSelected, setFileSelected] = useState([]);
+
+    const onFileChange = (event) => {
+      // capture file into state
+      setFileSelected(event.target.files);
+    };
+
+    const formData = new FormData()
+
+
+      
+    formData.append('title', "default title");
     
-  };
-  console.log("fileSelected",fileSelected);
+    formData.append('content', content);
+    // {content =null ? formData.append('content', content): null};
+    for( var i =0; i< fileSelected.length;i++){
+      formData.append("fileName", fileSelected[i])
+    }
 
-  
+ const submitHandler = async (e) => {
+    e.preventDefault();
 
-  const submitHandler = async (e) => {
-    // e.preventDefault();
     try {
       await axios.
-      post("api/posts/",
-        {
-          title: "default title",
-          content: contentRef.current.value,
-          tags: "tag1",
-          files: fileSelected
-          
-        },
+      post(`api/posts/`,
+      formData,
         {
           headers: { accessToken: localStorage.getItem("accessToken") },
         }
-        // newPost
       );
-      //  console.log("api/posts");
-
       window.location.reload();
     } catch (err) {}
   };
- 
-
-
-  // console.log("content", content);
   return (
     <div className="blur">
       <div className="postBox">
@@ -81,7 +76,6 @@ export default function CreatePostPopup({ user, setVisible }) {
             </div>
           </div>
         </div>
-        <form onSubmit={submitHandler} enctype="multipart/form-data">
         <div className="flex_center">
           <textarea
             ref={contentRef}
@@ -92,19 +86,16 @@ export default function CreatePostPopup({ user, setVisible }) {
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
-   
         <EmojiPickerBackgrounds
           content={content}
           contentRef={contentRef}
           setContent={setContent}
         />
         <AddToYourPost />
-        
-        <input type="file" id="image-input" accept="image/jpeg, image/png, image/jpg"  multiple="multiple" onChange={onFileChange} />
-
-        <div id="display-image"></div>
-        
-          <button className="post_submit" type="submit">
+        <form onSubmit={submitHandler} >
+        <input type="file"  accept="image/jpeg, image/png, image/jpg"  multiple="multiple" onChange={onFileChange} />
+        {/* <div id="display-image"></div> */}      
+        <button className="post_submit" type="submit">
             Post
           </button>
         </form>
@@ -112,3 +103,18 @@ export default function CreatePostPopup({ user, setVisible }) {
     </div>
   );
 }
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+      
