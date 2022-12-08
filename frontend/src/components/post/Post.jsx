@@ -189,7 +189,7 @@ export default function Post({ post }) {
                     {" "}
                     Delete post
                   </a>
-                  <a href="#"> Edit post</a>
+                  <Link to={`/post/${post._id}`}>Edit post</Link>
                 </div>
               </div>
             </div>
