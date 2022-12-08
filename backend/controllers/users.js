@@ -59,31 +59,63 @@ export const updateUser = async (req, res) => {
   const containerClient = blobServiceClient.getContainerClient("post");
 
   // put all the images into urlList
-  if (req.files.fileName) {
-    const fileName = req.files.fileName.name;
-    const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+  //..............................................................................
+
+  if (req.files!== null){
+if (req.files!== null && Array.isArray(req.files)  ) {
+  req.files.forEach(element => {
+    const imageName = element.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(imageName);
+    const options = { blobHTTPHeaders: { blobContentType: element.type } };
+    blockBlobClient.uploadData(element.data, options);
+  if (element== "fileName") {
+    avatarURL = containerClient.getBlockBlobClient(imageName).url;
+
+  } else {
+    profileURL = containerClient.getBlockBlobClient(imageName).url;
+  }
+  });
+}else if(req.files.fileName){
+  const imageName = req.files.fileName.name;
+    const blockBlobClient = containerClient.getBlockBlobClient(imageName);
     const options = { blobHTTPHeaders: { blobContentType: req.files.fileName.type } };
     blockBlobClient.uploadData(req.files.fileName.data, options);
-    // const response = await blockBlobClient.uploadFile(filePath);
-    // https://tickle.blob.core.windows.net/post/download.jpg
-    // https://tickle.blob.core.windows.net/post/az1.jpg
+    avatarURL = containerClient.getBlockBlobClient(imageName).url;
+}else{
+  const imageName = req.files.fileNameb.name;
+  const blockBlobClient = containerClient.getBlockBlobClient(imageName);
+  const options = { blobHTTPHeaders: { blobContentType: req.files.fileNameb.type} };
+  blockBlobClient.uploadData(req.files.fileNameb.data, options);
+
+  profileURL = containerClient.getBlockBlobClient(imageName).url;
+}
+}
+//..............................................................................
+  // if (req.files.fileName) {
+  //   const fileName = req.files.fileName.name;
+  //   const blockBlobClient = containerClient.getBlockBlobClient(fileName);
+  //   const options = { blobHTTPHeaders: { blobContentType: req.files.fileName.type } };
+  //   blockBlobClient.uploadData(req.files.fileName.data, options);
+  //   // const response = await blockBlobClient.uploadFile(filePath);
+  //   // https://tickle.blob.core.windows.net/post/download.jpg
+  //   // https://tickle.blob.core.windows.net/post/az1.jpg
   
-    avatarURL = containerClient.getBlockBlobClient(fileName).url;
-  }
-  if (req.files.fileNameb) {
-    const fileNameb = req.files.fileNameb.name;
-    const blockBlobClientb = containerClient.getBlockBlobClient(fileNameb);
-    const optionsb = { blobHTTPHeaders: { blobContentType: req.files.fileNameb.type } };
-    blockBlobClientb.uploadData(req.files.fileNameb.data, optionsb);
-    // const response = await blockBlobClient.uploadFile(filePath);
-    // https://tickle.blob.core.windows.net/post/download.jpg
-    // https://tickle.blob.core.windows.net/post/az1.jpg
+  //   avatarURL = containerClient.getBlockBlobClient(fileName).url;
+  // }
+  // if (req.files.fileNameb) {
+  //   const fileNameb = req.files.fileNameb.name;
+  //   const blockBlobClientb = containerClient.getBlockBlobClient(fileNameb);
+  //   const optionsb = { blobHTTPHeaders: { blobContentType: req.files.fileNameb.type } };
+  //   blockBlobClientb.uploadData(req.files.fileNameb.data, optionsb);
+  //   // const response = await blockBlobClient.uploadFile(filePath);
+  //   // https://tickle.blob.core.windows.net/post/download.jpg
+  //   // https://tickle.blob.core.windows.net/post/az1.jpg
   
-    profileURL = containerClient.getBlockBlobClient(fileNameb).url;
+  //   profileURL = containerClient.getBlockBlobClient(fileNameb).url;
 
 
 
-  }
+  // }
 
   
   
