@@ -4,10 +4,6 @@ import { useParams } from "react-router";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
 export default function EditPost() {
   const [post, setPost] = useState({});
   const [content, setContent] = useState();
