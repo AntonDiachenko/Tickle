@@ -72,6 +72,12 @@ export default function Profile({ setVisible }) {
       });
   };
 
+
+  const addbackgroundimage = () =>{
+      
+       
+  }
+
   return (
     <>
       <Topbar />
@@ -85,7 +91,10 @@ export default function Profile({ setVisible }) {
                 src={user.profileURL || PF + "person/noBackground.png"}
                 alt=""
                 className="profileCoverImg"
+                onClick={ <input type="file"  accept="image/jpeg, image/png, image/jpg"  /> }
+                
               />
+           
               <img
                 src={user.avatarURL || PF + "person/NoAvatar.png"}
                 alt=""

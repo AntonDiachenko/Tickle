@@ -68,6 +68,9 @@ export default function EditPost() {
               />
             </td>
             <td>
+            <input type="file"  accept="image/jpeg, image/png, image/jpg" 
+            //  onChange={onFileChange} 
+             />
               <button
                 onClick={() => {
                   updatePost(postId);
