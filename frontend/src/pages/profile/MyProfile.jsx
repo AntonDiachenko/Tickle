@@ -169,6 +169,7 @@ export default function MyProfile() {
           <div className="profileItems">
             <Formik>
               <Form className="myProfileForm">
+              <span className="myProfileSpan">Avatar: </span>
                 <div>
                   {/* .....................upload avatar........................ */}
 
@@ -176,7 +177,7 @@ export default function MyProfile() {
                     src={user.avatarURL}
                     // src ="https://tickle.blob.core.windows.net/post/az1.jpg?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-12-23T10:48:40Z&st=2022-11-23T02:48:40Z&spr=https&sig=0n%2Bq%2FYphSP%2BSzLnv8v1VgCJDSHYjuS0X8VsGf8k23eE%3D"
                     alt=""
-                    className=""
+                    className="avatarImg"
                   />
                   <input
                     type="file"
