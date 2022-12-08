@@ -31,7 +31,7 @@ export default function Post({ post }) {
   if (urlList.length > 0 && urlList[0] != "") {
     // divBool=true;
     var items =  urlList.map((value, key) => {
-      return <div className="photoGridItem"><img className="photoImg" src={value} alt="" /></div>
+      return <div className="postPhotoGridItem"><img className="photoImg" src={value} alt="" /></div>
       {/* // return </div> */}
     }
     );
@@ -203,7 +203,7 @@ export default function Post({ post }) {
         {/* {divBool ? (<div className="photoGrid">{items}</div>) : ({items})} */}
         {items.length > 0 ?
 
-<div className="photoGrid">{items} <br /></div>
+<div className="postPhotoGrid">{items} <br /></div>
 
 : <div> {items}</div> 
 
