@@ -241,10 +241,22 @@ export const getProfilePosts = async (req, res) => {
 //-------------End of NEWLY ADDED ROUTES---------------//
 
 // Remove post
+// Remove post
+
 export const removePost = async (req, res) => {
+
   try {
     const post = await Post.findByIdAndDelete(req.params.id);
     if (!post) return res.json({ message: "Cannot find the post" });
+    const photos = await Photo.find({ post: req.params.id });
+
+    for (let i = 0; i < photos.length; i++) {
+      await User.findByIdAndUpdate(req.userId, {
+        $pull: { photos: photos[i]._id },
+      });
+    }
+
+    const photos1 = await Photo.findByIdAndDelete({ post: req.params.id });
 
     await User.findByIdAndUpdate(req.userId, {
       $pull: { posts: req.params.id },

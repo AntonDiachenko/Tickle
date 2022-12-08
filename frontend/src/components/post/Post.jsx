@@ -178,15 +178,14 @@ export default function Post({ post }) {
                 </button>
                 <div className="dropdown-content">
                   <a
-                    href="#"
+                    href=""
                     onClick={() => {
                       deletePost(post._id);
                     }}
                   >
-                    {" "}
                     Delete post
                   </a>
-                  <a href="#"> Edit post</a>
+                  <Link to={`/post/${post._id}`}>Edit post</Link>
                 </div>
               </div>
             </div>
